@@ -140,11 +140,12 @@ class GuiMainWin(Ui_MainWindow):
         level = 0.1
         height = 1
         height_step_down = 14.5
+        height_step_up = -9
 
         k = [60, 60, 60, 5, 3, 2.5, 2, 1, 0.8, 0.6, 0.5, 0.4,
              0.35, 0.3, 0.27, 0.25, 0.23, 0.21, 0.2, 0.19, 0.18, 0.17] #2
         #for i in range(len(k)):
-        for i in range(1,91):
+        for i in range(1,121):
             QtWidgets.QApplication.processEvents()
             QThread.msleep(10)
             self.clean_screen()
@@ -153,19 +154,9 @@ class GuiMainWin(Ui_MainWindow):
             k = -55*t**18+ 26.5*t**17 -8.58*t**16+ 2.083*t**15 -0.40833333*t**14+ 0.069166*t**13 -0.01875*t**12+0.0026314484126984125*t**11 \
                 -0.00035466269841269844*t**10+4.6254960317460326e-05*t**9 -5.790794853294855e-06*t**8+ 6.874089773395331e-07*t**7 -7.670762879096215e-08*t**6+8.022065933772286e-09*t**5 -7.871913873898004e-10*t**4+ 7.272643888053943e-11*t**3-6.3505477606882064e-12*t**2 + 5.258955747909045e-13*t -4.14040514831481e-14'''
 
-            self.scene.addLine(150, 90, 280, 290, self.pen_glass)
-            self.scene.addLine(280, 290, 148, 485, self.pen_glass)
-            self.scene.addLine(150, 90, 420, 90, self.pen_glass)
-
-            self.scene.addLine(193, 152, 377, 152, self.pen_func)
-
-            self.scene.addLine(420, 90, 290, 290, self.pen_glass)
-            self.scene.addLine(290, 290, 418, 485, self.pen_glass)
-            self.scene.addLine(148, 485, 418, 485, self.pen_glass)
-
             if (len(self.sand)):
                 for j in range(len(self.sand)):
-                    if (self.sand[j].y >= 470 - count * 2.4):
+                    if (self.sand[j].y >= 470 - count * 2.5): #height / 1.87
                         self.sand[j].new_grain()
                     else:
                         if (j % 7 == 0):    self.sand[j].move()
@@ -180,26 +171,52 @@ class GuiMainWin(Ui_MainWindow):
                 self.sand.append(Grain(282, 290))
                 self.sand.append(Grain(285, 290))
 
+            if (i <= 30):    self.scene.addLine(199, 166, 370, 166, self.pen_func)
+
             for j in range(len(self.sand)):
-                self.scene.addRect(self.sand[j].x, self.sand[j].y, self.sand[j].width, self.sand[j].height, self.pen_func, self.brush_func)
+                self.scene.addRect(self.sand[j].x, self.sand[j].y, self.sand[j].width, 
+                                   self.sand[j].height, self.pen_func, self.brush_func)
 
             if (i > 30 and i <= 65):
                 count += 0.6
                 k = 100.3812 * count ** (-2)
-                print(k)
+                #print(k)
                 self.create_surface((x_min, x_max, x_step), (z_min, z_max, z_step), funcs(self.Funcs.currentIndex()), k, 15)
-                #self.create_surface((-7, 7, x_step), (-7, 7, z_step), f_test, k, -10)
-            elif (i > 65):
+                self.create_surface((-6.5, 6.5, x_step), (-6.5, 6.5, z_step), f_test, k, -9)
+
+                self.scene.addLine(199, 166, 370, 166, self.pen_func)
+            elif (i > 65 and i <= 120):
                 self.create_surface((x_min + level, x_max - level, x_step),
                                     (z_min + level, z_max - level, z_step), funcs(self.Funcs.currentIndex()), k, height_step_down)
-                height_step_down -= 0.1
-                level += 0.07
+                self.create_surface((-6.5 + level*3, 6.85 - level*3, x_step),
+                                    (-6.5 + level*3, 6.85 - level*3, z_step), f_test, k, height_step_up)
+                #self.scene.addLine(199 + height / 1.5, 166 + height, 370 - height / 1.5, 166 + height, self.pen_func)
 
-        '''for i in range(10):
-            QtWidgets.QApplication.processEvents()
-            QThread.msleep(300)
-            self.clean_screen()
-            self.create_surface((x_min, x_max, x_step), (z_min, z_max, z_step), funcs(self.Funcs.currentIndex()), 0.17)'''
+                if (i % 2):
+                    height_step_down -= 0.1
+                    height_step_up += 0.287 #0.18
+                    level += 0.07
+                height += 2.25
+
+                length = len(self.sand)
+                j = 0
+                while length > 0:
+                    print(height, self.sand[j].y)
+                    if (height > 115) and ((self.sand[j].y < 350) or (self.sand[j].y >= 417 - level*20)):
+                        del self.sand[j]
+                        j -= 1
+                    elif (self.sand[j].y >= 417 - level*20):
+                        self.sand[j].new_grain()
+                    length -= 1
+                    j += 1
+
+            self.scene.addLine(150, 90, 280, 290, self.pen_glass)
+            self.scene.addLine(280, 290, 148, 485, self.pen_glass)
+            self.scene.addLine(150, 90, 420, 90, self.pen_glass)
+
+            self.scene.addLine(420, 90, 290, 290, self.pen_glass)
+            self.scene.addLine(290, 290, 418, 485, self.pen_glass)
+            self.scene.addLine(148, 485, 418, 485, self.pen_glass)
 
         print("--------------------")
 
@@ -326,7 +343,8 @@ class GuiMainWin(Ui_MainWindow):
 
 def f1(x, z, k, h = 15): #
     #return 5*x + 3*z - 7 #
-    return exp(-(0.12*x**2 + 0.12*z**2)**2/10) / k - h
+    #return exp(-(0.12*x**2 + 0.12*z**2)**2/10) / k - h
+    return exp(-(0.22*x**2 + 0.22*z**2)**2/10) / (k+0.05) - h
 
 def f2(x, z):
     return x**2 + z**2
@@ -360,7 +378,8 @@ def sign(x):
     if (x < 0): return -1
 
 def f_test(x, z, k, h = -10):
-    return -exp(-(0.25*x**2 + 0.25*z**2)**2/10) / k - h
+    #return -exp(-(0.3*x**2 + 0.3*z**2)**2/6) / k - h
+    return -exp(-(0.25 * x ** 2 + 0.25 * z ** 2) ** 2 / 10) / (k+0.5) - h
 
 class Grain(object):
     x, y = 0, 0
