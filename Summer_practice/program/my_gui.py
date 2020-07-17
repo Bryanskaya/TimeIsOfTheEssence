@@ -18,7 +18,7 @@ class GuiMainWin(Ui_MainWindow):
     glass_color = QtGui.QColor('#00FFFF')
 
     pen_func = QPen(func_color)
-    pen_glass = QPen(glass_color)
+    pen_glass = QPen(glass_color, 3)
     brush_func = QBrush(func_color)
     up_arr = []
     down_arr = []
@@ -55,7 +55,7 @@ class GuiMainWin(Ui_MainWindow):
 
     def set_color(self, color):
         self.func_color = color
-        self.pen_func = QPen(color)
+        self.pen_func = QPen(color, 5)
 
     def draw_cut(self, x1, y1, x2, y2):
         self.scene.addLine(x1, y1, x2, y2, self.pen_func)
@@ -188,8 +188,8 @@ class GuiMainWin(Ui_MainWindow):
             elif (i > 65 and i <= 120):
                 self.create_surface((x_min + level, x_max - level, x_step),
                                     (z_min + level, z_max - level, z_step), funcs(self.Funcs.currentIndex()), k, height_step_down)
-                self.create_surface((-6.5 + level*3, 6.85 - level*3, x_step),
-                                    (-6.5 + level*3, 6.85 - level*3, z_step), f_test, k, height_step_up)
+                self.create_surface((-6.5 + level*3, 6.85 - level*3+0.15, x_step),
+                                    (-6.5 + level*3, 6.85 - level*3+0.15, z_step), f_test, k, height_step_up)
                 #self.scene.addLine(199 + height / 1.5, 166 + height, 370 - height / 1.5, 166 + height, self.pen_func)
 
                 if (i % 2):
@@ -212,11 +212,23 @@ class GuiMainWin(Ui_MainWindow):
 
             self.scene.addLine(150, 90, 280, 290, self.pen_glass)
             self.scene.addLine(280, 290, 148, 485, self.pen_glass)
-            self.scene.addLine(150, 90, 420, 90, self.pen_glass)
+            self.scene.addLine(150, 90, 417, 90, self.pen_glass)
 
-            self.scene.addLine(420, 90, 290, 290, self.pen_glass)
+            self.scene.addLine(417, 90, 290, 290, self.pen_glass)
             self.scene.addLine(290, 290, 418, 485, self.pen_glass)
             self.scene.addLine(148, 485, 418, 485, self.pen_glass)
+
+        self.clean_screen()
+        self.create_surface((x_min + level, x_max - level, x_step),
+                            (z_min + level, z_max - level, z_step), funcs(self.Funcs.currentIndex()), k,
+                            height_step_down)
+        self.scene.addLine(150, 90, 280, 290, self.pen_glass)
+        self.scene.addLine(280, 290, 148, 485, self.pen_glass)
+        self.scene.addLine(150, 90, 417, 90, self.pen_glass)
+
+        self.scene.addLine(417, 90, 290, 290, self.pen_glass)
+        self.scene.addLine(290, 290, 418, 485, self.pen_glass)
+        self.scene.addLine(148, 485, 418, 485, self.pen_glass)
 
         print("--------------------")
 
@@ -379,7 +391,7 @@ def sign(x):
 
 def f_test(x, z, k, h = -10):
     #return -exp(-(0.3*x**2 + 0.3*z**2)**2/6) / k - h
-    return -exp(-(0.25 * x ** 2 + 0.25 * z ** 2) ** 2 / 10) / (k+0.5) - h
+    return -exp(-(0.25 * x ** 2 + 0.25 * z ** 2) ** 2 / 3) / (k+0.5) - h
 
 class Grain(object):
     x, y = 0, 0
