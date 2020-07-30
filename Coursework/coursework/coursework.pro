@@ -25,11 +25,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        Errors/base_error.cpp \
+        Objects/Point/point.cpp \
+        Objects/Vector/vector.cpp \
+        Objects/Vertex/vertex.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        Errors/base_error.h \
+        Errors/vector_errors.h \
+        Objects/Point/point.h \
+        Objects/Side/side.h \
+        Objects/Vector/vector.h \
+        Objects/Vertex/vertex.h \
+        mainwindow.h \
+        new_fold/Point/mainwindow.h
 
 FORMS += \
         mainwindow.ui
