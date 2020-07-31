@@ -26,7 +26,9 @@ CONFIG += c++11
 
 SOURCES += \
         Errors/base_error.cpp \
+        Errors/vector_errors.cpp \
         Objects/Point/point.cpp \
+        Objects/Side/side.cpp \
         Objects/Vector/vector.cpp \
         Objects/Vertex/vertex.cpp \
         main.cpp \
