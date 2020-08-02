@@ -27,6 +27,9 @@ public:
     void invert();
     double scalar_mult(const Vector& other);
     Vector vect_mul(const Vector& v1, const Vector& v2) const;
+
+    Vector operator +(const Vector& other);
+    void operator +=(const Vector& other);
 };
 
 #endif // VECTOR_H

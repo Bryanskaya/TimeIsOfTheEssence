@@ -1,42 +1,30 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MODEL_H
+#define MODEL_H
 
-#include <QMainWindow>
+#include <vector>
 #include <memory>
 
-#include <iostream>
+#include "Objects/Vertex/vertex.h"
+#include "Objects/Side/side.h"
 
 
-using namespace std;
-
-namespace Ui {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
+class Model
 {
-    Q_OBJECT
-
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    Model();
+    explicit Model(const Model& other);//
 
-private slots:
-    void on_PushUp_clicked();
+    virtual ~Model();
 
-    void on_PushRight_clicked();
+    void normalize_n_vrt();
 
-    void on_PushDown_clicked();
-
-    void on_PushLeft_clicked();
-
-    void on_Start_clicked();
+protected:
+    vector<shared_ptr<Vertex>> v_arr;
+    vector<shared_ptr<Side>> s_arr;
 
 private:
-    Ui::MainWindow *ui;
-
-    void _set_binds_input(void);
-    void _show_error(const char* error);
+    void _add_side(vector<shared_ptr<Vertex>> vertex_arr, QRgb color);
+    void _add_vertex(const Point& pnt);
 };
 
-#endif // MAINWINDOW_H
+#endif // MODEL_H

@@ -1,5 +1,6 @@
 #include "vector.h"
 
+//constructors and destructor
 Vector::Vector() {}
 
 Vector::~Vector() {}
@@ -18,6 +19,7 @@ Vector::Vector(const Point &begin_pnt, const Point &end_pnt)
 }
 
 
+//methonds
 double Vector::get_length() const
 {
     return sqrt(x * x + y * y + z * z);
@@ -56,4 +58,24 @@ Vector Vector::vect_mul(const Vector &v1, const Vector &v2) const
     result.z = v1.x * v2.y - v1.y * v2.x;
 
     return result;
+}
+
+
+//operators
+Vector Vector::operator+(const Vector &other)
+{
+    Vector result;
+
+    result.x = this->x + other.x;
+    result.y = this->y + other.y;
+    result.z = this->z + other.z;
+
+    return result;
+}
+
+void Vector::operator+=(const Vector &other)
+{
+    this->x += other.x;
+    this->y += other.y;
+    this->z += other.z;
 }

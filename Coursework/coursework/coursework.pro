@@ -26,7 +26,9 @@ CONFIG += c++11
 
 SOURCES += \
         Errors/base_error.cpp \
+        Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
+        Objects/Model/model.cpp \
         Objects/Point/point.cpp \
         Objects/Side/side.cpp \
         Objects/Vector/vector.cpp \
@@ -36,7 +38,9 @@ SOURCES += \
 
 HEADERS += \
         Errors/base_error.h \
+        Errors/side_errors.h \
         Errors/vector_errors.h \
+        Objects/Model/model.h \
         Objects/Point/point.h \
         Objects/Side/side.h \
         Objects/Vector/vector.h \

@@ -7,6 +7,7 @@
 
 #include "Objects/Vertex/vertex.h"
 #include "Objects/Vector/vector.h"
+#include "Errors/side_errors.h"
 
 class Side
 {
@@ -15,8 +16,8 @@ public:
     Vector n;
     QRgb color;
 
-    Side(); //?
-    //Side(vector<shared_ptr<Vertex>> vertex_arr, QRgb color);
+    Side();
+    Side(vector<shared_ptr<Vertex>> vertex_arr, const Point& control_p, QRgb color);
 
     virtual ~Side();
 
