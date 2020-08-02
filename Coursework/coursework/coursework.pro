@@ -28,11 +28,15 @@ SOURCES += \
         Errors/base_error.cpp \
         Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
-        Objects/Model/model.cpp \
-        Objects/Point/point.cpp \
-        Objects/Side/side.cpp \
-        Objects/Vector/vector.cpp \
-        Objects/Vertex/vertex.cpp \
+        Objects/camera.cpp \
+        Objects/light_source.cpp \
+        Objects/scene_object.cpp \
+        Objects/simple_object.cpp \
+        Primitives/Model/model.cpp \
+        Primitives/Point/point.cpp \
+        Primitives/Side/side.cpp \
+        Primitives/Vector/vector.cpp \
+        Primitives/Vertex/vertex.cpp \
         main.cpp \
         mainwindow.cpp
 
@@ -40,11 +44,15 @@ HEADERS += \
         Errors/base_error.h \
         Errors/side_errors.h \
         Errors/vector_errors.h \
-        Objects/Model/model.h \
-        Objects/Point/point.h \
-        Objects/Side/side.h \
-        Objects/Vector/vector.h \
-        Objects/Vertex/vertex.h \
+        Objects/camera.h \
+        Objects/light_source.h \
+        Objects/scene_object.h \
+        Objects/simple_object.h \
+        Primitives/Model/model.h \
+        Primitives/Point/point.h \
+        Primitives/Side/side.h \
+        Primitives/Vector/vector.h \
+        Primitives/Vertex/vertex.h \
         mainwindow.h \
         new_fold/Point/mainwindow.h
 

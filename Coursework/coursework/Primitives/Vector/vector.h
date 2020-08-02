@@ -5,7 +5,7 @@
 #include <ostream>
 
 #include "Errors/vector_errors.h"
-#include "Objects/Point/point.h"
+#include "Primitives/Point/point.h"
 
 #define     EPS     1e-5
 

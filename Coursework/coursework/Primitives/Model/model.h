@@ -4,8 +4,8 @@
 #include <vector>
 #include <memory>
 
-#include "Objects/Vertex/vertex.h"
-#include "Objects/Side/side.h"
+#include "Primitives/Vertex/vertex.h"
+#include "Primitives/Side/side.h"
 
 
 class Model

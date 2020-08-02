@@ -1,8 +1,8 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
-#include "Objects/Point/point.h"
-#include "Objects/Vector/vector.h"
+#include "Primitives/Point/point.h"
+#include "Primitives/Vector/vector.h"
 
 class Vertex : public Point
 {
