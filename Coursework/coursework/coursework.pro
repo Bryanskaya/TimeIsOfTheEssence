@@ -25,6 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        Commands/add_command.cpp \
+        Commands/base_command.cpp \
+        Commands/transform_command.cpp \
         Errors/base_error.cpp \
         Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
@@ -41,6 +44,9 @@ SOURCES += \
         mainwindow.cpp
 
 HEADERS += \
+        Commands/add_command.h \
+        Commands/base_command.h \
+        Commands/transform_command.h \
         Errors/base_error.h \
         Errors/side_errors.h \
         Errors/vector_errors.h \
@@ -53,6 +59,7 @@ HEADERS += \
         Primitives/Side/side.h \
         Primitives/Vector/vector.h \
         Primitives/Vertex/vertex.h \
+        Scene/scene.h \
         mainwindow.h \
         new_fold/Point/mainwindow.h
 
