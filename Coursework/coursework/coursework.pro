@@ -32,9 +32,12 @@ SOURCES += \
         Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
         Objects/camera.cpp \
+        Objects/glass.cpp \
         Objects/light_source.cpp \
+        Objects/sand.cpp \
         Objects/scene_object.cpp \
         Objects/simple_object.cpp \
+        Objects/surface.cpp \
         Primitives/Model/model.cpp \
         Primitives/Point/point.cpp \
         Primitives/Side/side.cpp \
@@ -51,9 +54,12 @@ HEADERS += \
         Errors/side_errors.h \
         Errors/vector_errors.h \
         Objects/camera.h \
+        Objects/glass.h \
         Objects/light_source.h \
+        Objects/sand.h \
         Objects/scene_object.h \
         Objects/simple_object.h \
+        Objects/surface.h \
         Primitives/Model/model.h \
         Primitives/Point/point.h \
         Primitives/Side/side.h \

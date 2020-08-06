@@ -12,6 +12,13 @@ public:
     virtual ~InvalidOperation();
 };
 
+class WrongIndex : public BaseError
+{
+public:
+    WrongIndex(string filename, string classname, int num_line);
+    virtual ~WrongIndex();
+};
+
 }
 
 #endif // VECTOR_ERRORS_H

@@ -11,6 +11,8 @@ public:
     Point(const Point& other);
 
     virtual ~Point();
+
+    void operator =(const Point& other);
 };
 
 #endif // POINT_H

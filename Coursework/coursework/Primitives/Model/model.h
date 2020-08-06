@@ -13,13 +13,14 @@ class Model
 public:
     Model();
     Model(const vector<Point>& p_arr);
-    explicit Model(const Model& other);//
+    explicit Model(const Model& other);
 
     virtual ~Model();
 
     void normalize_n_vrt();
     void add_vertex(const Point& pnt);
     void add_vertices(const vector<Point> &p_arr);
+    void add_side(std::initializer_list<size_t> ind_arr, QRgb color);
 
 protected:
     vector<shared_ptr<Vertex>> v_arr;
