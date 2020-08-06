@@ -9,6 +9,7 @@
 #include "Primitives/Vector/vector.h"
 #include "Errors/side_errors.h"
 
+
 class Side
 {
 public:

@@ -19,6 +19,9 @@ public:
 
     virtual void accept(shared_ptr<ObjectVisitor>);
     virtual SceneObject* clone();
+
+private:
+    double _speed_y = 10;
 };
 
 #endif // SAND_H

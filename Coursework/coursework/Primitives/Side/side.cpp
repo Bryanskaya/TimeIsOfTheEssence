@@ -4,7 +4,7 @@ Side::Side() {}
 
 Side::~Side() {}
 
-Side::Side(vector<shared_ptr<Vertex>> v_arr, const Point& control_p,QRgb data_color)
+Side::Side(vector<shared_ptr<Vertex>> v_arr, const Point& control_p, QRgb data_color)
 {
     if (v_arr.size() < 2)
         throw error::DegenerateSide(__FILE__, typeid (*this).name(), __LINE__ - 1, v_arr.size());

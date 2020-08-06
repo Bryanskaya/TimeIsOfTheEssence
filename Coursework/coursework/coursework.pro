@@ -29,10 +29,13 @@ SOURCES += \
         Commands/base_command.cpp \
         Commands/transform_command.cpp \
         Errors/base_error.cpp \
+        Errors/hourglass_error.cpp \
         Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
         Objects/camera.cpp \
+        Objects/composite_object.cpp \
         Objects/glass.cpp \
+        Objects/hourglass.cpp \
         Objects/light_source.cpp \
         Objects/sand.cpp \
         Objects/scene_object.cpp \
@@ -51,10 +54,13 @@ HEADERS += \
         Commands/base_command.h \
         Commands/transform_command.h \
         Errors/base_error.h \
+        Errors/hourglass_error.h \
         Errors/side_errors.h \
         Errors/vector_errors.h \
         Objects/camera.h \
+        Objects/composite_object.h \
         Objects/glass.h \
+        Objects/hourglass.h \
         Objects/light_source.h \
         Objects/sand.h \
         Objects/scene_object.h \

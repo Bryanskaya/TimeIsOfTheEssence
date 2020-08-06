@@ -31,7 +31,7 @@ Model::Model(const Model& other)
         this->add_vertex(*vertex);
 
     for (auto side : other.s_arr)
-        _add_side(side->vertex_arr, side->color);
+        this->_add_side(side->vertex_arr, side->color);
 }
 
 Model::~Model() {}
