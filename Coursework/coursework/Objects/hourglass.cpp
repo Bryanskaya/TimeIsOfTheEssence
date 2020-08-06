@@ -20,5 +20,8 @@ void Hourglass::set_time(double time_limit)
 
 void Hourglass::set_height(double height)
 {
+    if (height <= 0)
+        throw error::WrongHeight(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
    _height = height;
 }

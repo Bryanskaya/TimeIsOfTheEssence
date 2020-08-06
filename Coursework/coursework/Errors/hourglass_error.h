@@ -1,5 +1,5 @@
-#ifndef HOURGLASS_H
-#define HOURGLASS_H
+#ifndef HOURGLASS_ERROR_H
+#define HOURGLASS_ERROR_H
 
 #include "base_error.h"
 
@@ -12,6 +12,13 @@ public:
     virtual ~WrongTimeLimit();
 };
 
+class WrongHeight : public BaseError
+{
+public:
+    WrongHeight(string filename, string classname, int num_line);
+    virtual ~WrongHeight();
+};
+
 }
 
-#endif // HOURGLASS_H
+#endif // HOURGLASS_ERROR_H
