@@ -15,6 +15,8 @@ public:
     Vertex(const Vertex& other);
 
     virtual ~Vertex();
+
+    bool operator==(const Vertex& other);
 };
 
 #endif // VERTEX_H

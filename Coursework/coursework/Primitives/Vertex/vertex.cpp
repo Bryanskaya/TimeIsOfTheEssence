@@ -12,3 +12,13 @@ Vertex::Vertex(const Point& other) :
 
 Vertex::Vertex(const Vertex& other) :
     Point(other), n(other.n) {}
+
+
+bool Vertex::operator==(const Vertex &other)
+{
+    if (fabs(this->x - other.x) > EPS)  return false;
+    if (fabs(this->y - other.y) > EPS)  return false;
+    if (fabs(this->z - other.z) > EPS)  return false;
+
+    return true;
+}

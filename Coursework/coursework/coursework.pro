@@ -32,6 +32,7 @@ SOURCES += \
         Errors/hourglass_error.cpp \
         Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
+        Manager/managers.cpp \
         Objects/camera.cpp \
         Objects/composite_object.cpp \
         Objects/glass.cpp \
@@ -57,6 +58,7 @@ HEADERS += \
         Errors/hourglass_error.h \
         Errors/side_errors.h \
         Errors/vector_errors.h \
+        Manager/managers.h \
         Objects/camera.h \
         Objects/composite_object.h \
         Objects/glass.h \
@@ -71,6 +73,7 @@ HEADERS += \
         Primitives/Side/side.h \
         Primitives/Vector/vector.h \
         Primitives/Vertex/vertex.h \
+        Scene/facade.h \
         Scene/scene.h \
         mainwindow.h \
         new_fold/Point/mainwindow.h

@@ -11,6 +11,9 @@
 class Model
 {
 public:
+    vector<shared_ptr<Vertex>> v_arr;
+    vector<shared_ptr<Side>> s_arr;
+
     Model();
     Model(const vector<Point>& p_arr);
     explicit Model(const Model& other);
@@ -23,9 +26,6 @@ public:
     void add_side(std::initializer_list<size_t> ind_arr, QRgb color);
 
 protected:
-    vector<shared_ptr<Vertex>> v_arr;
-    vector<shared_ptr<Side>> s_arr;
-
     Point _center;
 
 private:

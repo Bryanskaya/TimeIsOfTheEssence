@@ -1,6 +1,13 @@
 #ifndef POINT_H
 #define POINT_H
 
+#define    PI    3.1415
+
+#include <cmath>
+
+
+class Vector;
+
 class Point
 {
 public:
@@ -13,6 +20,14 @@ public:
     virtual ~Point();
 
     void operator =(const Point& other);
+
+    double to_radians(double angle);
+    void rotate(const Point& center, const Vector& angles);
+
+private:
+    void rotate_ox(const Point& center, double k);
+    void rotate_oy(const Point& center, double k);
+    void rotate_oz(const Point& center, double k);
 };
 
 #endif // POINT_H
