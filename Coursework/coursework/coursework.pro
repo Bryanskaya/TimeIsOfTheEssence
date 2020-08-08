@@ -27,9 +27,11 @@ CONFIG += c++11
 SOURCES += \
         Commands/add_command.cpp \
         Commands/base_command.cpp \
+        Commands/draw_command.cpp \
         Commands/transform_command.cpp \
         Errors/base_error.cpp \
         Errors/hourglass_error.cpp \
+        Errors/scene_errors.cpp \
         Errors/side_errors.cpp \
         Errors/vector_errors.cpp \
         Manager/managers.cpp \
@@ -47,15 +49,19 @@ SOURCES += \
         Primitives/Side/side.cpp \
         Primitives/Vector/vector.cpp \
         Primitives/Vertex/vertex.cpp \
+        Visualizing/drawer.cpp \
+        Visualizing/visualizer.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         Commands/add_command.h \
         Commands/base_command.h \
+        Commands/draw_command.h \
         Commands/transform_command.h \
         Errors/base_error.h \
         Errors/hourglass_error.h \
+        Errors/scene_errors.h \
         Errors/side_errors.h \
         Errors/vector_errors.h \
         Manager/managers.h \
@@ -75,6 +81,8 @@ HEADERS += \
         Primitives/Vertex/vertex.h \
         Scene/facade.h \
         Scene/scene.h \
+        Visualizing/drawer.h \
+        Visualizing/visualizer.h \
         mainwindow.h \
         new_fold/Point/mainwindow.h
 

@@ -18,17 +18,29 @@ protected:
 };
 
 
-/*class DrawManager : public SceneManager
+class DrawManager : public SceneManager
 {
 public:
-    DrawManager(weak_ptr<Scene> scene,
-                weak_ptr<BaseDrawerFactory> draw);
+    DrawManager(weak_ptr<Scene> scene);
     virtual ~DrawManager();
 
     virtual void execute();
 
+/*private:
+    weak_ptr<BaseDrawerFactory> _draw;*/
+};
+
+
+class InitManager : public SceneManager
+{
+public:
+    InitManager(weak_ptr<Scene> scene, shared_ptr<QDrawer> draw);
+    virtual ~InitManager();
+
+    virtual void execute();
+
 private:
-    weak_ptr<BaseDrawerFactory> _draw;
-}; */
+    shared_ptr<QDrawer> _draw;
+};
 
 #endif // MANAGERS_H
