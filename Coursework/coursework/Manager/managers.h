@@ -2,7 +2,7 @@
 #define MANAGERS_H
 
 #include "Scene/scene.h"
-#include "Visualizing/drawer.h"
+#include "Visualizing/visualizer.h"
 
 
 class SceneManager

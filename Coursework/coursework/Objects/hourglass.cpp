@@ -43,3 +43,15 @@ void Hourglass::set_pos(const Point &pnt)
 {
     _pos = pnt;
 }
+
+
+//methonds
+void Hourglass::accept(shared_ptr<ObjectVisitor> visitor)
+{
+    //visitor->visit(*this);
+}
+
+SceneObject *Hourglass::clone()
+{
+    //return new Hourglass(*this);
+}

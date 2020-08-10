@@ -27,7 +27,18 @@ DrawManager::~DrawManager() {}
 
 void DrawManager::execute()
 {
-    //
+    if (_scene.expired())
+        throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
+    shared_ptr<Scene> scene = _scene.lock();
+
+    shared_ptr<Visualizer> visual(new Visualizer());
+
+    visual->set_camera(*scene->get_camera());
+    visual->set_light(*scene->get_light());
+    visual->set_draw(scene->get_drawer());
+
+    //for visitor
 }
 
 
