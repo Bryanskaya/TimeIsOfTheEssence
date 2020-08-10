@@ -2,6 +2,7 @@
 #define MANAGERS_H
 
 #include "Scene/scene.h"
+#include "Visualizing/drawer.h"
 
 
 class SceneManager
@@ -14,7 +15,19 @@ public:
 
 protected:
     weak_ptr<Scene> _scene;
-    //Iterator<shared_ptr<SceneObject>> _find_pos(size_t index);
+};
+
+
+class InitDrawManager : public SceneManager
+{
+public:
+    InitDrawManager(weak_ptr<Scene> scene, shared_ptr<QDrawer> draw);
+    virtual ~InitDrawManager();
+
+    virtual void execute();
+
+private:
+    shared_ptr<QDrawer> _draw;
 };
 
 
@@ -25,22 +38,7 @@ public:
     virtual ~DrawManager();
 
     virtual void execute();
-
-/*private:
-    weak_ptr<BaseDrawerFactory> _draw;*/
 };
 
-
-class InitManager : public SceneManager
-{
-public:
-    InitManager(weak_ptr<Scene> scene, shared_ptr<QDrawer> draw);
-    virtual ~InitManager();
-
-    virtual void execute();
-
-private:
-    shared_ptr<QDrawer> _draw;
-};
 
 #endif // MANAGERS_H

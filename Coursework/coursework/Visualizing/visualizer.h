@@ -21,12 +21,15 @@ public:
 
     void draw_model(const Model& model);
 
+    void show_scene();
     void clear();
 
 private:
     shared_ptr<QDrawer> _draw;
     Camera _camera;
     LightSource _light;
+
+    Point _proj_point(const Point& pnt);
 };
 
 #endif // VISUALIZER_H

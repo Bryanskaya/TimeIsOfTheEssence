@@ -56,3 +56,17 @@ void QDrawer::draw_point(const Point &pnt, QRgb color)
         _colormap[y][x] = color;
     }
 }
+
+void QDrawer::make_map_plain(QRgb color)
+{
+    for (int i = 0; i < this->height; i++)
+        for (int j = 0; j < this->width; j++)
+            _colormap[i][j] = color;
+}
+
+void QDrawer::fill_zmap_onedepth(double depth)
+{
+    for (int i = 0; i < this->height; i++)
+        for (int j = 0; j < this->width; j++)
+            _zmap[i][j] = depth;
+}

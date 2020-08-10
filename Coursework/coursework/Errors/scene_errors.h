@@ -12,6 +12,14 @@ public:
     virtual ~ImageExpired();
 };
 
+
+class SceneExpired : public BaseError
+{
+public:
+    SceneExpired(string filename, string classname, int num_line);
+    virtual ~SceneExpired();
+};
+
 }
 
 

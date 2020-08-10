@@ -22,6 +22,8 @@ public:
     virtual ~QDrawer();
 
     void draw_point(const Point& pnt, QRgb color);
+    void make_map_plain(QRgb color);
+    void fill_zmap_onedepth(double depth);
 
 private:
     weak_ptr<QImage> _image;

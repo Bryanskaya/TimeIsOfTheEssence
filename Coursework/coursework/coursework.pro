@@ -49,6 +49,7 @@ SOURCES += \
         Primitives/Side/side.cpp \
         Primitives/Vector/vector.cpp \
         Primitives/Vertex/vertex.cpp \
+        Scene/scene.cpp \
         Visualizing/drawer.cpp \
         Visualizing/visualizer.cpp \
         main.cpp \
