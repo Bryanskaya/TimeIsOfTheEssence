@@ -19,6 +19,13 @@ public:
     virtual ~WrongHeight();
 };
 
+class WrongLimits : public BaseError
+{
+public:
+    WrongLimits(string filename, string classname, int num_line, int left_limit, int right_limit);
+    virtual ~WrongLimits();
+};
+
 }
 
 #endif // HOURGLASS_ERROR_H
