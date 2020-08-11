@@ -224,6 +224,7 @@ Makefile: ../coursework/coursework.pro C:/msys32/mingw32/share/qt5/mkspecs/win32
 		C:/msys32/mingw32/share/qt5/mkspecs/features/qt_config.prf \
 		C:/msys32/mingw32/share/qt5/mkspecs/win32-g++/qmake.conf \
 		C:/msys32/mingw32/share/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/msys32/mingw32/share/qt5/mkspecs/features/exclusive_builds.prf \
 		C:/msys32/mingw32/share/qt5/mkspecs/features/toolchain.prf \
 		C:/msys32/mingw32/share/qt5/mkspecs/features/default_pre.prf \
@@ -410,6 +411,7 @@ C:/msys32/mingw32/share/qt5/mkspecs/features/qt_functions.prf:
 C:/msys32/mingw32/share/qt5/mkspecs/features/qt_config.prf:
 C:/msys32/mingw32/share/qt5/mkspecs/win32-g++/qmake.conf:
 C:/msys32/mingw32/share/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/msys32/mingw32/share/qt5/mkspecs/features/exclusive_builds.prf:
 C:/msys32/mingw32/share/qt5/mkspecs/features/toolchain.prf:
 C:/msys32/mingw32/share/qt5/mkspecs/features/default_pre.prf:

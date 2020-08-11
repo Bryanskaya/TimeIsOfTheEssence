@@ -24,7 +24,7 @@ public:
     void add_vertex(const Point& pnt);
     void add_vertices(const vector<Point> &p_arr);
     void add_side(std::initializer_list<size_t> ind_arr, QRgb color);
-    void add_side(vector<size_t> ind_arr, QRgb color);
+    void add_side(vector<int> ind_arr, QRgb color);
 
 protected:
     Point _center;

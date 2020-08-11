@@ -24,6 +24,11 @@ void LightSource::set_itensity(double itensity) {   _i = itensity;  }
 
 const Point& LightSource::get_position() const {    return _pos;    }
 
+void LightSource::operator =(const LightSource& other)
+{
+    this->_pos = other._pos;
+    this->_i = other._i;
+}
 
 void LightSource::accept(shared_ptr<ObjectVisitor> visitor)
 {

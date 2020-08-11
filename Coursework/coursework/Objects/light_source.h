@@ -20,6 +20,8 @@ public:
 
     const Point& get_position() const;
 
+    void operator =(const LightSource& other);
+
     virtual void accept(shared_ptr<ObjectVisitor>);
     virtual SceneObject* clone();
 

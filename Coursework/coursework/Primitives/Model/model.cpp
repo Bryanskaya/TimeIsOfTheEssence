@@ -77,11 +77,11 @@ void Model::add_side(std::initializer_list<size_t> ind_arr, QRgb color)
     _add_side(new_side, color);
 }
 
-void Model::add_side(vector<size_t> ind_arr, QRgb color)
+void Model::add_side(vector<int> ind_arr, QRgb color)
 {
     vector<shared_ptr<Vertex>> new_side;
 
-    for (size_t i : ind_arr)
+    for (auto i : ind_arr)
     {
         if (i >= v_arr.size())
             throw error::WrongIndex(__FILE__, typeid (*this).name(), __LINE__ - 1);

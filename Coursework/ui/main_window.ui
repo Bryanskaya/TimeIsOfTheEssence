@@ -79,7 +79,7 @@
      <string>Время:</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="ChooseTime">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -150,7 +150,7 @@
      <string>[</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="camera_x">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -170,7 +170,7 @@
      <string>500</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="camera_y">
     <property name="geometry">
      <rect>
       <x>720</x>
@@ -190,7 +190,7 @@
      <string>500</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="camera_z">
     <property name="geometry">
      <rect>
       <x>780</x>
@@ -284,7 +284,7 @@
      <string>Источник света:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="PushLight_1">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -304,7 +304,7 @@
      <string>1</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="PushLight_2">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -324,7 +324,7 @@
      <string>2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="PushLight_3">
     <property name="geometry">
      <rect>
       <x>760</x>
@@ -344,7 +344,7 @@
      <string>3</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="PushAddLight">
     <property name="geometry">
      <rect>
       <x>820</x>
@@ -364,7 +364,7 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="PushStart">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -384,7 +384,7 @@
      <string>Старт!</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="PushRepeat">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -464,7 +464,7 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="MoveUp">
     <property name="geometry">
      <rect>
       <x>720</x>
@@ -484,7 +484,7 @@
      <string>Вверх</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="MoveRight">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -504,7 +504,7 @@
      <string>Вправо</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="MoveLeft">
     <property name="geometry">
      <rect>
       <x>670</x>
@@ -524,7 +524,7 @@
      <string>Влево</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="MoveDown">
     <property name="geometry">
      <rect>
       <x>720</x>

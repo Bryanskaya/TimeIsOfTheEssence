@@ -20,7 +20,7 @@ public:
 
     virtual ~Sand();
 
-    void create_surface(int left_limit, int right_limit);
+    void create_surface(int left_limit, int right_limit, QRgb color);
 
     virtual void accept(shared_ptr<ObjectVisitor>);
     virtual SceneObject* clone();

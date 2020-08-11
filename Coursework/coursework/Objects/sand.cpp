@@ -8,7 +8,7 @@ Sand::~Sand() {}
 
 //methonds
 
-void Sand::create_surface(int left_limit, int right_limit)
+void Sand::create_surface(int left_limit, int right_limit, QRgb color)
 {
     if (left_limit > right_limit)
         throw error::WrongLimits(__FILE__, typeid (*this).name(), __LINE__ - 1, left_limit, right_limit);
@@ -25,7 +25,9 @@ void Sand::create_surface(int left_limit, int right_limit)
 
         for (int j = 0; j < num - 1; j += step)
         {
-            //
+            vector<int> ind_arr = { num * i + j, num * i + j + 1,
+                                    count + j, count + j + 1 };
+            surf_up.add_side(ind_arr, color);
         }
 
         count += num;
