@@ -6,8 +6,6 @@
 #include "Scene/scene.h"
 //#include "Manager/SceneManager.h"
 
-using namespace std;
-
 
 class BaseCommand
 {

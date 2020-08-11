@@ -2,6 +2,20 @@
 #define DRAW_COMMAND_H
 
 #include "base_command.h"
+#include "Manager/managers.h"
+
+
+class InitDrawCommand : public BaseCommand
+{
+public:
+    InitDrawCommand(const weak_ptr<QImage>& image);
+    virtual ~InitDrawCommand() = 0;
+
+    virtual void execute(weak_ptr<Scene> scene);
+
+private:
+    weak_ptr<QImage> _image;
+};
 
 
 class DrawCommand : public BaseCommand
@@ -11,9 +25,6 @@ public:
     virtual ~DrawCommand() = 0;
 
     virtual void execute(weak_ptr<Scene> scene);
-
-/*protected:
-    shared_ptr<BaseDrawerFactory> _draw;*/
 };
 
 #endif // DRAW_COMMAND_H
