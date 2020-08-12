@@ -20,7 +20,7 @@ public:
 
     virtual ~Sand();
 
-    void create_surface(int x_start, int x_end, int y_start, int y_end, QRgb color);
+    void create_topsurface(int x_start, int x_end, int z_start, int z_end, int sand_level, QRgb color);
 
     virtual void accept(shared_ptr<ObjectVisitor>);
     virtual SceneObject* clone();
@@ -28,7 +28,7 @@ public:
 private:
     double _speed_y = 10;
 
-    void _add_vertices_line();
+    void _add_vertices_line(int x, int y, int z, size_t step, size_t num);
 };
 
 #endif // SAND_H
