@@ -4,7 +4,12 @@
 #include <QMainWindow>
 #include <memory>
 
+#include <QGraphicsScene>
+
 #include <iostream>
+
+#include "Scene/facade.h"
+#include "Commands/all_commands.h"
 
 
 using namespace std;
@@ -34,9 +39,15 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    shared_ptr<QGraphicsScene> _qscene;
+    Facade _scene;
+
+    QSize _size_scene;
+    shared_ptr<QImage> _image;
 
     void _set_binds_input(void);
     void _show_error(const char* error);
+    void _draw_scene();
 };
 
 #endif // MAINWINDOW_H

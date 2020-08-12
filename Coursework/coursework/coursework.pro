@@ -57,6 +57,7 @@ SOURCES += \
 
 HEADERS += \
         Commands/add_command.h \
+        Commands/all_commands.h \
         Commands/base_command.h \
         Commands/draw_command.h \
         Commands/transform_command.h \

@@ -7,11 +7,22 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow), _qscene(new QGraphicsScene(-1, -1, 1, 1)), _scene(new Scene())
 {
     ui->setupUi(this);
 
+    _size_scene = ui->graphicsView->size();
+
     _set_binds_input();
+
+    ui->graphicsView->setScene(&(*_qscene));
+
+    _image = shared_ptr<QImage>(new QImage(_size_scene.width(), _size_scene.height(), QImage::Format_RGB32));
+
+    InitDrawCommand command(_image);
+    _scene.execute(command);
+
+    _draw_scene();
 }
 
 MainWindow::~MainWindow()
@@ -36,9 +47,17 @@ void MainWindow::_show_error(const char *error)
     error_message.exec();
 }
 
+void MainWindow::_draw_scene()
+{
+    DrawCommand command;
+
+    _scene.execute(command);
+    //TODO
+}
+
 void MainWindow::on_PushUp_clicked()
 {
-
+    //TODO
 }
 
 void MainWindow::on_PushRight_clicked()
