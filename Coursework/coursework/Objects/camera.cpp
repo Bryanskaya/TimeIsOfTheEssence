@@ -25,6 +25,12 @@ const Point& Camera::get_position() const {     return _pos;    }
 
 const Vector& Camera::get_direction() const {   return _dir;    }
 
+void Camera::operator=(const Camera &other)
+{
+    this->_pos = other._pos;
+    this->_dir = other._dir;
+}
+
 
 void Camera::accept(shared_ptr<ObjectVisitor> visitor)
 {

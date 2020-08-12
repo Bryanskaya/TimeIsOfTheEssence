@@ -18,6 +18,8 @@ public:
     const Point& get_position() const;
     const Vector& get_direction() const;
 
+    void operator=(const Camera& other);
+
     virtual void accept(shared_ptr<ObjectVisitor>);
     virtual SceneObject* clone();
 
