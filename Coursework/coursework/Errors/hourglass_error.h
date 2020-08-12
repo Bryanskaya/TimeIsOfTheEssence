@@ -22,7 +22,7 @@ public:
 class WrongLimits : public BaseError
 {
 public:
-    WrongLimits(string filename, string classname, int num_line, int left_limit, int right_limit);
+    WrongLimits(string filename, string classname, int num_line, int x_start, int x_end, int y_start, int y_end);
     virtual ~WrongLimits();
 };
 
