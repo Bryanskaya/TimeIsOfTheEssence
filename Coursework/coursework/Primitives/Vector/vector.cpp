@@ -79,3 +79,10 @@ void Vector::operator+=(const Vector &other)
     this->y += other.y;
     this->z += other.z;
 }
+
+void Vector::operator=(const Vector &other)
+{
+    this->x = other.x;
+    this->y = other.y;
+    this->z = other.z;
+}

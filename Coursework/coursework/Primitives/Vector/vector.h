@@ -30,6 +30,7 @@ public:
 
     Vector operator +(const Vector& other);
     void operator +=(const Vector& other);
+    void operator=(const Vector& other);
 };
 
 #endif // VECTOR_H
