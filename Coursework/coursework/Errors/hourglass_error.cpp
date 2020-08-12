@@ -22,3 +22,8 @@ WrongLevelofSand::WrongLevelofSand(string filename, string classname, int num_li
     BaseError(filename, classname, num_line,
               "Hourglass error: wrong level of sand in top part (level = " + to_string(level) + ")"){}
 WrongLevelofSand::~WrongLevelofSand() = default;
+
+WrongNumofVertices::WrongNumofVertices(string filename, string classname, int num_line, int num) :
+    BaseError(filename, classname, num_line,
+              "Hourglass error: wrong number of vertices (num = " + to_string(num) + ")"){}
+WrongNumofVertices::~WrongNumofVertices() = default;

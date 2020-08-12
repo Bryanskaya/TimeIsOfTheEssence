@@ -33,6 +33,13 @@ public:
     virtual ~WrongLevelofSand();
 };
 
+class WrongNumofVertices : public BaseError
+{
+public:
+    WrongNumofVertices(string filename, string classname, int num_line, int num);
+    virtual ~WrongNumofVertices();
+};
+
 }
 
 #endif // HOURGLASS_ERROR_H
