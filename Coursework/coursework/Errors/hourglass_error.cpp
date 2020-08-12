@@ -17,3 +17,8 @@ WrongLimits::WrongLimits(string filename, string classname, int num_line, int x_
               "Hourglass error: wrong limits of creating sand's surface (x: " + to_string(x_start) + " x " + to_string(x_end) + \
               "; y: " + to_string(y_start) + " x " + to_string(y_end) + ")"){}
 WrongLimits::~WrongLimits() = default;
+
+WrongLevelofSand::WrongLevelofSand(string filename, string classname, int num_line, int level) :
+    BaseError(filename, classname, num_line,
+              "Hourglass error: wrong level of sand in top part (level = " + to_string(level) + ")"){}
+WrongLevelofSand::~WrongLevelofSand() = default;

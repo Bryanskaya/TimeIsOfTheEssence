@@ -26,6 +26,13 @@ public:
     virtual ~WrongLimits();
 };
 
+class WrongLevelofSand : public BaseError
+{
+public:
+    WrongLevelofSand(string filename, string classname, int num_line, int level);
+    virtual ~WrongLevelofSand();
+};
+
 }
 
 #endif // HOURGLASS_ERROR_H
