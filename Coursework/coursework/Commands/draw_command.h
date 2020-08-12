@@ -9,7 +9,7 @@ class InitDrawCommand : public BaseCommand
 {
 public:
     InitDrawCommand(const weak_ptr<QImage>& image);
-    virtual ~InitDrawCommand() = 0;
+    virtual ~InitDrawCommand();
 
     virtual void execute(weak_ptr<Scene> scene);
 
@@ -22,7 +22,7 @@ class DrawCommand : public BaseCommand
 {
 public:
     DrawCommand();
-    virtual ~DrawCommand() = 0;
+    virtual ~DrawCommand();
 
     virtual void execute(weak_ptr<Scene> scene);
 };
