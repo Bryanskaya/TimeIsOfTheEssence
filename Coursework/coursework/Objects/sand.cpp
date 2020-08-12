@@ -17,9 +17,9 @@ void Sand::create_topsurface(int x_start, int x_end, int z_start, int z_end, int
         throw error::WrongLevelofSand(__FILE__, typeid (*this).name(), __LINE__ - 1, sand_level);
 
     size_t count = 0, step = 1;
-    size_t num = size_t(x_start - x_end);
+    size_t num = size_t(x_start - x_end) + 1;
 
-    _add_vertices_line(x_start, z_start, sand_level, step, num);
+    _add_vertices_line(x_start, sand_level, z_start, step, num);
     count += num;
 
     for (size_t i = 0; i < num - 1; i += step)
@@ -41,8 +41,11 @@ void Sand::create_topsurface(int x_start, int x_end, int z_start, int z_end, int
 
 void Sand::_add_vertices_line(int x, int y, int z, size_t step, size_t num)
 {
-    for (size_t i = 0; i < num; i += step)
-        surf_up.add_vertex(Point(x, y, z));
+    if (num <= 0)
+        throw error::WrongNumofVertices(__FILE__, typeid (*this).name(), __LINE__ - 1, num);
+
+    for (int i = 0; i < num; i += step)
+        surf_up.add_vertex(Point(x + i, y, z));
 }
 
 void Sand::accept(shared_ptr<ObjectVisitor> visitor)
