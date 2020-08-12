@@ -92,3 +92,9 @@ void Model::add_side(vector<size_t> ind_arr, QRgb color)
     _add_side(new_side, color);
 }
 
+void Model::operator=(const Model &other)
+{
+    this->_center = other._center;
+    this->v_arr = other.v_arr;
+    this->s_arr = other.s_arr;
+}

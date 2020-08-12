@@ -26,6 +26,8 @@ public:
     void add_side(std::initializer_list<size_t> ind_arr, QRgb color);
     void add_side(vector<size_t> ind_arr, QRgb color);
 
+    void operator=(const Model& other);
+
 protected:
     Point _center;
 
