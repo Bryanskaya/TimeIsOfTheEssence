@@ -17,4 +17,9 @@ VisibleObject::VisibleObject(const VisibleObject& other)
     _model = other._model;
 }
 
+shared_ptr<Model> VisibleObject::get_model()
+{
+    return _model;
+}
+
 VisibleObject::~VisibleObject() {}

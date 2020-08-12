@@ -16,7 +16,7 @@ void Sand::create_topsurface(int x_start, int x_end, int z_start, int z_end, int
     if (sand_level < 0)
         throw error::WrongLevelofSand(__FILE__, typeid (*this).name(), __LINE__ - 1, sand_level);
 
-    size_t count = 0, step = 1;
+    size_t count = 0, step = 2;
     size_t num = size_t(x_start - x_end) + 1;
 
     _add_vertices_line(x_start, sand_level, z_start, step, num);
