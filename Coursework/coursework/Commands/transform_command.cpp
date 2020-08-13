@@ -1,12 +1,13 @@
 #include "transform_command.h"
 
-//TransformCommand::TransformCommand() {}
+TransformCommand::TransformCommand(const shared_ptr<Transformator>& transf) :
+    _transf(transf) {}
 
 TransformCommand::~TransformCommand() {}
 
 void TransformCommand::execute(weak_ptr<Scene> scene)
 {
-    //TransformManager(scene, _transf, _index).execute();
+    //TransformManager(scene, _transf).execute();
 }
 
 
@@ -16,7 +17,31 @@ void TransformCommand::execute(weak_ptr<Scene> scene)
 RotateCommand::~RotateCommand() {}
 
 
-/*MoveCommand::MoveCommand(double ax, double ay, double az, size_t index) :
-    TransformCommand(new Move(ax, ay, az), index) {}*/
+MoveCommand::MoveCommand(const Vector& vect) :
+    TransformCommand(shared_ptr<Transformator>(new Transformator(new Move(vect)))) {}
 
 MoveCommand::~MoveCommand() {}
+
+void MoveCommand::execute(weak_ptr<Scene> scene) {}
+
+
+MoveCamera::MoveCamera(const Vector& vect) :
+    MoveCommand(vect) {}
+
+MoveCamera::~MoveCamera() {}
+
+void MoveCamera::execute(weak_ptr<Scene> scene)
+{
+    //
+}
+
+
+MoveLightSource::MoveLightSource(const Vector& vect) :
+    MoveCommand(vect) {}
+
+MoveLightSource::~MoveLightSource() {}
+
+void MoveLightSource::execute(weak_ptr<Scene> scene)
+{
+    //
+}

@@ -3,6 +3,7 @@
 
 #include "base_command.h"
 #include "Transformation/transformator.h"
+#include "Transformation/transformation.h"
 
 
 class TransformCommand : public BaseCommand
