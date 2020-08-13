@@ -52,6 +52,7 @@ SOURCES += \
         Primitives/Vector/vector.cpp \
         Primitives/Vertex/vertex.cpp \
         Scene/scene.cpp \
+        Transformation/transformation.cpp \
         Visualizing/drawer.cpp \
         Visualizing/visualizer.cpp \
         main.cpp \
@@ -87,6 +88,8 @@ HEADERS += \
         Primitives/Vertex/vertex.h \
         Scene/facade.h \
         Scene/scene.h \
+        Transformation/transformation.h \
+        Transformation/transformator.h \
         Visualizing/drawer.h \
         Visualizing/visualizer.h \
         mainwindow.h
