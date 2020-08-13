@@ -3,6 +3,7 @@
 
 #include "Scene/scene.h"
 #include "Visualizing/visualizer.h"
+#include "Transformation/transformator.h"
 
 
 class SceneManager
@@ -40,5 +41,20 @@ public:
     virtual void execute();
 };
 
+
+class TransformManager : public SceneManager
+{
+public:
+    TransformManager(weak_ptr<Scene> scene,
+                     shared_ptr<Transformator> transf);
+    virtual ~TransformManager();
+
+    virtual void execute();
+
+    //
+
+private:
+    shared_ptr<Transformator> _transf;
+};
 
 #endif // MANAGERS_H

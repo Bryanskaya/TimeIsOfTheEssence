@@ -42,4 +42,17 @@ void DrawManager::execute()
 }
 
 
+TransformManager::TransformManager(weak_ptr<Scene> scene, shared_ptr<Transformator> transf) :
+    SceneManager(scene), _transf(transf) {}
+
+TransformManager::~TransformManager() {}
+
+void TransformManager::execute()
+{
+    if (_scene.expired())
+        throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
+    //
+}
+
 
