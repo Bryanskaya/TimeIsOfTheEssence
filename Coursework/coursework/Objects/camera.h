@@ -3,6 +3,7 @@
 
 #include "Objects/simple_object.h"
 
+
 class Camera : public InvisibleObject
 {
 public:
@@ -20,7 +21,7 @@ public:
 
     void operator=(const Camera& other);
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor &visitor);
     virtual SceneObject* clone();
 
 private:

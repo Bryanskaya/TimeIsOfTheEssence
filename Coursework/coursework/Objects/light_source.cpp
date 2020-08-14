@@ -1,4 +1,5 @@
 #include "light_source.h"
+#include "Visitors/object_visitor.h"
 
 //constructors and destructor
 LightSource::LightSource() {}
@@ -30,9 +31,9 @@ void LightSource::operator =(const LightSource& other)
     this->_i = other._i;
 }
 
-void LightSource::accept(shared_ptr<ObjectVisitor> visitor)
+void LightSource::accept(ObjectVisitor& visitor)
 {
-    //visitor->visit(*this);
+    visitor.visit(*this);
 }
 
 SceneObject *LightSource::clone()

@@ -10,7 +10,7 @@ Surface::~Surface() {}
 
 
 //methonds
-void Surface::accept(shared_ptr<ObjectVisitor> visitor)
+void Surface::accept(ObjectVisitor& visitor)
 {
     //visitor->visit(*this);
 }

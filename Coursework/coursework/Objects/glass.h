@@ -15,7 +15,7 @@ public:
 
     virtual ~Glass();
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor&);
     virtual SceneObject* clone();
 };
 

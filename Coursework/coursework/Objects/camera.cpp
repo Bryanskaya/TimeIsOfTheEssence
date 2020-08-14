@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "Visitors/object_visitor.h"
 
 //constructors and destructor
 Camera::Camera() :
@@ -32,12 +33,12 @@ void Camera::operator=(const Camera &other)
 }
 
 
-void Camera::accept(shared_ptr<ObjectVisitor> visitor)
+void Camera::accept(ObjectVisitor& visitor)
 {
-    //visitor->visit(*this);
+    visitor.visit(*this);
 }
 
 SceneObject *Camera::clone()
 {
-    return new Camera(*this);
+    return (new Camera(*this));
 }

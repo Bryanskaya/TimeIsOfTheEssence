@@ -16,11 +16,6 @@ public:
     virtual void visit(LightSource& light) = 0;
 
     virtual void visit(Hourglass& hourglass) = 0;
-
-    /*void set_ptr(weak_ptr<ObjectVisitor>);
-
-protected:
-    weak_ptr<ObjectVisitor> _self_ptr;*/
 };
 
 #endif // OBJECT_VISITOR_H

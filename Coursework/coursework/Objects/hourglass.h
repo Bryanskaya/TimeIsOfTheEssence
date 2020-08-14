@@ -29,7 +29,7 @@ public:
     void set_time(double time_limit);
     void set_pos(const Point& pnt);
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor&);
     virtual SceneObject* clone();
 
 private:

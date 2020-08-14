@@ -17,7 +17,7 @@ bool SceneObject::is_complex() const
     return false;
 }
 
-void SceneObject::accept(shared_ptr<ObjectVisitor>) {}
+void SceneObject::accept(ObjectVisitor&) {}
 
 SceneObject *SceneObject::clone()
 {

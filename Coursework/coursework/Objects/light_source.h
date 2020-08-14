@@ -22,7 +22,7 @@ public:
 
     void operator =(const LightSource& other);
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor&);
     virtual SceneObject* clone();
 
 private:

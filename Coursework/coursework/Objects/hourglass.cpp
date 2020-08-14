@@ -46,7 +46,7 @@ void Hourglass::set_pos(const Point &pnt)
 
 
 //methonds
-void Hourglass::accept(shared_ptr<ObjectVisitor> visitor)
+void Hourglass::accept(ObjectVisitor& visitor)
 {
     //visitor->visit(*this);
 }

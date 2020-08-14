@@ -22,7 +22,7 @@ public:
 
     void create_topsurface(int x_start, int x_end, int z_start, int z_end, int sand_level, QRgb color);
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor&);
     virtual SceneObject* clone();
 
 private:

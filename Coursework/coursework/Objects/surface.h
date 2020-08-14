@@ -14,7 +14,7 @@ public:
 
     virtual ~Surface();
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor&);
     virtual SceneObject* clone();
 };
 

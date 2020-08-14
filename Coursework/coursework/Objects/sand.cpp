@@ -48,7 +48,7 @@ void Sand::_add_vertices_line(int x, int y, int z, size_t step, size_t num)
         surf_up.add_vertex(Point(x + i, y, z));
 }
 
-void Sand::accept(shared_ptr<ObjectVisitor> visitor)
+void Sand::accept(ObjectVisitor& visitor)
 {
     //visitor->visit(*this);
 }

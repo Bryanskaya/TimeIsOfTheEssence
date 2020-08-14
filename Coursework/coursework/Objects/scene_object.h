@@ -17,7 +17,7 @@ public:
     virtual bool is_drawable() const;
     virtual bool is_complex() const;
 
-    virtual void accept(shared_ptr<ObjectVisitor>);
+    virtual void accept(ObjectVisitor&);
     virtual SceneObject* clone();
 };
 

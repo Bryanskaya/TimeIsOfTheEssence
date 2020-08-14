@@ -7,9 +7,9 @@ Glass::~Glass() {}
 
 
 //methonds
-void Glass::accept(shared_ptr<ObjectVisitor> visitor)
+void Glass::accept(ObjectVisitor& visitor)
 {
-    //visitor->visit(*this);
+    //visitor.visit(*this);
 }
 
 SceneObject *Glass::clone()
