@@ -12,7 +12,7 @@ public:
     TransformCommand(const shared_ptr<Transformator>& transf);
     virtual ~TransformCommand() = 0;
 
-    virtual void execute(weak_ptr<Scene> scene) = 0;
+    virtual void execute(weak_ptr<Scene>) = 0;
 
 protected:
     shared_ptr<Transformator> _transf;
@@ -25,7 +25,7 @@ public:
     RotateCommand(const Point& center, const Vector& vect);
     virtual ~RotateCommand() = 0;
 
-    virtual void execute(weak_ptr<Scene> scene) = 0;
+    virtual void execute(weak_ptr<Scene>) = 0;
 };
 
 
@@ -35,7 +35,7 @@ public:
     MoveCommand(const Vector& vect);
     virtual ~MoveCommand() = 0;
 
-    virtual void execute(weak_ptr<Scene> scene) = 0;
+    virtual void execute(weak_ptr<Scene>) = 0;
 };
 
 

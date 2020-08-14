@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "Scene/scene.h"
-//#include "Manager/SceneManager.h"
+#include "Manager/managers.h"
 
 
 class BaseCommand
