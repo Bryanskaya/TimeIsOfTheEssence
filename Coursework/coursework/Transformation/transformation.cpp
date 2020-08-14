@@ -36,6 +36,11 @@ void Move::execute(Vertex &vertex)
     vertex.z += _dir.z;
 }
 
+void Move::execute(Vector&)
+{
+    //
+}
+
 void Move::execute(Camera &camera)
 {
     execute(camera.get_position());

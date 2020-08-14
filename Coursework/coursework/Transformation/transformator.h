@@ -21,9 +21,8 @@ public:
     void transform(Vector& vect) { _transform->execute(vect); }
     void transform(Camera& camera) { _transform->execute(camera); }
 
-protected:
+private:
     unique_ptr<Transformation> _transform;
-
 };
 
 #endif // TRANSFORMATOR_H

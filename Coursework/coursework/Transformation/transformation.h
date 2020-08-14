@@ -34,6 +34,7 @@ public:
     virtual void execute(double& x, double& y, double& z);
     virtual void execute(Point& pnt);
     virtual void execute(Vertex& vertex);
+    virtual void execute(Vector& vect);
     virtual void execute(Camera& camera);
 
 private:
