@@ -4,6 +4,7 @@
 #include "Scene/scene.h"
 #include "Visualizing/visualizer.h"
 #include "Transformation/transformator.h"
+#include "Objects/Visitors/draw_visitor.h"
 
 
 class SceneManager
@@ -51,7 +52,8 @@ public:
 
     virtual void execute();
 
-    //
+    void camera_execute();
+    void light_execute();
 
 private:
     shared_ptr<Transformator> _transf;
