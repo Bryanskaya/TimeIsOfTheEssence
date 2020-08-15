@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 
 #include <iostream>
 
@@ -44,6 +45,7 @@ private:
 
     QSize _size_scene;
     shared_ptr<QImage> _image;
+    QGraphicsPixmapItem* q_pmap;
 
     void _set_binds_input(void);
     void _show_error(const char* error);

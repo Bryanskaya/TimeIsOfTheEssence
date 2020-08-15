@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _set_binds_input();
 
+    ui->graphicsView->setSceneRect(0, 0, _size_scene.width(), _size_scene.height());
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setScene(&(*_qscene));
 
     _image = shared_ptr<QImage>(new QImage(_size_scene.width(), _size_scene.height(), QImage::Format_RGB32));
@@ -52,8 +55,11 @@ void MainWindow::_draw_scene()
     DrawCommand command;
 
     _scene.execute(command);
-    //TODO
+    q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
+    q_pmap->setPixmap(QPixmap::fromImage(*_image));
+    QCoreApplication::processEvents();
 }
+
 
 void MainWindow::on_PushUp_clicked()
 {
