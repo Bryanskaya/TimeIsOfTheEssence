@@ -45,7 +45,9 @@ SOURCES += \
         Objects/sand.cpp \
         Objects/scene_object.cpp \
         Objects/simple_object.cpp \
+        Objects/stand.cpp \
         Objects/surface.cpp \
+        Primitives/Box/box.cpp \
         Primitives/Model/model.cpp \
         Primitives/Point/point.cpp \
         Primitives/Side/side.cpp \
@@ -80,7 +82,9 @@ HEADERS += \
         Objects/sand.h \
         Objects/scene_object.h \
         Objects/simple_object.h \
+        Objects/stand.h \
         Objects/surface.h \
+        Primitives/Box/box.h \
         Primitives/Model/model.h \
         Primitives/Point/point.h \
         Primitives/Side/side.h \

@@ -25,6 +25,8 @@ public:
     void make_map_plain(QRgb color);
     void fill_zmap_onedepth(double depth);
 
+    void move_to_qimage();
+
 private:
     weak_ptr<QImage> _image;
     RgbMap _colormap;

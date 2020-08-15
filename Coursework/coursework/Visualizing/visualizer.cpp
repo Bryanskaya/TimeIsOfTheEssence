@@ -25,12 +25,13 @@ void Visualizer::set_camera(const Camera &camera)
 
 void Visualizer::draw_model(const Model &model)
 {
-    //
+    for (auto pnt : model.v_arr)
+        _draw->draw_point(Point(pnt->x, pnt->y, pnt->z), model.s_arr[0]->color);
 }
 
 void Visualizer::show_scene()
 {
-    //
+    _draw->move_to_qimage();
 }
 
 void Visualizer::clear()

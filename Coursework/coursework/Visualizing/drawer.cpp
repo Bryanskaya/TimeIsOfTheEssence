@@ -1,5 +1,8 @@
 #include "drawer.h"
 
+#include <iostream>
+using namespace std;
+
 QDrawer::QDrawer(weak_ptr<QImage> image)
 {
     if (image.expired())
@@ -69,4 +72,19 @@ void QDrawer::fill_zmap_onedepth(double depth)
     for (int i = 0; i < this->height; i++)
         for (int j = 0; j < this->width; j++)
             _zmap[i][j] = depth;
+}
+
+void QDrawer::move_to_qimage()
+{
+    if (_image.expired())
+        throw error::ImageExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
+    cout << "\n\n\nmove to qimage\n\n" << endl;
+
+    QImage& img = *_image.lock();
+    size_t row_size = static_cast<size_t>(width) * sizeof (QRgb);
+
+    for (int i = 0; i < height; i++)
+        memcpy(img.scanLine(i), &_colormap[i][0], row_size);
+
 }
