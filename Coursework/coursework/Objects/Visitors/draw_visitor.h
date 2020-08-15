@@ -15,6 +15,7 @@ public:
     virtual void visit(LightSource& light);
 
     virtual void visit(Hourglass& hourglass);
+    virtual void visit(Stand& stand);
 
 private:
     shared_ptr<Visualizer> _visual;

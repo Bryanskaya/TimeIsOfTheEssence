@@ -14,3 +14,8 @@ void DrawVisitor::visit(Hourglass &hourglass)
 {
     //_visual->draw_model();
 }
+
+void DrawVisitor::visit(Stand &stand)
+{
+    _visual->draw_model(*stand.get_model());
+}

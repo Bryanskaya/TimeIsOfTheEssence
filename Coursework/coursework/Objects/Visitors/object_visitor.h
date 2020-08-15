@@ -4,6 +4,7 @@
 #include "Objects/camera.h"
 #include "Objects/light_source.h"
 #include "Objects/hourglass.h"
+#include "Objects/stand.h"
 
 
 class ObjectVisitor
@@ -16,6 +17,7 @@ public:
     virtual void visit(LightSource& light) = 0;
 
     virtual void visit(Hourglass& hourglass) = 0;
+    virtual void visit(Stand& stand) = 0;
 };
 
 #endif // OBJECT_VISITOR_H
