@@ -4,6 +4,7 @@ Scene::Scene()
 {
     set_camera(Camera(Point(0, 0, 100)));
     set_light(LightSource(Point(0, 0, -100), 1));
+    add_object(new Stand(-120, 0, 120));
     //add_object(new Hourglass());
 }
 

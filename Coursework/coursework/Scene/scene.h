@@ -9,7 +9,9 @@
 #include "Objects/camera.h"
 #include "Objects/light_source.h"
 #include "Objects/hourglass.h"
+#include "Objects/stand.h"
 #include "Visualizing/drawer.h"
+
 
 using scene_iter = vector<shared_ptr<SceneObject>>::iterator;
 using scene_const_iter = vector<shared_ptr<SceneObject>>::const_iterator;
