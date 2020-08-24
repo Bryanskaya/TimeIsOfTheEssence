@@ -2,9 +2,10 @@
 
 Scene::Scene()
 {
-    set_camera(Camera(Point(0, 0, 100)));
-    set_light(LightSource(Point(0, 0, -100), 1));
-    add_object(new Stand(-120, 0, 120));
+    set_camera(Camera(Point(300, 200, 500), Vector(0, 0, 0)));
+    set_light(LightSource(Point(0, 0, 1000), 1));
+    add_object(new Stand(170, 100, 120));
+    add_object(new Stand(170, 500, 120));
     //add_object(new Hourglass());
 }
 

@@ -24,7 +24,7 @@ class Scene
 public:
     Scene();
 
-    virtual ~Scene();
+    ~Scene();
 
     scene_iter begin() {    return _arr.begin();    }
     scene_iter end() {  return _arr.end();  }
