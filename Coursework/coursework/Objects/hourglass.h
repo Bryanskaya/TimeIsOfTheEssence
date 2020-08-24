@@ -33,7 +33,7 @@ public:
     virtual SceneObject* clone();
 
 private:
-    double _height = 500;
+    double _height = 400;
     double _timelimit = 60;
     Point _pos;
 };
