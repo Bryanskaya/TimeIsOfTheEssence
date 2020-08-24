@@ -46,6 +46,8 @@ private:
     QSize _size_scene;
     shared_ptr<QImage> _image;
     QGraphicsPixmapItem* q_pmap;
+    RgbMap _rgb_map;
+    QColor _draw_color = Qt::black;
 
     void _set_binds_input(void);
     void _show_error(const char* error);

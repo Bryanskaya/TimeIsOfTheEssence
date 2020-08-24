@@ -4,6 +4,25 @@
 #include <QDoubleValidator>
 #include <QMessageBox>
 
+RgbMap create_rgb_map(int width, int height)
+{
+    RgbMap rgb_map = new QRgb*[height];
+
+    for (int i = 0; i < height; i++)
+        rgb_map[i] = new QRgb[width];
+
+    return rgb_map;
+}
+
+void free_rgb_map(RgbMap &rgb_map, int height)
+{
+    for (int i = 0; i < height; i++)
+        delete rgb_map[i];
+
+    delete rgb_map;
+}
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,7 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _size_scene = ui->graphicsView->size();
 
+    cout << "Size: " << _size_scene.width() << "x" << _size_scene.height() << endl;
+
     _set_binds_input();
+
+    _rgb_map = create_rgb_map(_size_scene.width(), _size_scene.height());
 
     ui->graphicsView->setSceneRect(0, 0, _size_scene.width(), _size_scene.height());
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -31,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    free_rgb_map(_rgb_map, _size_scene.height());
 }
 
 void MainWindow::_set_binds_input(void)
@@ -52,10 +76,11 @@ void MainWindow::_show_error(const char *error)
 
 void MainWindow::_draw_scene()
 {
+    q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
+
     DrawCommand command;
 
     _scene.execute(command);
-    q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
     q_pmap->setPixmap(QPixmap::fromImage(*_image));
     QCoreApplication::processEvents();
 }
