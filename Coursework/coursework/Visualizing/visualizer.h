@@ -2,6 +2,7 @@
 #define VISUALIZER_H
 
 #include "drawer.h"
+#include "projecting.h"
 #include "Objects/camera.h"
 #include "Objects/light_source.h"
 #include "Primitives/Model/model.h"
@@ -13,7 +14,7 @@ public:
     Visualizer();
     Visualizer(shared_ptr<QDrawer>& drawer);
 
-    virtual ~Visualizer();
+    ~Visualizer();
 
     void set_draw(const shared_ptr<QDrawer>& drawer);
     void set_camera(const Camera& camera);
@@ -29,7 +30,8 @@ private:
     Camera _camera;
     LightSource _light;
 
-    Point _proj_point(const Point& pnt);
+    Point _project_point(const Point& pnt);
+    void _project_side(ProjectedSide &side, const vector<shared_ptr<Vertex>>& vertex_arr);
 };
 
 #endif // VISUALIZER_H

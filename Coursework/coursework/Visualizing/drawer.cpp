@@ -46,17 +46,29 @@ void QDrawer::_free_map()
     for (int i = 0; i < this->height; i++)
         delete _colormap[i];
     delete _colormap;
+
+    for (int i = 0; i < this->height; i++)
+        delete _zmap[i];
+    delete _zmap;
 }
 
 void QDrawer::draw_point(const Point &pnt, QRgb color)
 {
     int x = static_cast<int>(pnt.x);
+    if (x < 0 || x > width)
+        return;
+
     int y = static_cast<int>(pnt.y);
+    if (y < 0 || y > height)
+        return;
+
+    cout << "draw point" << endl;
 
     if (pnt.z > _zmap[y][x])
     {
         _zmap[y][x] = pnt.z;
         _colormap[y][x] = color;
+        cout << "change" << endl;
     }
 }
 
@@ -78,8 +90,6 @@ void QDrawer::move_to_qimage()
 {
     if (_image.expired())
         throw error::ImageExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
-
-    cout << "\n\n\nmove to qimage\n\n" << endl;
 
     QImage& img = *_image.lock();
     size_t row_size = static_cast<size_t>(width) * sizeof (QRgb);
