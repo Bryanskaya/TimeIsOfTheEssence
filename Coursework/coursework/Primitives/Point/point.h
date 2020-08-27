@@ -4,6 +4,9 @@
 #define    PI    3.1415
 
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 
 class Vector;
