@@ -19,7 +19,7 @@ public:
 private:
     QRgb _color;
     const double _height = 20;
-    const double _length = 240;
+    const double _length = 260;
 };
 
 #endif // STAND_H
