@@ -6,9 +6,9 @@ DrawVisitor::DrawVisitor(shared_ptr<Visualizer>& visual) :
 
 DrawVisitor::~DrawVisitor() {}
 
-void DrawVisitor::visit(Camera &camera) {}
+void DrawVisitor::visit(Camera&) {}
 
-void DrawVisitor::visit(LightSource &light) {}
+void DrawVisitor::visit(LightSource&) {}
 
 void DrawVisitor::visit(Hourglass &hourglass)
 {

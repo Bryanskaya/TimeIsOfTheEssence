@@ -56,6 +56,7 @@ SOURCES += \
         Scene/scene.cpp \
         Transformation/transformation.cpp \
         Visualizing/drawer.cpp \
+        Visualizing/projecting.cpp \
         Visualizing/visualizer.cpp \
         main.cpp \
         mainwindow.cpp
@@ -95,6 +96,7 @@ HEADERS += \
         Transformation/transformation.h \
         Transformation/transformator.h \
         Visualizing/drawer.h \
+        Visualizing/projecting.h \
         Visualizing/visualizer.h \
         mainwindow.h
 
