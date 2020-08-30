@@ -35,7 +35,7 @@ public:
 
 
     ProjectedSide();
-    ProjectedSide(const ProjectedSide& other);
+    ProjectedSide(ProjectedSide&& other);
 
     ~ProjectedSide();
 

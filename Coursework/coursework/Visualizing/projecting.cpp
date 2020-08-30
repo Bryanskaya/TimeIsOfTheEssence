@@ -59,7 +59,7 @@ bool ProjectedEdge::is_horizontal() const
 
 ProjectedSide::ProjectedSide() {}
 
-ProjectedSide::ProjectedSide(const ProjectedSide& other) :
+ProjectedSide::ProjectedSide(ProjectedSide&& other) :
     edges(other.edges), active_edges(other.active_edges), waiting_edges(other.waiting_edges)
 {
     y_temp = other.y_temp;
@@ -78,14 +78,18 @@ void ProjectedSide::init()
 
     y_temp = edges[0].ymax;
 
-    while (edges[i].ymax == y_temp)
+    while (edges[i].ymax == y_temp && i < edges.size())
     {
         active_edges.push_back(edges[i]);
         i++;
+        cout << i << " " << edges.size() << endl;
     }
 
     for (; i < edges.size(); i++)
+    {
         waiting_edges.push_back(edges[i]);
+        cout << "+++" << endl;
+    }
 }
 
 void ProjectedSide::add_edge(const ProjectedEdge &edge)
@@ -95,5 +99,21 @@ void ProjectedSide::add_edge(const ProjectedEdge &edge)
 
     edges.push_back(edge);
 
-    //
+    for (size_t i = edges.size(); i > 0; i--)
+    {
+        if (edges[i - 1].ymax < edges[i].ymax)
+            swap(edges[i - 1], edges[i]);
+        else if (edges[i - 1].ymax == edges[i].ymax)
+        {
+            if (edges[i - 1].x > edges[i].x)
+                swap(edges[i - 1], edges[i]);
+            else if (edges[i - 1].x == edges[i].x &&
+                     edges[i - 1].dx > edges[i].dx)
+                swap(edges[i - 1], edges[i]);
+            else
+                break;
+        }
+        else
+            break;
+    }
 }
