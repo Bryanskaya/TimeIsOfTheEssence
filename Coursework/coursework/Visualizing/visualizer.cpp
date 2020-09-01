@@ -34,43 +34,35 @@ void Visualizer::draw_model(const Model &model)
         _draw->draw_point(proj_pnt, model.s_arr[0]->color);
     }
 
-    int i = 0;
-
     for (auto side : model.s_arr)
     {
-        if (i == 1)
-            break;
-
-        cout << "help0 " << model.s_arr.size() << endl;
         ProjectedSide p_side;
 
-        cout << "help1" << endl;
-
         _project_side(p_side, side->vertex_arr);
-        cout << "help2" << endl;
 
         p_side.init();
 
-        cout << "help3" << endl;
-
-        while (!p_side.active_edges.size())
+        while (p_side.active_edges.size())
         {
             double x = p_side.active_edges[0].x;
             double z = p_side.active_edges[0].z;
+            double i = p_side.active_edges[0].i;
 
             double dz = (z - p_side.active_edges[1].z) / (x - p_side.active_edges[1].x);
+            double di = (i - p_side.active_edges[1].i) / (x - p_side.active_edges[1].x);
 
             Point pnt(x, p_side.y_temp, z);
 
             for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
             {
-                _draw->draw_point(pnt, side->color);
+                _draw->draw_point(pnt, side->color, i);
                 pnt.z += dz;
+                i += di;
             }
-        }
-        i++;
-    }
 
+            p_side.step();
+        }
+    }
 }
 
 void Visualizer::show_scene()
@@ -113,7 +105,22 @@ void Visualizer::_project_side(ProjectedSide &side, const vector<shared_ptr<Vert
         Point pnt1 = _project_point(*vertex_arr[i]);
         Point pnt2 = _project_point(*vertex_arr[(i + 1) % vertex_arr.size()]);
 
-        side.add_edge(ProjectedEdge(pnt1, pnt2));
-        std::cout << "**** " << i << endl;
+        double i1 = _calculate_intensity(*vertex_arr[i]);
+        double i2 = _calculate_intensity(*vertex_arr[(i + 1) % vertex_arr.size()]);
+
+        side.add_edge(ProjectedEdge(pnt1, i1, pnt2, i2));
     }
+}
+
+double Visualizer::_calculate_intensity(const Vertex &v)
+{
+    Vector vect(v, _light.get_position());
+
+    double i = vect.scalar_mult(v.n) / vect.get_length();
+
+    i = i * K_LIGHTSOURCE * _light.get_itensity();
+
+    cout << "itensity " << max(i, 0.4) << endl;
+
+    return max(i, 0.4);
 }

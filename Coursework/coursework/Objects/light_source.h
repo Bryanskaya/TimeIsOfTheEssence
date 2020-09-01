@@ -3,6 +3,8 @@
 
 #include "simple_object.h"
 
+#define K_LIGHTSOURCE   1
+
 
 class LightSource : public InvisibleObject
 {

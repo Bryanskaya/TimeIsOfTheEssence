@@ -5,8 +5,7 @@
 //constructors and destructor
 Stand::Stand(double x, double y, double z)
 {
-    //_color = QColor(Qt::darkRed).rgba();
-    _color = QColor(Qt::yellow).rgba();
+    _color = QColor(Qt::darkRed).rgba();
 
     Point pnt1(x, y, z);
     Point pnt2(x + _length, y + _height, z - _length);

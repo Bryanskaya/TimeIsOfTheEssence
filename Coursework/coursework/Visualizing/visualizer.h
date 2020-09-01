@@ -32,6 +32,7 @@ private:
 
     Point _project_point(const Point& pnt);
     void _project_side(ProjectedSide &side, const vector<shared_ptr<Vertex>>& vertex_arr);
+    double _calculate_intensity(const Vertex &v);
 };
 
 #endif // VISUALIZER_H

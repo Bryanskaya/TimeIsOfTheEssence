@@ -22,6 +22,7 @@ public:
     virtual ~QDrawer();
 
     void draw_point(const Point& pnt, QRgb color);
+    void draw_point(const Point& pnt, QRgb color, double intensity);
     void make_map_plain(QRgb color);
     void fill_zmap_onedepth(double depth);
 

@@ -3,6 +3,23 @@
 #include <iostream>
 using namespace std;
 
+
+QRgb get_color(QRgb color, double itensity)
+{
+    QColor new_color(color);
+    int r, g, b;
+
+    new_color.getRgb(&r, &g, &b);
+
+    r *= itensity;
+    g *= itensity;
+    b *= itensity;
+
+    new_color.setRgb(r, g, b);
+
+    return new_color.rgba();
+}
+
 QDrawer::QDrawer(weak_ptr<QImage> image)
 {
     if (image.expired())
@@ -68,6 +85,26 @@ void QDrawer::draw_point(const Point &pnt, QRgb color)
     {
         _zmap[y][x] = pnt.z;
         _colormap[y][x] = color;
+        cout << "change" << endl;
+    }
+}
+
+void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
+{
+    int x = static_cast<int>(pnt.x);
+    if (x < 0 || x > width)
+        return;
+
+    int y = static_cast<int>(pnt.y);
+    if (y < 0 || y > height)
+        return;
+
+    cout << "draw point" << endl;
+
+    if (pnt.z > _zmap[y][x])
+    {
+        _zmap[y][x] = pnt.z;
+        _colormap[y][x] = get_color(color, itensity);
         cout << "change" << endl;
     }
 }
