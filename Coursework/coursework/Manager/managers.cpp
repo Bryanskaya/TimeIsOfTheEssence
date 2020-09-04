@@ -58,8 +58,6 @@ void TransformManager::execute()
 {
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
-
-    //
 }
 
 void TransformManager::camera_execute()
@@ -67,6 +65,7 @@ void TransformManager::camera_execute()
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
 
+    _transf->rotate(_scene.lock()->get_camera()->get_direction());
     _transf->transform(*_scene.lock()->get_camera());
 }
 

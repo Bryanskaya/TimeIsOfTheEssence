@@ -5,7 +5,10 @@ ProjectedEdge::ProjectedEdge(Point& pnt1, double i1,
                              Point& pnt2, double i2)
 {
     if (pnt1.y < pnt2.y)
+    {
         swap(pnt1, pnt2);
+        swap(i1, i2);
+    }
 
     x0 = pnt1.x;
     y0 = static_cast<int>(pnt1.y - pnt2.y);
@@ -107,10 +110,7 @@ void ProjectedSide::init()
     }
 
     for (; i < edges.size(); i++)
-    {
         waiting_edges.push_back(edges[i]);
-        cout << "+++" << endl;
-    }
 }
 
 bool ProjectedSide::step()
