@@ -71,6 +71,11 @@ void QDrawer::_free_map()
 
 void QDrawer::draw_point(const Point &pnt, QRgb color)
 {
+    _colormap[300][700] = Qt::yellow;
+    _colormap[300][701] = Qt::yellow;
+    _colormap[300][699] = Qt::yellow;
+    _colormap[299][700] = Qt::yellow;
+    _colormap[301][700] = Qt::yellow;
     int x = static_cast<int>(pnt.x);
     if (x < 0 || x > width)
         return;
@@ -78,8 +83,6 @@ void QDrawer::draw_point(const Point &pnt, QRgb color)
     int y = static_cast<int>(pnt.y);
     if (y < 0 || y > height)
         return;
-
-    cout << "draw point" << endl;
 
     if (pnt.z > _zmap[y][x])
     {
@@ -92,20 +95,17 @@ void QDrawer::draw_point(const Point &pnt, QRgb color)
 void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
 {
     int x = static_cast<int>(pnt.x);
-    if (x < 0 || x > width)
+    if (x < 0 || x >= width)
         return;
 
     int y = static_cast<int>(pnt.y);
-    if (y < 0 || y > height)
+    if (y < 0 || y >= height)
         return;
-
-    cout << "draw point" << endl;
 
     if (pnt.z > _zmap[y][x])
     {
         _zmap[y][x] = pnt.z;
         _colormap[y][x] = get_color(color, itensity);
-        cout << "change" << endl;
     }
 }
 

@@ -31,6 +31,7 @@ void Visualizer::draw_model(const Model &model)
     for (auto pnt : model.v_arr)
     {
         Point proj_pnt = _project_point(*pnt);
+        cout << proj_pnt.x << " " << proj_pnt.y << " " << proj_pnt.z << endl;
         _draw->draw_point(proj_pnt, model.s_arr[0]->color);
     }
 
@@ -73,7 +74,7 @@ void Visualizer::show_scene()
 void Visualizer::clear()
 {
     _draw->fill_zmap_onedepth(-10000);
-    _draw->make_map_plain(QColor(Qt::black).rgba());
+    _draw->make_map_plain(QColor(Qt::darkGray).rgba());
 }
 
 Point Visualizer::_project_point(const Point &pnt)
@@ -122,5 +123,5 @@ double Visualizer::_calculate_intensity(const Vertex &v)
 
     cout << "itensity " << max(i, 0.4) << endl;
 
-    return max(i, 0.4);
+    return max(i, 0.1);
 }

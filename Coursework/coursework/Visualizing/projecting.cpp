@@ -129,6 +129,15 @@ bool ProjectedSide::step()
     while (i < waiting_edges.end() && y_temp == i->ymax)
     {
         active_edges.push_back(*i);
+
+        for (size_t j = active_edges.size() - 1; j > 0; j--)
+        {
+            if (active_edges[j - 1].x > active_edges[j].x)
+                swap(active_edges[j - 1], active_edges[j]);
+            else
+                break;
+        }
+
         waiting_edges.erase(i);
         i++;
     }
