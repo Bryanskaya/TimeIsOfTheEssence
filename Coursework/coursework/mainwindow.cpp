@@ -81,10 +81,8 @@ void MainWindow::_draw_scene()
     DrawCommand command;
 
     _scene.execute(command);
-    cout << "test*2*" << endl;
     q_pmap->setPixmap(QPixmap::fromImage(*_image));
     QCoreApplication::processEvents();
-    cout << "test*1*" << endl;
 }
 
 
@@ -123,10 +121,40 @@ void MainWindow::on_Start_clicked()
     cout << "Let's start!";
 }
 
+void MainWindow::keyPressEvent(QKeyEvent* event)
+{
+    cout << event->key() << " " << Qt::Key_W << endl;
+
+    switch (event->key())
+    {
+        case Qt::Key_W:
+            cout << "here************************" << endl;
+            _rotate_camera(0, 10, 0);
+            break;
+        case Qt::Key_S:
+            break;
+        case Qt::Key_A:
+            break;
+        case Qt::Key_D:
+            break;
+        default:
+            break;
+    }
+}
+
 void MainWindow::_move_camera(double x, double y, double z)
 {
     shared_ptr<BaseCommand> ptr;
     ptr = shared_ptr<BaseCommand>(new MoveCamera(Vector(x, y, z)));
+
+    _scene.execute(*ptr);
+    _draw_scene();
+}
+
+void MainWindow::_rotate_camera(double x, double y, double z)
+{
+    shared_ptr<BaseCommand> ptr;
+    ptr = shared_ptr<BaseCommand>(new RotateCamera(Vector(x, y, z)));
 
     _scene.execute(*ptr);
     _draw_scene();

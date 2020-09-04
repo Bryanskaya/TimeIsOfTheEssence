@@ -6,6 +6,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
+#include <QKeyEvent>
 
 #include <iostream>
 
@@ -42,6 +43,8 @@ private slots:
 
     void on_PushFurther_clicked();
 
+    void keyPressEvent(QKeyEvent*);
+
 private:
     Ui::MainWindow *ui;
     shared_ptr<QGraphicsScene> _qscene;
@@ -56,6 +59,7 @@ private:
     void _set_binds_input(void);
     void _show_error(const char* error);
     void _move_camera(double x, double y, double z);
+    void _rotate_camera(double x, double y, double z);
     void _draw_scene();
 };
 
