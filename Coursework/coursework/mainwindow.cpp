@@ -63,9 +63,9 @@ void MainWindow::_set_binds_input(void)
 
     vld->setLocale(QLocale(QLocale::English));
 
-    ui->camera_x->setValidator(vld);
+    /*ui->camera_x->setValidator(vld);
     ui->camera_y->setValidator(vld);
-    ui->camera_z->setValidator(vld);
+    ui->camera_z->setValidator(vld);*/
 }
 
 void MainWindow::_show_error(const char *error)
@@ -81,32 +81,53 @@ void MainWindow::_draw_scene()
     DrawCommand command;
 
     _scene.execute(command);
+    cout << "test*2*" << endl;
     q_pmap->setPixmap(QPixmap::fromImage(*_image));
     QCoreApplication::processEvents();
+    cout << "test*1*" << endl;
 }
 
 
 void MainWindow::on_PushUp_clicked()
 {
-    //TODO
-}
-
-void MainWindow::on_PushRight_clicked()
-{
-
+    _move_camera(0, 10, 0);
 }
 
 void MainWindow::on_PushDown_clicked()
 {
+    _move_camera(0, -10, 0);
+}
 
+void MainWindow::on_PushRight_clicked()
+{
+    _move_camera(10, 0, 0);
 }
 
 void MainWindow::on_PushLeft_clicked()
 {
+    _move_camera(-10, 0, 0);
+}
 
+void MainWindow::on_PushCloser_clicked()
+{
+    _move_camera(0, 0, -10);
+}
+
+void MainWindow::on_PushFurther_clicked()
+{
+    _move_camera(0, 0, 10);
 }
 
 void MainWindow::on_Start_clicked()
 {
     cout << "Let's start!";
+}
+
+void MainWindow::_move_camera(double x, double y, double z)
+{
+    shared_ptr<BaseCommand> ptr;
+    ptr = shared_ptr<BaseCommand>(new MoveCamera(Vector(x, y, z)));
+
+    _scene.execute(*ptr);
+    _draw_scene();
 }
