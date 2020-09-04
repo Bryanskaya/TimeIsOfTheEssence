@@ -3,7 +3,7 @@
 Scene::Scene()
 {
     set_camera(Camera(Point(300, 200, 500), Vector(0, 0, 0)));
-    set_light(LightSource(Point(0, 1000, 1000), 1));
+    set_light(LightSource(Point(300, 700, -10), 1));
     add_object(new Stand(170, 100, 120));
     add_object(new Stand(170, 500, 120));
     //add_object(new Hourglass());
