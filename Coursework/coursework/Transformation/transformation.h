@@ -17,6 +17,8 @@ public:
     Transformation();
     virtual ~Transformation() = 0;
 
+    virtual void rotate(const Vector& vect) = 0;
+
     virtual void execute(double& x, double& y, double& z) = 0;
     virtual void execute(Point& pnt) = 0;
     virtual void execute(Vertex& vertex) = 0;
@@ -30,6 +32,8 @@ public:
     Move(double dx, double dy, double dz);
     Move(const Vector& vect);
     virtual ~Move();
+
+    virtual void rotate(const Vector& vect);
 
     virtual void execute(double& x, double& y, double& z);
     virtual void execute(Point& pnt);
@@ -47,6 +51,8 @@ public:
     Rotate(const Vector& vect, const Point& pnt);
     Rotate(const Vector& vect);
     virtual ~Rotate();
+
+    virtual void rotate(const Vector& vect);
 
     virtual void execute(double& x, double& y, double& z);
     virtual void execute(Point& pnt);
@@ -71,6 +77,8 @@ public:
     Scale(const Vector& vect);
     Scale(const Vector& vect, const Point& pnt);
     virtual ~Scale();
+
+    virtual void rotate(const Vector& vect);
 
     virtual void execute(double& x, double& y, double& z);
     virtual void execute(Point& pnt);

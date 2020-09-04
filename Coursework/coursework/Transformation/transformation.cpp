@@ -14,6 +14,13 @@ Move::Move(const Vector& vect) :
 
 Move::~Move() {}
 
+void Move::rotate(const Vector &vect)
+{
+    Rotate rotate(vect);
+
+    rotate.execute(_dir);
+}
+
 
 void Move::execute(double &x, double &y, double &z)
 {
@@ -50,7 +57,7 @@ void Move::execute(Camera &camera)
 Rotate::Rotate(const Vector& vect, const Point& pnt) :
     _center(pnt)
 {
-    _dir.x = _to_radians(vect.x);
+    _dir.x = _to_radians(vect.x); //
     _dir.y = _to_radians(vect.y);
     _dir.z = _to_radians(vect.z);
 }
@@ -58,7 +65,7 @@ Rotate::Rotate(const Vector& vect, const Point& pnt) :
 Rotate::Rotate(const Vector& vect) :
     _center()
 {
-    _dir.x = _to_radians(vect.x);
+    _dir.x = _to_radians(vect.x); //
     _dir.y = _to_radians(vect.y);
     _dir.z = _to_radians(vect.z);
 }
@@ -70,6 +77,8 @@ double Rotate::_to_radians(double angle)
 {
     return angle * PI / 180;
 }
+
+void Rotate::rotate(const Vector&) {}
 
 void Rotate::execute(double &x, double &y, double &z)
 {
@@ -146,6 +155,8 @@ Scale::Scale(const Vector& vect) :
 
 Scale::~Scale() {}
 
+
+void Scale::rotate(const Vector&) {}
 
 void Scale::execute(double &x, double &y, double &z)
 {
