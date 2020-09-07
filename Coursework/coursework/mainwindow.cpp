@@ -129,7 +129,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
     {
         case Qt::Key_W:
             cout << "here************************" << endl;
-            _rotate_camera(0, 10, 0);
+            _rotate_camera(0, 0, -30);
             break;
         case Qt::Key_S:
             break;
