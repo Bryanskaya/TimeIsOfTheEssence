@@ -16,9 +16,9 @@ Move::~Move() {}
 
 void Move::rotate(const Vector &vect)
 {
-    Rotate rotate(vect);
+    Rotate action(vect);
 
-    rotate.execute(_dir);
+    action.execute(_dir);
 }
 
 
@@ -110,7 +110,11 @@ void Rotate::execute(Vector& vect)
 
 void Rotate::execute(Camera &camera)
 {
-    execute(camera.get_direction());
+    //execute(camera.get_direction());
+    Vector& vect = camera.get_direction();
+    vect.x += _dir.x;
+    vect.y += _dir.y;
+    vect.z += _dir.z;
 }
 
 void Rotate::rotate_x(double&, double &y, double &z)

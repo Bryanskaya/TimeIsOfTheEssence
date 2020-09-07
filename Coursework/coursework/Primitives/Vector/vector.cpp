@@ -1,7 +1,7 @@
 #include "vector.h"
 
 //constructors and destructor
-Vector::Vector() {}
+Vector::Vector(): x(0), y(0), z(0) {}
 
 Vector::~Vector() {}
 
