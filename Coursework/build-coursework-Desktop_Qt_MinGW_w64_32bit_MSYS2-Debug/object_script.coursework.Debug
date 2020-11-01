@@ -8,6 +8,8 @@ debug/scene_errors.o
 debug/side_errors.o
 debug/vector_errors.o
 debug/managers.o
+debug/draw_visitor.o
+debug/object_visitor.o
 debug/camera.o
 debug/composite_object.o
 debug/glass.o
@@ -16,14 +18,18 @@ debug/light_source.o
 debug/sand.o
 debug/scene_object.o
 debug/simple_object.o
+debug/stand.o
 debug/surface.o
+debug/box.o
 debug/model.o
 debug/point.o
 debug/side.o
 debug/vector.o
 debug/vertex.o
 debug/scene.o
+debug/transformation.o
 debug/drawer.o
+debug/projecting.o
 debug/visualizer.o
 debug/main.o
 debug/mainwindow.o
