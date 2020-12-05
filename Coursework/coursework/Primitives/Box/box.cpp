@@ -6,6 +6,7 @@ using namespace std;
 Box::Box(const Point& pnt1, const Point& pnt2, QRgb color) :
     _color(color)
 {
+    _find_center(pnt1, pnt2);
     //Нижняя грань
     add_vertex(pnt1);   //Ближайшая к наблюдателю слева снизу
     add_vertex(Point(pnt1.x, pnt1.y, pnt2.z));
@@ -38,7 +39,6 @@ Box::Box(const Point& pnt1, const Point& pnt2, QRgb color) :
     add_side({3, 7, 6, 2}, color);  //Правая
 
     normalize_n_vrt();
-    _find_center(pnt1, pnt2);
 }
 
 Box::~Box() {}
