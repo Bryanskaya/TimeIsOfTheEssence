@@ -15,12 +15,30 @@ RgbMap create_rgb_map(int width, int height)
     return rgb_map;
 }
 
+RgbMap create_itensity_map(int width, int height)
+{
+    RgbMap iten_map = new QRgb*[height];
+
+    for (int i = 0; i < height; i++)
+        iten_map[i] = new QRgb[width];
+
+    return iten_map;
+}
+
 void free_rgb_map(RgbMap &rgb_map, int height)
 {
     for (int i = 0; i < height; i++)
         delete rgb_map[i];
 
     delete rgb_map;
+}
+
+void free_itensity_map(RgbMap &iten_map, int height)
+{
+    for (int i = 0; i < height; i++)
+        delete iten_map[i];
+
+    delete iten_map;
 }
 
 
