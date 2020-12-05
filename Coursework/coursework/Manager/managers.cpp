@@ -37,10 +37,9 @@ void DrawManager::execute()
     visual->set_camera(*scene->get_camera());
     visual->set_light(*scene->get_light());
     visual->set_draw(scene->get_drawer());
+    visual->clear();
 
     shared_ptr<ObjectVisitor> visitor(new DrawVisitor(visual));
-
-    visual->clear();
 
     for (auto object : *_scene.lock())
         object->accept(*visitor);
@@ -65,7 +64,7 @@ void TransformManager::camera_execute()
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
 
-    _transf->rotate(_scene.lock()->get_camera()->get_direction());
+    _transf->rotate(_scene.lock()->get_camera()->get_direction());//
     _transf->transform(*_scene.lock()->get_camera());
 }
 
