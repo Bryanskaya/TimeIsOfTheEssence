@@ -13,13 +13,15 @@ public:
 
     virtual ~Glass();
 
+    double get_transparency();
+
     virtual void accept(ObjectVisitor& visitor);
     virtual SceneObject* clone();
 
 private:
     QRgb _color;
 
-    double k;
+    double _tr = 0.3;
 };
 
 #endif // GLASS_H

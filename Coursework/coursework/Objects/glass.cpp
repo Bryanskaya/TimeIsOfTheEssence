@@ -14,10 +14,15 @@ Glass::Glass(const Point& pnt1, const Point& pnt2)
 Glass::Glass(const Glass& other) : VisibleObject(other)
 {
     _color = other._color;
+    _tr = other._tr;
 }
 
 Glass::~Glass() {}
 
+double Glass::get_transparency()
+{
+    return _tr;
+}
 
 //methonds
 void Glass::accept(ObjectVisitor &visitor)
