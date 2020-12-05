@@ -5,6 +5,7 @@
 #include "Objects/light_source.h"
 #include "Objects/hourglass.h"
 #include "Objects/stand.h"
+#include "Objects/glass.h"
 
 
 class ObjectVisitor
@@ -18,6 +19,7 @@ public:
 
     virtual void visit(Hourglass& hourglass) = 0;
     virtual void visit(Stand& stand) = 0;
+    virtual void visit(Glass& glass) = 0;
 };
 
 #endif // OBJECT_VISITOR_H

@@ -18,5 +18,11 @@ void DrawVisitor::visit(Hourglass &hourglass)
 void DrawVisitor::visit(Stand &stand)
 {
     _visual->draw_model(*stand.get_model());
-    cout << "drawing ended" << endl;
+   // cout << "drawing ended" << endl;
+}
+
+void DrawVisitor::visit(Glass &glass)
+{
+    _visual->draw_model(*glass.get_model());
+   // cout << "drawing ended" << endl;
 }
