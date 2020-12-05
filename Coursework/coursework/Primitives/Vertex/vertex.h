@@ -17,6 +17,7 @@ public:
     virtual ~Vertex();
 
     bool operator==(const Vertex& other);
+    void normalize();
 };
 
 #endif // VERTEX_H

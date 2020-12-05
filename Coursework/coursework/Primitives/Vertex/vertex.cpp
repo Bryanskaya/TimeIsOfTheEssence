@@ -22,3 +22,8 @@ bool Vertex::operator==(const Vertex &other)
 
     return true;
 }
+
+void Vertex::normalize()
+{
+    n.normalize();
+}
