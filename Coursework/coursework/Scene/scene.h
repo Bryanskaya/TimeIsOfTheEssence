@@ -10,6 +10,7 @@
 #include "Objects/light_source.h"
 #include "Objects/hourglass.h"
 #include "Objects/stand.h"
+#include "Objects/glass.h"
 #include "Visualizing/drawer.h"
 
 

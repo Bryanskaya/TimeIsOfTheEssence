@@ -2,11 +2,20 @@
 
 Scene::Scene()
 {
-    set_camera(Camera(Point(300, 200, 500), Vector(0, 0, 0)));
-    set_light(LightSource(Point(300, 700, -10), 1));
-    add_object(new Stand(170, 100, 120));
-    add_object(new Stand(170, 500, 120));
-    //add_object(new Hourglass());
+    //300 330 100
+    set_camera(Camera(Point(0, 0, 710), Vector(0, 0, 0)));
+    set_light(LightSource(Point(0, 50, 600), 800));
+    //add_object(new Glass(Point(180, 120, 110), Point(295, 310, -5)));
+    //add_object(new Glass(Point(180, 500, 110), Point(295, 310, -5)));
+
+    //add_object(new Stand(170, 100, 120));
+    //add_object(new Stand(170, 500, 120));
+
+
+    add_object(new Stand(-130, -210, 130));
+    add_object(new Stand(-130, 190, 130));
+    add_object(new Glass(Point(-120, -190, 120), Point(-5, 10, 5)));
+    add_object(new Glass(Point(-120, 200, 120), Point(-5, 10, 5)));
 }
 
 Scene::~Scene() {}
