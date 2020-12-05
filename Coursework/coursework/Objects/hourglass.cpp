@@ -10,7 +10,7 @@ Hourglass::Hourglass(const Hourglass &other)
     set_height(other._height);
 
     sand = other.sand;
-    glass = other.glass;
+    //glass = other.glass;
     stand_models = other.stand_models;
 }
 

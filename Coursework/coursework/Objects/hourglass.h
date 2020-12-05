@@ -5,14 +5,14 @@
 
 #include "Errors/hourglass_error.h"
 #include "sand.h"
-#include "glass.h"
+//#include "glass.h"
 
 
 class Hourglass
 {
 public:
     Sand sand;
-    Glass glass;
+    //Glass glass;
     Model stand_models;
 
 
