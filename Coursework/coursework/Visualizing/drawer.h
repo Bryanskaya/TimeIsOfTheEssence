@@ -28,12 +28,18 @@ public:
 
     void move_to_qimage();
 
+    int get_max_y();
+    int get_min_y();
+    int get_max_x();
+    int get_min_x();
+
 private:
     weak_ptr<QImage> _image;
     RgbMap _colormap;
     ZMap _zmap;
 
     int height, width;
+    double half_height, half_width;
 
     void _init_map();
     void _free_map();

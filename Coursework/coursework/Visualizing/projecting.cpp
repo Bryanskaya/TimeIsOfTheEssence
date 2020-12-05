@@ -11,12 +11,13 @@ ProjectedEdge::ProjectedEdge(Point& pnt1, double i1,
     }
 
     x0 = pnt1.x;
-    y0 = static_cast<int>(pnt1.y - pnt2.y);
+    //y0 = static_cast<int>(pnt1.y - pnt2.y);
     z0 = pnt1.z;
 
     i0 = i1;
 
-    ymax = static_cast<int>(pnt1.y);
+    ymax = static_cast<int>(round(pnt1.y));
+    y0 = ymax - static_cast<int>(round(pnt2.y));
 
     if (y0)
     {
@@ -106,7 +107,6 @@ void ProjectedSide::init()
     {
         active_edges.push_back(edges[i]);
         i++;
-        cout << i << " " << edges.size() << endl;
     }
 
     for (; i < edges.size(); i++)
@@ -139,7 +139,6 @@ bool ProjectedSide::step()
         }
 
         waiting_edges.erase(i);
-        i++;
     }
 
     return active_edges.size() == 0;

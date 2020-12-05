@@ -31,6 +31,9 @@ QDrawer::QDrawer(weak_ptr<QImage> image)
     height = size.height();
     width = size.width();
 
+    half_height = height / 2;
+    half_width = width / 2;
+
     _init_map();
 }
 
@@ -39,6 +42,8 @@ QDrawer::QDrawer(const QDrawer& other)
     _image = other._image;
     height = other.height;
     width = other.width;
+    half_height = other.half_height;
+    half_width = other.half_width;
 
     _init_map();
 }
@@ -48,14 +53,13 @@ QDrawer::~QDrawer() {   _free_map();    }
 void QDrawer::_init_map()
 {
     _colormap = new QRgb*[this->height];
-
-    for (int i = 0; i < this->height; i++)
-        _colormap[i] = new QRgb[this->width];
-
     _zmap = new double*[this->height];
 
     for (int i = 0; i < this->height; i++)
+    {
         _zmap[i] = new double[this->width];
+        _colormap[i] = new QRgb[this->width];
+    }
 }
 
 void QDrawer::_free_map()
@@ -71,34 +75,28 @@ void QDrawer::_free_map()
 
 void QDrawer::draw_point(const Point &pnt, QRgb color)
 {
-    _colormap[300][700] = Qt::yellow;
-    _colormap[300][701] = Qt::yellow;
-    _colormap[300][699] = Qt::yellow;
-    _colormap[299][700] = Qt::yellow;
-    _colormap[301][700] = Qt::yellow;
-    int x = static_cast<int>(pnt.x);
-    if (x < 0 || x > width)
+    int x = static_cast<int>(pnt.x) + half_width;
+    if (x < 0 || x >= width)
         return;
 
-    int y = static_cast<int>(pnt.y);
-    if (y < 0 || y > height)
+    int y = -static_cast<int>(pnt.y) + half_height;
+    if (y < 0 || y >= height)
         return;
 
     if (pnt.z > _zmap[y][x])
     {
         _zmap[y][x] = pnt.z;
         _colormap[y][x] = color;
-        cout << "change" << endl;
     }
 }
 
 void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
 {
-    int x = static_cast<int>(pnt.x);
+    int x = static_cast<int>(pnt.x) + half_width;
     if (x < 0 || x >= width)
         return;
 
-    int y = static_cast<int>(pnt.y);
+    int y = -static_cast<int>(pnt.y) + half_height;
     if (y < 0 || y >= height)
         return;
 
@@ -134,4 +132,24 @@ void QDrawer::move_to_qimage()
     for (int i = 0; i < height; i++)
         memcpy(img.scanLine(i), &_colormap[i][0], row_size);
 
+}
+
+int QDrawer::get_max_y()
+{
+    return half_height;
+}
+
+int QDrawer::get_min_y()
+{
+    return -half_height;
+}
+
+int QDrawer::get_min_x()
+{
+    return -half_width;
+}
+
+int QDrawer::get_max_x()
+{
+    return half_width;
 }

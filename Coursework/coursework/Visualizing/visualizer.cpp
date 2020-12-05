@@ -28,10 +28,14 @@ void Visualizer::set_camera(const Camera &camera)
 
 void Visualizer::draw_model(const Model &model)
 {
+    int max_y = _draw->get_max_y();
+    int min_y = _draw->get_min_y();
+    int min_x = _draw->get_min_x();
+    int max_x = _draw->get_max_x();
+
     for (auto pnt : model.v_arr)
     {
         Point proj_pnt = _project_point(*pnt);
-        cout << proj_pnt.x << " " << proj_pnt.y << " " << proj_pnt.z << endl;
         _draw->draw_point(proj_pnt, model.s_arr[0]->color);
     }
 
@@ -41,9 +45,15 @@ void Visualizer::draw_model(const Model &model)
 
         _project_side(p_side, side->vertex_arr);
 
+        if (!p_side.edges.size())
+            continue;
+
         p_side.init();
 
-        while (p_side.active_edges.size())
+        while (p_side.active_edges.size() && p_side.y_temp > max_y)
+            p_side.step();
+
+        while (p_side.active_edges.size() && p_side.y_temp > min_y)
         {
             double x = p_side.active_edges[0].x;
             double z = p_side.active_edges[0].z;
@@ -54,7 +64,17 @@ void Visualizer::draw_model(const Model &model)
 
             Point pnt(x, p_side.y_temp, z);
 
-            for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
+            //for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
+            for (; pnt.x < min_x; pnt.x++)
+            {
+                pnt.z += dz;
+                i += di;
+            }
+
+            double st = min(p_side.active_edges[1].x, static_cast<double>(max_x));
+
+            //for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
+            for (; pnt.x < st; pnt.x++)
             {
                 _draw->draw_point(pnt, side->color, i);
                 pnt.z += dz;
@@ -85,17 +105,15 @@ Point Visualizer::_project_point(const Point &pnt)
 
     result.rotate(camera, _camera.get_direction());
 
-    if (fabs(result.z - camera.z) < EPS)
-        k = 1e20;
+    if (result.z >= camera.z)
+        throw error::BehindScene(__FILE__, typeid (*this).name(), __LINE__ - 1);
     else
-        k = 250 / (camera.z - result.z);
+        k = 500 / (camera.z - result.z);
 
-    result.x = camera.x + (result.x - camera.x) * k;
-    result.y = camera.y + (result.y - camera.y) * k;
+    result.x = (result.x - camera.x) * k;
+    result.y = (result.y - camera.y) * k;
 
-    //std::cout << "Point " << pnt.x << " " << pnt.y << " " << pnt.z << endl;
-    //std::cout << "projected point " << result.x << " " << result.y << " " << result.z << endl;
-
+    //cout << _camera.get_direction().x << " " << _camera.get_direction().y << " " << _camera.get_direction().z << endl;
     return result;
 }
 
@@ -117,11 +135,9 @@ double Visualizer::_calculate_intensity(const Vertex &v)
 {
     Vector vect(v, _light.get_position());
 
-    double i = vect.scalar_mult(v.n) / vect.get_length();
+    double i = vect.scalar_mult(v.n) / vect.get_length() / (vect.get_length() + 50);
 
     i = i * K_LIGHTSOURCE * _light.get_itensity();
-
-    cout << "itensity " << max(i, 0.4) << endl;
 
     return max(i, 0.1);
 }

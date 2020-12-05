@@ -6,6 +6,7 @@
 #include "Objects/camera.h"
 #include "Objects/light_source.h"
 #include "Primitives/Model/model.h"
+#include "Errors/scene_errors.h"
 
 
 class Visualizer
