@@ -12,7 +12,7 @@ RotateCommand::RotateCommand(const Point& center, const Vector& vect) :
     TransformCommand(shared_ptr<Transformator>(new Transformator(new Rotate(vect, center))))
 {
     Rotate* ptr = new Rotate(vect, center);
-    //to_radians
+    ptr->to_radians();
     _transf = shared_ptr<Transformator>(new Transformator(ptr));
 }
 

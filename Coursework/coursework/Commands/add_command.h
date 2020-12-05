@@ -12,9 +12,6 @@ public:
     virtual ~AddCommand() = 0;
 
     virtual void execute(weak_ptr<Scene> scene);
-
-/*protected:
-    shared_ptr<ObjectCreator> _creator;*/
 };
 
 class AddCamera : public AddCommand
