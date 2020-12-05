@@ -27,8 +27,8 @@ double Point::to_radians(double angle)
 
 void Point::rotate(const Point &center, const Vector &angles)
 {
-    rotate_ox(center, angles.x);
     rotate_oy(center, angles.y);
+    rotate_ox(center, angles.x);
     rotate_oz(center, angles.z);
 }
 
@@ -38,8 +38,8 @@ void Point::rotate_ox(const Point &center, double angle)
 
     angle = to_radians(angle);
 
-    y_temp = center.y + (this->y - center.y) * cos(angle) + (center.z - this->z) * sin(angle);
-    z_temp = center.z + (this->z - center.z) * cos(angle) - (center.y - this->y) * sin(angle);
+    y_temp = center.y + (this->y - center.y) * cos(angle) + (this->z - center.z) * sin(angle);
+    z_temp = center.z + (this->z - center.z) * cos(angle) - (this->y - center.y) * sin(angle);
 
     this->y = y_temp;
     this->z = z_temp;
@@ -49,10 +49,10 @@ void Point::rotate_oy(const Point &center, double angle)
 {
     double x_temp, z_temp;
 
-    angle = to_radians(angle);
+    angle = to_radians(angle);//
 
-    x_temp = center.x + (this->x - center.x) * cos(angle) + (this->z - center.z) * sin(angle);
-    z_temp = center.z + (this->z - center.z) * cos(angle) + (center.x - this->x) * sin(angle);
+    x_temp = center.x + (this->x - center.x) * cos(angle) - (this->z - center.z) * sin(angle);
+    z_temp = center.z + (this->z - center.z) * cos(angle) + (this->x - center.x) * sin(angle);
 
     this->x = x_temp;
     this->z = z_temp;
@@ -65,7 +65,7 @@ void Point::rotate_oz(const Point &center, double angle)
     angle = to_radians(angle);
 
     x_temp = center.x + (this->x - center.x) * cos(angle) + (this->y - center.y) * sin(angle);
-    y_temp = center.y + (this->y - center.y) * cos(angle) + (center.x - this->x) * sin(angle);
+    y_temp = center.y + (this->y - center.y) * cos(angle) - (this->x - center.x) * sin(angle);
 
     this->x = x_temp;
     this->y = y_temp;
