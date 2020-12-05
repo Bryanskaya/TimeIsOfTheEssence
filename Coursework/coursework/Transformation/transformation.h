@@ -60,6 +60,8 @@ public:
     virtual void execute(Vector& vect);
     virtual void execute(Camera& camera);
 
+    void to_radians();
+
 private:
     Vector _dir;
     Point _center;
@@ -69,6 +71,10 @@ private:
     void rotate_x(double& x, double& y, double& z);
     void rotate_y(double& x, double& y, double& z);
     void rotate_z(double& x, double& y, double& z);
+
+    void rotate_ox(double& x, double& y, double& z);
+    void rotate_oy(double& x, double& y, double& z);
+    void rotate_oz(double& x, double& y, double& z);
 };
 
 class Scale : public Transformation

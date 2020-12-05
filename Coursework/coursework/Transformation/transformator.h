@@ -15,7 +15,10 @@ public:
         _transform = unique_ptr<Transformation>(transform);
     }
 
-    void rotate(const Vector& vect){    _transform->rotate(vect);   }
+    void rotate(const Vector& vect)
+    {
+        _transform->rotate(vect);
+    }
 
     void transform(double& x, double& y, double& z) { _transform->execute(x, y, z); }
     void transform(Point& pnt) { _transform->execute(pnt); }
