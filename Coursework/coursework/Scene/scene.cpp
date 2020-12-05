@@ -2,7 +2,6 @@
 
 Scene::Scene()
 {
-    //300 330 100
     set_camera(Camera(Point(0, 0, 710), Vector(0, 0, 0)));
     set_light(LightSource(Point(0, 50, 600), 800));
     //add_object(new Glass(Point(180, 120, 110), Point(295, 310, -5)));
@@ -16,6 +15,8 @@ Scene::Scene()
     add_object(new Stand(-130, 190, 130));
     add_object(new Glass(Point(-120, -190, 120), Point(-5, 10, 5)));
     add_object(new Glass(Point(-120, 200, 120), Point(-5, 10, 5)));
+
+    //add_tr_object(new Glass(Point(-120, -190, 120), Point(-5, 10, 5)));
 }
 
 Scene::~Scene() {}
@@ -71,7 +72,22 @@ void Scene::add_object(SceneObject *object)
     _arr.push_back(shared_ptr<SceneObject>(object));
 }
 
+void Scene::add_tr_object(shared_ptr<SceneObject> object) //hi
+{
+    _tr_arr.push_back(object);
+}
+
+void Scene::add_tr_object(SceneObject *object) //hi
+{
+    _tr_arr.push_back(shared_ptr<SceneObject>(object));
+}
+
 void Scene::remove_object(scene_iter &iter)
 {
     _arr.erase(iter);
+}
+
+void Scene::remove_tr_object(scene_iter &iter) //hi
+{
+    _tr_arr.erase(iter);
 }

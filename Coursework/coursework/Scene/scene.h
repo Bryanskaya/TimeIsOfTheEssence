@@ -52,8 +52,13 @@ public:
     void add_object(SceneObject* object);
     void remove_object(scene_iter& iter);
 
+    void add_tr_object(shared_ptr<SceneObject> object); //hi
+    void add_tr_object(SceneObject* object); //hi
+    void remove_tr_object(scene_iter& iter); //hi
+
 private:
     vector<shared_ptr<SceneObject>> _arr;
+    vector<shared_ptr<SceneObject>> _tr_arr; //hi
     shared_ptr<Camera> _camera;
     shared_ptr<LightSource> _light;
 
