@@ -3,6 +3,7 @@
 
 #include <QDoubleValidator>
 #include <QMessageBox>
+#include <QGraphicsView>
 
 RgbMap create_rgb_map(int width, int height)
 {
@@ -26,13 +27,13 @@ void free_rgb_map(RgbMap &rgb_map, int height)
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow), _qscene(new QGraphicsScene(-1, -1, 1, 1)), _scene(new Scene())
+    ui(new Ui::MainWindow), _qscene(new QGraphicsScene(-10, -10, 10, 10)), _scene(new Scene())
 {
     ui->setupUi(this);
 
     _size_scene = ui->graphicsView->size();
 
-    cout << "Size: " << _size_scene.width() << "x" << _size_scene.height() << endl;
+    //cout << "Size: " << _size_scene.width() << "x" << _size_scene.height() << endl;
 
     _set_binds_input();
 
@@ -88,32 +89,32 @@ void MainWindow::_draw_scene()
 
 void MainWindow::on_PushUp_clicked()
 {
-    _move_camera(0, 10, 0);
+    _move_camera(0, 5, 0);
 }
 
 void MainWindow::on_PushDown_clicked()
 {
-    _move_camera(0, -10, 0);
+    _move_camera(0, -5, 0);
 }
 
 void MainWindow::on_PushRight_clicked()
 {
-    _move_camera(10, 0, 0);
+    _move_camera(5, 0, 0);
 }
 
 void MainWindow::on_PushLeft_clicked()
 {
-    _move_camera(-10, 0, 0);
+    _move_camera(-5, 0, 0);
 }
 
 void MainWindow::on_PushCloser_clicked()
 {
-    _move_camera(0, 0, -10);
+    _move_camera(0, 0, -5);
 }
 
 void MainWindow::on_PushFurther_clicked()
 {
-    _move_camera(0, 0, 10);
+    _move_camera(0, 0, 5);
 }
 
 void MainWindow::on_Start_clicked()
@@ -123,23 +124,43 @@ void MainWindow::on_Start_clicked()
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
 {
-    cout << event->key() << " " << Qt::Key_W << endl;
-
     switch (event->key())
     {
         case Qt::Key_W:
-            cout << "here************************" << endl;
-            _rotate_camera(0, 0, -30);
+            _move_camera(0, 5, 0);
             break;
         case Qt::Key_S:
+            _move_camera(0, -5, 0);
             break;
         case Qt::Key_A:
+            _move_camera(-5, 0, 0);
             break;
         case Qt::Key_D:
+            _move_camera(5, 0, 0);
+            break;
+        case Qt::Key_U:
+            _rotate_camera(15, 0, 0);
+            break;
+        case Qt::Key_J:
+            _rotate_camera(-15, 0, 0);
+            break;
+        case Qt::Key_H:
+            _rotate_camera(0, -15, 0);
+            break;
+        case Qt::Key_K:
+            _rotate_camera(0, 15, 0);
             break;
         default:
             break;
     }
+}
+
+void MainWindow::wheelEvent(QWheelEvent *event)
+{
+    if (event->delta() > 0)
+        _move_camera(0, 0, -8);
+    else
+        _move_camera(0, 0, 8);
 }
 
 void MainWindow::_move_camera(double x, double y, double z)
@@ -148,7 +169,30 @@ void MainWindow::_move_camera(double x, double y, double z)
     ptr = shared_ptr<BaseCommand>(new MoveCamera(Vector(x, y, z)));
 
     _scene.execute(*ptr);
-    _draw_scene();
+
+    try {
+        _draw_scene();
+    }  catch (error::BaseError &err) {
+        cout << err.what() << endl;
+        _move_camera(-x, -y, -z);
+    }
+
+}
+
+void MainWindow::_move_light(double x, double y, double z)
+{
+    shared_ptr<BaseCommand> ptr;
+    ptr = shared_ptr<BaseCommand>(new MoveLightSource(Vector(x, y, z)));
+
+    _scene.execute(*ptr);
+
+    try {
+        _draw_scene();
+    }  catch (error::BaseError &err) {
+        cout << err.what() << endl;
+        _move_light(-x, -y, -z);
+    }
+
 }
 
 void MainWindow::_rotate_camera(double x, double y, double z)
@@ -157,5 +201,41 @@ void MainWindow::_rotate_camera(double x, double y, double z)
     ptr = shared_ptr<BaseCommand>(new RotateCamera(Vector(x, y, z)));
 
     _scene.execute(*ptr);
-    _draw_scene();
+
+    try {
+        _draw_scene();
+    }  catch (error::BaseError &err) {
+        cout << err.what() << endl;
+        _rotate_camera(-x, -y, -z);
+    }
+}
+
+void MainWindow::on_PushLightUp_clicked()
+{
+    _move_light(0, 10, 0);
+}
+
+void MainWindow::on_PushLightDown_clicked()
+{
+    _move_light(0, -10, 0);
+}
+
+void MainWindow::on_PushLightLeft_clicked()
+{
+    _move_light(-10, 0, 0);
+}
+
+void MainWindow::on_PushLightRight_clicked()
+{
+    _move_light(10, 0, 0);
+}
+
+void MainWindow::on_PushLightCloser_clicked()
+{
+    _move_light(0, 0, -10);
+}
+
+void MainWindow::on_PushLightFurther_clicked()
+{
+    _move_light(0, 0, 10);
 }

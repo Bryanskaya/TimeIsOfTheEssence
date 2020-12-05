@@ -512,7 +512,7 @@
      <string>Переместить:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="PushCloser_2">
+   <widget class="QPushButton" name="PushLightCloser">
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -532,7 +532,7 @@
      <string>Ближе</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="PushFurther_2">
+   <widget class="QPushButton" name="PushLightFurther">
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -552,7 +552,7 @@
      <string>Дальше</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="PushUp_2">
+   <widget class="QPushButton" name="PushLightUp">
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -572,7 +572,7 @@
      <string>Вверх</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="PushRight_2">
+   <widget class="QPushButton" name="PushLightRight">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -592,7 +592,7 @@
      <string>Вправо</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="PushLeft_2">
+   <widget class="QPushButton" name="PushLightLeft">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -612,7 +612,7 @@
      <string>Влево</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="PushDown_2">
+   <widget class="QPushButton" name="PushLightDown">
     <property name="geometry">
      <rect>
       <x>730</x>

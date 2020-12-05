@@ -45,6 +45,19 @@ private slots:
 
     void keyPressEvent(QKeyEvent*);
 
+
+    void on_PushLightUp_clicked();
+
+    void on_PushLightDown_clicked();
+
+    void on_PushLightLeft_clicked();
+
+    void on_PushLightRight_clicked();
+
+    void on_PushLightCloser_clicked();
+
+    void on_PushLightFurther_clicked();
+
 private:
     Ui::MainWindow *ui;
     shared_ptr<QGraphicsScene> _qscene;
@@ -56,9 +69,12 @@ private:
     RgbMap _rgb_map;
     QColor _draw_color = Qt::darkGray;
 
+    void wheelEvent(QWheelEvent *event);
+
     void _set_binds_input(void);
     void _show_error(const char* error);
     void _move_camera(double x, double y, double z);
+    void _move_light(double x, double y, double z);
     void _rotate_camera(double x, double y, double z);
     void _draw_scene();
 };
