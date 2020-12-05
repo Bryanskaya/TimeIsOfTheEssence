@@ -49,6 +49,7 @@ SOURCES += \
         Objects/surface.cpp \
         Primitives/Box/box.cpp \
         Primitives/Model/model.cpp \
+        Primitives/Piramid/piramid.cpp \
         Primitives/Point/point.cpp \
         Primitives/Side/side.cpp \
         Primitives/Vector/vector.cpp \
@@ -87,6 +88,7 @@ HEADERS += \
         Objects/surface.h \
         Primitives/Box/box.h \
         Primitives/Model/model.h \
+        Primitives/Piramid/piramid.h \
         Primitives/Point/point.h \
         Primitives/Side/side.h \
         Primitives/Vector/vector.h \
