@@ -20,6 +20,13 @@ public:
     virtual ~SceneExpired();
 };
 
+
+class BehindScene : public BaseError
+{
+public:
+    BehindScene(string filename, string classname, int num_line);
+    virtual ~BehindScene();
+};
 }
 
 
