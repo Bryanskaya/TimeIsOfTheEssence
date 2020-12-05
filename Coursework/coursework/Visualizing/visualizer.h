@@ -22,6 +22,7 @@ public:
     void set_light(const LightSource& light);
 
     void draw_model(const Model& model);
+    void draw_intensity(const Model &model, double tr);  //hi
 
     void show_scene();
     void clear();

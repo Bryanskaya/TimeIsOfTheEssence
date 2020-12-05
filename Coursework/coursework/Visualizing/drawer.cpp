@@ -20,6 +20,11 @@ QRgb get_color(QRgb color, double itensity)
     return new_color.rgba();
 }
 
+double get_iten_through_glass(double itensity_obj, double itensity_glass, double t) //hi
+{
+    return t * itensity_glass + (1 - t) * itensity_obj;
+}
+
 QDrawer::QDrawer(weak_ptr<QImage> image)
 {
     if (image.expired())
@@ -54,23 +59,28 @@ void QDrawer::_init_map()
 {
     _colormap = new QRgb*[this->height];
     _zmap = new double*[this->height];
+    _itenmap = new double*[this->height];//hi
 
     for (int i = 0; i < this->height; i++)
     {
         _zmap[i] = new double[this->width];
         _colormap[i] = new QRgb[this->width];
+        _itenmap[i] = new double[this->width]; //hi
     }
 }
 
 void QDrawer::_free_map()
 {
     for (int i = 0; i < this->height; i++)
+    {
         delete _colormap[i];
-    delete _colormap;
-
-    for (int i = 0; i < this->height; i++)
         delete _zmap[i];
+        delete  _itenmap[i]; //hi
+    }
+
+    delete _colormap;
     delete _zmap;
+    delete  _itenmap; //hi
 }
 
 void QDrawer::draw_point(const Point &pnt, QRgb color)
@@ -104,7 +114,23 @@ void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
     {
         _zmap[y][x] = pnt.z;
         _colormap[y][x] = get_color(color, itensity);
+        _itenmap[y][x] = itensity; //hi
     }
+}
+
+void QDrawer::correct_intensity(const Point& pnt, double i, double tr) //hi
+{
+    int x = static_cast<int>(pnt.x) + half_width;
+    if (x < 0 || x >= width)
+        return;
+
+    int y = -static_cast<int>(pnt.y) + half_height;
+    if (y < 0 || y >= height)
+        return;
+
+    //if (pnt.z > _zmap[y][x]) надо ли так делать
+    double iten_obj = _itenmap[y][x];
+    double temp_iten = get_iten_through_glass(iten_obj, i, tr);
 }
 
 void QDrawer::make_map_plain(QRgb color)
@@ -112,6 +138,13 @@ void QDrawer::make_map_plain(QRgb color)
     for (int i = 0; i < this->height; i++)
         for (int j = 0; j < this->width; j++)
             _colormap[i][j] = color;
+}
+
+void QDrawer::make_itenmap_plain(double iten) //hi
+{
+    for (int i = 0; i < this->height; i++)
+        for (int j = 0; j < this->width; j++)
+            _itenmap[i][j] = iten;
 }
 
 void QDrawer::fill_zmap_onedepth(double depth)
@@ -131,6 +164,13 @@ void QDrawer::move_to_qimage()
 
     for (int i = 0; i < height; i++)
         memcpy(img.scanLine(i), &_colormap[i][0], row_size);
+
+    /*for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+            cout << _itenmap[i][j] << " ";
+        cout << endl;
+    }*/
 
 }
 

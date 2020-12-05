@@ -11,6 +11,8 @@
 using RgbMap = QRgb**;
 using ZMap = double**;
 
+using IMap = double**;
+
 using namespace std;
 
 
@@ -25,6 +27,9 @@ public:
     void draw_point(const Point& pnt, QRgb color, double intensity);
     void make_map_plain(QRgb color);
     void fill_zmap_onedepth(double depth);
+    void make_itenmap_plain(double iten); //hi
+
+    void correct_intensity(const Point& pnt, double i, double tr); //hi
 
     void move_to_qimage();
 
@@ -37,6 +42,7 @@ private:
     weak_ptr<QImage> _image;
     RgbMap _colormap;
     ZMap _zmap;
+    IMap _itenmap; //hi
 
     int height, width;
     double half_height, half_width;
