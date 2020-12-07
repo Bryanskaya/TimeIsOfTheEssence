@@ -32,3 +32,34 @@ SceneObject* Stand::clone()
 {
     return new Stand(*this);
 }
+
+
+
+
+
+DemoBox::DemoBox(Point& pnt1, Point& pnt2)
+{
+    _color = QColor(Qt::green).rgba();
+
+    Model* model_ptr = new Box(pnt1, pnt2, _color);
+    _model = shared_ptr<Model>(model_ptr);
+}
+
+DemoBox::DemoBox(const DemoBox& other) : VisibleObject(other)
+{
+    _color = other._color;
+}
+
+DemoBox::~DemoBox() {}
+
+
+//methonds
+void DemoBox::accept(ObjectVisitor &visitor)
+{
+    visitor.visit(*this);
+}
+
+SceneObject* DemoBox::clone()
+{
+    return new DemoBox(*this);
+}
