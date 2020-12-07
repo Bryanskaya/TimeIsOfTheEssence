@@ -21,14 +21,20 @@ void DrawVisitor::visit(Stand &stand)
    // cout << "drawing ended" << endl;
 }
 
-void DrawVisitor::visit(Glass &glass)
+void DrawVisitor::visit(DemoBox &stand)
 {
-    _visual->draw_model(*glass.get_model());
+    _visual->draw_model(*stand.get_model());
    // cout << "drawing ended" << endl;
 }
 
+void DrawVisitor::visit(Glass &glass)
+{
+    //_visual->draw_model(*glass.get_model());
+   _visual->draw_intensity(*glass.get_model(), glass.get_transparency());
+}
 
-TransparencyVisitor::TransparencyVisitor(shared_ptr<Visualizer>& visual) :
+
+/*TransparencyVisitor::TransparencyVisitor(shared_ptr<Visualizer>& visual) :
     _visual(visual) {}
 
 TransparencyVisitor::~TransparencyVisitor() {}
@@ -53,4 +59,4 @@ void TransparencyVisitor::visit(Glass &glass) // надо ли делать на
     cout << "hi\n";
     _visual->draw_intensity(*glass.get_model(), glass.get_transparency());
    // cout << "drawing ended" << endl;
-}
+}*/
