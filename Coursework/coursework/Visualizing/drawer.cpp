@@ -113,7 +113,8 @@ void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
     if (pnt.z > _zmap[y][x])
     {
         _zmap[y][x] = pnt.z;
-        _colormap[y][x] = get_color(color, itensity);
+        //_colormap[y][x] = get_color(color, itensity);
+        _colormap[y][x] = color;
         _itenmap[y][x] = itensity; //hi
     }
 }
@@ -128,9 +129,8 @@ void QDrawer::correct_intensity(const Point& pnt, double i, double tr) //hi
     if (y < 0 || y >= height)
         return;
 
-    //if (pnt.z > _zmap[y][x]) надо ли так делать
-    double iten_obj = _itenmap[y][x];
-    double temp_iten = get_iten_through_glass(iten_obj, i, tr);
+    if (pnt.z > _zmap[y][x])
+        _itenmap[y][x] = get_iten_through_glass(_itenmap[y][x], i, tr);
 }
 
 void QDrawer::make_map_plain(QRgb color)
@@ -163,7 +163,15 @@ void QDrawer::move_to_qimage()
     size_t row_size = static_cast<size_t>(width) * sizeof (QRgb);
 
     for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (_itenmap[i][j] < 0)
+                cout << _itenmap[i][j] << " " << i << " " << j << endl;
+            _colormap[i][j] = get_color(_colormap[i][j], _itenmap[i][j]);
+        }
         memcpy(img.scanLine(i), &_colormap[i][0], row_size);
+    }
 
     /*for (int i = 0; i < height; i++)
     {

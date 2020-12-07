@@ -93,11 +93,6 @@ void Visualizer::draw_intensity(const Model &model, double tr)  //hi
     int min_x = _draw->get_min_x();
     int max_x = _draw->get_max_x();
 
-    /*for (auto pnt : model.v_arr)
-    {
-        Point proj_pnt = _project_point(*pnt);
-        _draw->draw_point(proj_pnt, model.s_arr[0]->color);
-    }*/
 
     for (auto side : model.s_arr)
     {
@@ -136,8 +131,7 @@ void Visualizer::draw_intensity(const Model &model, double tr)  //hi
             //for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
             for (; pnt.x < st; pnt.x++)
             {
-                //_draw->draw_point(pnt, side->color, i);
-                _draw->correct_intensity(pnt, i, tr);
+                _draw->correct_intensity(pnt, i / 1.5, tr);
                 pnt.z += dz;
                 i += di;
             }
@@ -155,8 +149,8 @@ void Visualizer::show_scene()
 void Visualizer::clear()
 {
     _draw->fill_zmap_onedepth(-10000);
-    _draw->make_map_plain(QColor(Qt::darkGray).rgba());
-    _draw->make_itenmap_plain(0.5); //hi какое лучше значение
+    _draw->make_map_plain(QColor(Qt::white).rgba());
+    _draw->make_itenmap_plain(0.62); //hi какое лучше значение
 }
 
 Point Visualizer::_project_point(const Point &pnt)
@@ -201,5 +195,6 @@ double Visualizer::_calculate_intensity(const Vertex &v)
 
     i = i * K_LIGHTSOURCE * _light.get_itensity();
 
+    i = min(i, 1.0);
     return max(i, 0.1);
 }
