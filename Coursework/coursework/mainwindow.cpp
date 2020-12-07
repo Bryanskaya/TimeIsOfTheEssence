@@ -127,12 +127,12 @@ void MainWindow::on_PushLeft_clicked()
 
 void MainWindow::on_PushCloser_clicked()
 {
-    _move_camera(0, 0, -5);
+    _move_camera(0, 0, -8);
 }
 
 void MainWindow::on_PushFurther_clicked()
 {
-    _move_camera(0, 0, 5);
+    _move_camera(0, 0, 8);
 }
 
 void MainWindow::on_Start_clicked()
@@ -163,10 +163,10 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
             _rotate_camera(-15, 0, 0);
             break;
         case Qt::Key_H:
-            _rotate_camera(0, -15, 0);
+            _rotate_camera(0, -30, 0);
             break;
         case Qt::Key_K:
-            _rotate_camera(0, 15, 0);
+            _rotate_camera(0, 30, 0);
             break;
         default:
             break;
