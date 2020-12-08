@@ -10,14 +10,15 @@ Scene::Scene()
     //add_object(new Stand(170, 100, 120));
     //add_object(new Stand(170, 500, 120));
 
-    Point pnt1 = Point(-50, 150, -200);
+    /*Point pnt1 = Point(-50, 150, -200);
     Point pnt2 = Point(400, 120, -300);
-
-
-    //add_object(new DemoBox(pnt1, pnt2));
+    add_object(new DemoBox(pnt1, pnt2));*/
 
     add_object(new Stand(-130, -210, 130));
     add_object(new Stand(-130, 190, 130));
+
+    add_object(new SandUpP(Point(-70, 120.695, 70), Point(-3, 10, 3)));
+
     add_object(new Glass(Point(-120, -190, 120), Point(-5, 10, 5)));
     add_object(new Glass(Point(-120, 200, 120), Point(-5, 10, 5)));
 }

@@ -149,8 +149,8 @@ void Visualizer::show_scene()
 void Visualizer::clear()
 {
     _draw->fill_zmap_onedepth(-10000);
-    _draw->make_map_plain(QColor(Qt::white).rgba());
-    _draw->make_itenmap_plain(0.62); //hi какое лучше значение
+    _draw->make_map_plain(QColor("#4682B4").rgba());
+    _draw->make_itenmap_plain(0.9); //hi какое лучше значение
 }
 
 Point Visualizer::_project_point(const Point &pnt)
@@ -166,6 +166,7 @@ Point Visualizer::_project_point(const Point &pnt)
     else
         k = 500 / (camera.z - result.z);
 
+    //k = 500 / sqrt(camera.x * camera.x + camera.z * camera.z);
     result.x = (result.x - camera.x) * k;
     result.y = (result.y - camera.y) * k;
 

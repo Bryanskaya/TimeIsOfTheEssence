@@ -11,6 +11,7 @@
 #include "Objects/hourglass.h"
 #include "Objects/stand.h"
 #include "Objects/glass.h"
+#include "Objects/sand.h"
 #include "Visualizing/drawer.h"
 
 

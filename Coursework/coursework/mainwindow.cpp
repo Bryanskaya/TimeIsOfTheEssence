@@ -157,16 +157,16 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
             _move_camera(5, 0, 0);
             break;
         case Qt::Key_U:
-            _rotate_camera(15, 0, 0);
+            _rotate_camera(1, 0, 0);
             break;
         case Qt::Key_J:
-            _rotate_camera(-15, 0, 0);
+            _rotate_camera(-1, 0, 0);
             break;
         case Qt::Key_H:
-            _rotate_camera(0, -30, 0);
+            _rotate_camera(0, 1, 0);
             break;
         case Qt::Key_K:
-            _rotate_camera(0, 30, 0);
+            _rotate_camera(0, -1, 0);
             break;
         default:
             break;
@@ -230,30 +230,30 @@ void MainWindow::_rotate_camera(double x, double y, double z)
 
 void MainWindow::on_PushLightUp_clicked()
 {
-    _move_light(0, 10, 0);
+    _move_light(0, 5, 0);
 }
 
 void MainWindow::on_PushLightDown_clicked()
 {
-    _move_light(0, -10, 0);
+    _move_light(0, -5, 0);
 }
 
 void MainWindow::on_PushLightLeft_clicked()
 {
-    _move_light(-10, 0, 0);
+    _move_light(-5, 0, 0);
 }
 
 void MainWindow::on_PushLightRight_clicked()
 {
-    _move_light(10, 0, 0);
+    _move_light(5, 0, 0);
 }
 
 void MainWindow::on_PushLightCloser_clicked()
 {
-    _move_light(0, 0, -10);
+    _move_light(0, 0, -8);
 }
 
 void MainWindow::on_PushLightFurther_clicked()
 {
-    _move_light(0, 0, 10);
+    _move_light(0, 0, 8);
 }
