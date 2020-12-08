@@ -5,6 +5,7 @@
 
 #include "simple_object.h"
 #include "Errors/hourglass_error.h"
+#include "Primitives/Piramid/piramid.h"
 
 
 class Sand : public VisibleObject
@@ -29,6 +30,23 @@ private:
     double _speed_y = 10;
 
     void _add_vertices_line(int x, int y, int z, size_t step, size_t num);
+};
+
+class SandUpP : public VisibleObject
+{
+public:
+    SandUpP(const Point& pnt1, const Point& pnt2);
+    explicit SandUpP(const SandUpP& other);
+
+    virtual ~SandUpP();
+
+    virtual void accept(ObjectVisitor& visitor);
+    virtual SceneObject* clone();
+
+private:
+    QRgb _color;
+    double _down_length = 140;
+    double _up_length = 6;
 };
 
 #endif // SAND_H

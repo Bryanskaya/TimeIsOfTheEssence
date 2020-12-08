@@ -1,4 +1,5 @@
 #include "sand.h"
+#include "Visitors/object_visitor.h"
 
 //constructors and destructor
 Sand::Sand() {}
@@ -56,4 +57,30 @@ void Sand::accept(ObjectVisitor& visitor)
 SceneObject *Sand::clone()
 {
     return new Sand(*this);
+}
+
+
+SandUpP::SandUpP(const Point& pnt1, const Point& pnt2)
+{
+    _color = QColor("#CD853F").rgba();
+
+    Model* model_ptr = new Piramid(pnt1, pnt2, _color, _down_length, _up_length);
+    _model = shared_ptr<Model>(model_ptr);
+}
+
+SandUpP::SandUpP(const SandUpP& other) : VisibleObject(other)
+{
+    _color = other._color;
+}
+
+SandUpP::~SandUpP() {}
+
+void SandUpP::accept(ObjectVisitor &visitor)
+{
+    visitor.visit(*this);
+}
+
+SceneObject* SandUpP::clone()
+{
+    return new SandUpP(*this);
 }
