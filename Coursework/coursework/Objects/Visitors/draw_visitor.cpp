@@ -33,6 +33,11 @@ void DrawVisitor::visit(Glass &glass)
    _visual->draw_intensity(*glass.get_model(), glass.get_transparency());
 }
 
+void DrawVisitor::visit(SandUpP &sand)
+{
+   _visual->draw_model(*sand.get_model());
+}
+
 
 /*TransparencyVisitor::TransparencyVisitor(shared_ptr<Visualizer>& visual) :
     _visual(visual) {}

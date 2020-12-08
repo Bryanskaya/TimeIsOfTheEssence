@@ -21,6 +21,7 @@ public:
 
 
     virtual void visit(Glass& glass);
+    virtual void visit(SandUpP& sand);
 
 private:
     shared_ptr<Visualizer> _visual;

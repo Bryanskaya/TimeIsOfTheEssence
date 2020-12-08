@@ -21,6 +21,8 @@ public:
     virtual void visit(Stand& stand) = 0;
     virtual void visit(Glass& glass) = 0;
 
+    virtual void visit(SandUpP& sand) = 0;
+
     virtual void visit(DemoBox& demobox) = 0;
 };
 
