@@ -7,7 +7,7 @@ Glass::Glass(const Point& pnt1, const Point& pnt2)
 {
     _color = QColor(Qt::green).rgba();
 
-    Model* model_ptr = new Piramid(pnt1, pnt2, _color);
+    Model* model_ptr = new Piramid(pnt1, pnt2, _color, _down_length, _up_length);
     _model = shared_ptr<Model>(model_ptr);
 }
 

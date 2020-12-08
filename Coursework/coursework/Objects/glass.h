@@ -20,8 +20,9 @@ public:
 
 private:
     QRgb _color;
-
     double _tr = 0.3;
+    double _down_length = 240;
+    double _up_length = 10;
 };
 
 #endif // GLASS_H
