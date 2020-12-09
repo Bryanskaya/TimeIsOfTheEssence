@@ -230,22 +230,22 @@ void MainWindow::_rotate_camera(double x, double y, double z)
 
 void MainWindow::on_PushLightUp_clicked()
 {
-    _move_light(0, 5, 0);
+    _move_light(0, 8, 0);
 }
 
 void MainWindow::on_PushLightDown_clicked()
 {
-    _move_light(0, -5, 0);
+    _move_light(0, -8, 0);
 }
 
 void MainWindow::on_PushLightLeft_clicked()
 {
-    _move_light(-5, 0, 0);
+    _move_light(-8, 0, 0);
 }
 
 void MainWindow::on_PushLightRight_clicked()
 {
-    _move_light(5, 0, 0);
+    _move_light(8, 0, 0);
 }
 
 void MainWindow::on_PushLightCloser_clicked()

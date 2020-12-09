@@ -46,12 +46,13 @@ SOURCES += \
         Objects/scene_object.cpp \
         Objects/simple_object.cpp \
         Objects/stand.cpp \
-        Objects/surface.cpp \
+        Objects/surface_object.cpp \
         Primitives/Box/box.cpp \
         Primitives/Model/model.cpp \
         Primitives/Piramid/piramid.cpp \
         Primitives/Point/point.cpp \
         Primitives/Side/side.cpp \
+        Primitives/Surface/surface.cpp \
         Primitives/Vector/vector.cpp \
         Primitives/Vertex/vertex.cpp \
         Scene/scene.cpp \
@@ -85,12 +86,13 @@ HEADERS += \
         Objects/scene_object.h \
         Objects/simple_object.h \
         Objects/stand.h \
-        Objects/surface.h \
+        Objects/surface_object.h \
         Primitives/Box/box.h \
         Primitives/Model/model.h \
         Primitives/Piramid/piramid.h \
         Primitives/Point/point.h \
         Primitives/Side/side.h \
+        Primitives/Surface/surface.h \
         Primitives/Vector/vector.h \
         Primitives/Vertex/vertex.h \
         Scene/facade.h \
