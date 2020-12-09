@@ -1,0 +1,13 @@
+*.exe
+*.out
+*.o
+*.pch
+*.gch
+*.creator.user*
+*.creator
+*.config
+*.files
+*.includes
+*.cflags
+*.cxxflags
+*.autosave

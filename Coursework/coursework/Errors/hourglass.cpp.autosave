@@ -1,0 +1,6 @@
+#include "hourglass_error.h"
+
+Hourglass::Hourglass()
+{
+
+}
