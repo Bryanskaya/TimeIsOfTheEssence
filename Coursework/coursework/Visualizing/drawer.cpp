@@ -129,7 +129,8 @@ void QDrawer::correct_intensity(const Point& pnt, double i, double tr) //hi
     if (y < 0 || y >= height)
         return;
 
-    if (pnt.z > _zmap[y][x])
+    //cout << "++++++" << pnt.x << " " <<  pnt.y << " " <<pnt.z << " " << _zmap[y][x] << endl;
+    if (pnt.z + 10 > _zmap[y][x])
         _itenmap[y][x] = get_iten_through_glass(_itenmap[y][x], i, tr);
 }
 
@@ -166,20 +167,10 @@ void QDrawer::move_to_qimage()
     {
         for (int j = 0; j < width; j++)
         {
-            if (_itenmap[i][j] < 0)
-                cout << _itenmap[i][j] << " " << i << " " << j << endl;
             _colormap[i][j] = get_color(_colormap[i][j], _itenmap[i][j]);
         }
         memcpy(img.scanLine(i), &_colormap[i][0], row_size);
     }
-
-    /*for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-            cout << _itenmap[i][j] << " ";
-        cout << endl;
-    }*/
-
 }
 
 int QDrawer::get_max_y()

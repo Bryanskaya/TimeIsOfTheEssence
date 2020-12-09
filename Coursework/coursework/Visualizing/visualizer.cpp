@@ -39,6 +39,7 @@ void Visualizer::draw_model(const Model &model)
         _draw->draw_point(proj_pnt, model.s_arr[0]->color);
     }*/
 
+    cout << model.s_arr.size() << endl;
     for (auto side : model.s_arr)
     {
         ProjectedSide p_side;
@@ -149,7 +150,7 @@ void Visualizer::show_scene()
 void Visualizer::clear()
 {
     _draw->fill_zmap_onedepth(-10000);
-    _draw->make_map_plain(QColor("#4682B4").rgba());
+    _draw->make_map_plain(QColor("#74737a").rgba()); //4682B4
     _draw->make_itenmap_plain(0.9); //hi какое лучше значение
 }
 
@@ -170,7 +171,6 @@ Point Visualizer::_project_point(const Point &pnt)
     result.x = (result.x - camera.x) * k;
     result.y = (result.y - camera.y) * k;
 
-    //cout << _camera.get_direction().x << " " << _camera.get_direction().y << " " << _camera.get_direction().z << endl;
     return result;
 }
 
