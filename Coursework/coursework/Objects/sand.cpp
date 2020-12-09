@@ -62,7 +62,7 @@ SceneObject *Sand::clone()
 
 SandUpP::SandUpP(const Point& pnt1, const Point& pnt2)
 {
-    _color = QColor("#CD853F").rgba();
+    _color = QColor("#b0894f").rgba(); //CD853F
 
     Model* model_ptr = new Piramid(pnt1, pnt2, _color, _down_length, _up_length);
     _model = shared_ptr<Model>(model_ptr);
@@ -84,3 +84,30 @@ SceneObject* SandUpP::clone()
 {
     return new SandUpP(*this);
 }
+
+
+/*SandUpS::SandUpS(const Point& pnt1, const Point& pnt2)
+{
+    _color = QColor("#b0894f").rgba(); //CD853F
+
+    Model* model_ptr = new Surface(pnt1, pnt2, _length);
+    _model = shared_ptr<Model>(model_ptr);
+}
+
+SandUpS::SandUpS(const SandUpS& other) : VisibleObject(other)
+{
+    _color = other._color;
+    _length = other._length;
+}
+
+SandUpS::~SandUpS() {}
+
+void SandUpS::accept(ObjectVisitor &visitor)
+{
+    visitor.visit(*this);
+}
+
+SceneObject* SandUpS::clone()
+{
+    return new SandUpS(*this);
+}*/
