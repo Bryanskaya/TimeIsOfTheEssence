@@ -6,6 +6,7 @@
 #include "Objects/hourglass.h"
 #include "Objects/stand.h"
 #include "Objects/glass.h"
+#include "Objects/surface_object.h"
 
 
 class ObjectVisitor
@@ -22,6 +23,7 @@ public:
     virtual void visit(Glass& glass) = 0;
 
     virtual void visit(SandUpP& sand) = 0;
+    virtual void visit(SurfaceObject& sand) = 0;
 
     virtual void visit(DemoBox& demobox) = 0;
 };

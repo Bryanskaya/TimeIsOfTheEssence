@@ -38,6 +38,11 @@ void DrawVisitor::visit(SandUpP &sand)
    _visual->draw_model(*sand.get_model());
 }
 
+void DrawVisitor::visit(SurfaceObject &sand)
+{
+   _visual->draw_model(*sand.get_model());
+}
+
 
 /*TransparencyVisitor::TransparencyVisitor(shared_ptr<Visualizer>& visual) :
     _visual(visual) {}
