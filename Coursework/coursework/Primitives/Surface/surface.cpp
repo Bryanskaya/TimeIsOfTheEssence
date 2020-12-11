@@ -38,6 +38,8 @@ SurfaceUp::SurfaceUp(QRgb color, const Point& pnt1, const Point& pnt2, const Poi
     Point pnt_max = find_max_pnt(pnt1, pnt2);
     find_center(pnt3, pnt_max);
 
+    _height = abs(pnt1.y - pnt3.y);
+
     size_t num_x = static_cast<int>(round((pnt_max.x - pnt_min.x) / _step));
     size_t num_z = static_cast<int>(round((pnt_max.z - pnt_min.z) / _step));
 
@@ -200,3 +202,23 @@ void SurfaceUp::find_center(const Point &pnt1, const Point &pnt2)
     //_center.z = (pnt1.z + pnt2.z) / 2;
     _center.z = 0;
 }
+
+double SurfaceUp::volume()
+{
+    return _down_length * _down_length * _height / 3;
+}
+
+double SurfaceUp::find_h(double t_general)
+{
+    double v = volume();
+
+    return v / (_cur_length * _cur_length * t_general);
+}
+
+/*void SurfaceUp::correct_surface_carcas()
+{
+    for (size_t i = 0; i < _num_nodes; i++)
+
+}*/
+
+

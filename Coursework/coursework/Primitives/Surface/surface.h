@@ -34,11 +34,17 @@ public:
     void find_center(const Point& pnt1, const Point& pnt2);
     void correct_vert(size_t ind);
 
+    double volume();
+    double find_h(double t_general);
+
 private:
     double _step = 50;
     size_t _num_nodes;
     double _down_length = 140;
     double _up_length = 2;
+    double _height;
+
+    double _cur_length = 140;
 };
 
 #endif // SURFACE_H
