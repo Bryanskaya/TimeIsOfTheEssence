@@ -6,6 +6,7 @@
 #include "simple_object.h"
 #include "Errors/hourglass_error.h"
 #include "Primitives/Piramid/piramid.h"
+#include "Primitives/Piramid/piramid_3.h"
 #include "Primitives/Surface/surface.h"
 
 
@@ -51,20 +52,24 @@ private:
 };
 
 
-class SandUpS : public VisibleObject
+class SandItem : public VisibleObject
 {
 public:
-    SandUpS(const Point& pnt1, const Point& pnt2);
-    explicit SandUpS(const SandUpS& other);
+    SandItem(const Point& pnt1, const Point& pnt2, const Point& pnt3, const Point& pnt_top);
+    explicit SandItem(const SandItem& other);
 
-    virtual ~SandUpS();
+    virtual ~SandItem();
 
-    virtual void accept(ObjectVisitor& visitor);
-    virtual SceneObject* clone();
+    void set_ptr(const shared_ptr<SandItem>& ptr);
+    shared_ptr<SandItem> get_ptr();
+
+    virtual void accept(ObjectVisitor& visitor); //
+    virtual SceneObject* clone(); //
 
 private:
     QRgb _color;
-    double _length;
+
+    shared_ptr<SandItem> _ptr;
 };
 
 #endif // SAND_H

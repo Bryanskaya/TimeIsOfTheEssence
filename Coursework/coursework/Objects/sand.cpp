@@ -45,11 +45,11 @@ void Sand::_add_vertices_line(int x, int y, int z, size_t step, size_t num)
     if (num <= 0)
         throw error::WrongNumofVertices(__FILE__, typeid (*this).name(), __LINE__ - 1, num);
 
-    for (int i = 0; i < num; i += step)
+    for (size_t i = 0; i < num; i += step)
         surf_up.add_vertex(Point(x + i, y, z));
 }
 
-void Sand::accept(ObjectVisitor& visitor)
+void Sand::accept(ObjectVisitor&)
 {
     //visitor->visit(*this);
 }
@@ -86,28 +86,38 @@ SceneObject* SandUpP::clone()
 }
 
 
-/*SandUpS::SandUpS(const Point& pnt1, const Point& pnt2)
+SandItem::SandItem(const Point& pnt1, const Point& pnt2, const Point& pnt3, const Point& pnt_top)
 {
     _color = QColor("#b0894f").rgba(); //CD853F
 
-    Model* model_ptr = new Surface(pnt1, pnt2, _length);
+    Model* model_ptr = new Piramid_3(pnt1, pnt2, pnt3, pnt_top, _color);
     _model = shared_ptr<Model>(model_ptr);
 }
 
-SandUpS::SandUpS(const SandUpS& other) : VisibleObject(other)
+SandItem::SandItem(const SandItem& other) : VisibleObject(other)
 {
     _color = other._color;
-    _length = other._length;
 }
 
-SandUpS::~SandUpS() {}
+SandItem::~SandItem() {}
 
-void SandUpS::accept(ObjectVisitor &visitor)
+void SandItem::set_ptr(const shared_ptr<SandItem>& ptr)
+{
+    _ptr = ptr;
+}
+
+shared_ptr<SandItem> SandItem::get_ptr()
+{
+    return _ptr;
+}
+
+
+void SandItem::accept(ObjectVisitor &visitor)
 {
     visitor.visit(*this);
 }
 
-SceneObject* SandUpS::clone()
+SceneObject* SandItem::clone()
 {
-    return new SandUpS(*this);
-}*/
+    return new SandItem(*this);
+}
