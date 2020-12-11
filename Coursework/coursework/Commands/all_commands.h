@@ -4,5 +4,6 @@
 #include "draw_command.h"
 #include "add_command.h"
 #include "transform_command.h"
+#include "update_command.h"
 
 #endif // ALL_COMMANDS_H
