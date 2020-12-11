@@ -10,7 +10,7 @@ void DrawVisitor::visit(Camera&) {}
 
 void DrawVisitor::visit(LightSource&) {}
 
-void DrawVisitor::visit(Hourglass &hourglass)
+void DrawVisitor::visit(Hourglass&)
 {
     //_visual->draw_model();
 }
@@ -41,6 +41,11 @@ void DrawVisitor::visit(SandUpP &sand)
 void DrawVisitor::visit(SurfaceObject &sand)
 {
    _visual->draw_model(*sand.get_model());
+}
+
+void DrawVisitor::visit(SandItem &item)
+{
+   _visual->draw_model(*item.get_model());
 }
 
 

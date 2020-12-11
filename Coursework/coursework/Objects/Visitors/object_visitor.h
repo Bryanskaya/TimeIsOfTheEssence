@@ -24,6 +24,7 @@ public:
 
     virtual void visit(SandUpP& sand) = 0;
     virtual void visit(SurfaceObject& sand) = 0;
+    virtual void visit(SandItem& item) = 0;
 
     virtual void visit(DemoBox& demobox) = 0;
 };
