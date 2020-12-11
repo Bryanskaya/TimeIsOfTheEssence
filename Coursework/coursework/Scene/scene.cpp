@@ -1,6 +1,6 @@
 #include "scene.h"
 
-Scene::Scene()
+Scene::Scene() : _updater(new Updater())
 {
     set_camera(Camera(Point(0, 0, 710), Vector(0, 0, 0)));
     set_light(LightSource(Point(0, 50, 500), 900));
@@ -13,10 +13,11 @@ Scene::Scene()
     add_object(new Stand(-130, 190, 130));
 
     //add_object(new SandUpP(Point(-70, 124, 70), Point(-1, 10, 1)));
-    add_object(new SurfaceObject(Point(-70, 124, 70), Point(70, 124, -70), Point(-1, 10, 1), true));
+    add_object(new SurfaceObject(Point(-70, 124, 70), Point(70, 124, -70), Point(-1, 0, 1), true));//0-10
+    add_object(new SandItem(Point(-4.33, -10, 5), Point(4.33, -10, 5), Point(0, -10, 10), Point(0, 0, 0)));
 
-    add_object(new Glass(Point(-120, -190, 120), Point(-5, 10, 5)));
-    add_object(new Glass(Point(-120, 200, 120), Point(-5, 10, 5)));
+    add_object(new Glass(Point(-120, -190, 120), Point(-5, 0, 5)));//0-10
+    add_object(new Glass(Point(-120, 200, 120), Point(-5, 0, 5)));//0-10
 }
 
 Scene::~Scene() {}
@@ -37,6 +38,7 @@ void Scene::set_camera(const Camera& camera)
     _camera = shared_ptr<Camera>(new Camera(camera));
 }
 
+
 shared_ptr<LightSource> Scene::get_light()
 {
     return _light;
@@ -46,6 +48,7 @@ void Scene::set_light(const LightSource& light)
 {
     _light = shared_ptr<LightSource>(new LightSource(light));
 }
+
 
 shared_ptr<QDrawer> Scene::get_drawer()
 {
@@ -61,6 +64,18 @@ void Scene::set_drawer(shared_ptr<QDrawer> &drawer)
 {
     _draw = drawer;
 }
+
+
+shared_ptr<Updater> Scene::get_updater()
+{
+    return _updater;
+}
+
+void Scene::set_updater(shared_ptr<Updater> &updater)
+{
+    _updater = updater;
+}
+
 
 void Scene::add_object(shared_ptr<SceneObject> object)
 {

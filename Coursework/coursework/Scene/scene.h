@@ -13,7 +13,9 @@
 #include "Objects/glass.h"
 #include "Objects/sand.h"
 #include "Objects/surface_object.h"
+
 #include "Visualizing/drawer.h"
+#include "Update/updater.h"
 
 
 using scene_iter = vector<shared_ptr<SceneObject>>::iterator;
@@ -50,6 +52,9 @@ public:
     void set_drawer(const QDrawer& drawer);
     void set_drawer(shared_ptr<QDrawer>& drawer);
 
+    shared_ptr<Updater> get_updater();
+    void set_updater(shared_ptr<Updater>& updater);
+
     void add_object(shared_ptr<SceneObject> object);
     void add_object(SceneObject* object);
     void remove_object(scene_iter& iter);
@@ -65,6 +70,7 @@ private:
     shared_ptr<LightSource> _light;
 
     shared_ptr<QDrawer> _draw;
+    shared_ptr<Updater> _updater;
 };
 
 #endif // SCENE_H
