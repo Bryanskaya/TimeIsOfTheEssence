@@ -1,6 +1,6 @@
 #include "scene.h"
 
-Scene::Scene() : _updater(new Updater())
+Scene::Scene()
 {
     set_camera(Camera(Point(0, 0, 710), Vector(0, 0, 0)));
     set_light(LightSource(Point(0, 50, 500), 900));
@@ -64,18 +64,6 @@ void Scene::set_drawer(shared_ptr<QDrawer> &drawer)
 {
     _draw = drawer;
 }
-
-
-shared_ptr<Updater> Scene::get_updater()
-{
-    return _updater;
-}
-
-void Scene::set_updater(shared_ptr<Updater> &updater)
-{
-    _updater = updater;
-}
-
 
 void Scene::add_object(shared_ptr<SceneObject> object)
 {

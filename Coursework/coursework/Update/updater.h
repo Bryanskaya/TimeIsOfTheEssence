@@ -1,7 +1,7 @@
 #ifndef UPDATER_H
 #define UPDATER_H
 
-#include "Objects/sand.h"
+/*#include "Objects/sand.h"
 
 using namespace std;
 
@@ -19,6 +19,6 @@ private:
 
     void _move_sand_items(shared_ptr<SandItem>& item, double step);
 
-};
+};*/
 
 #endif // UPDATER_H

@@ -8,9 +8,8 @@
 class UpdateVisitor : public ObjectVisitor
 {
 public:
-    UpdateVisitor(shared_ptr<Updater>& updater); // время, координата-у нижней подставки
+    UpdateVisitor(double t, double border); //shared_ptr<Updater>& updater,
     virtual ~UpdateVisitor();
-
 
     virtual void visit(Camera& camera) = 0;
     virtual void visit(LightSource& light) = 0;
@@ -25,12 +24,16 @@ public:
 
     virtual void visit(DemoBox& demobox) = 0;
 
+    void set_border(double border);
+    void set_temp_time(double t);
 
+    void _move_sand_items(shared_ptr<SandItem> &item, double step);
 
 private:
-    shared_ptr<Updater> _updater;
-    double temp_time = 0;
-    double d_time;
+    //shared_ptr<Updater> _updater;
+    double _temp_time = 0;
+    double _dtime;
+    double _border;
 };
 
 #endif // UPDATE_VISITOR_H

@@ -52,9 +52,6 @@ public:
     void set_drawer(const QDrawer& drawer);
     void set_drawer(shared_ptr<QDrawer>& drawer);
 
-    shared_ptr<Updater> get_updater();
-    void set_updater(shared_ptr<Updater>& updater);
-
     void add_object(shared_ptr<SceneObject> object);
     void add_object(SceneObject* object);
     void remove_object(scene_iter& iter);
@@ -70,7 +67,6 @@ private:
     shared_ptr<LightSource> _light;
 
     shared_ptr<QDrawer> _draw;
-    shared_ptr<Updater> _updater;
 };
 
 #endif // SCENE_H

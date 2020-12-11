@@ -91,8 +91,6 @@ void InitUpdateManager::execute()
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
 
-    shared_ptr<Updater> updater = _scene.lock()->get_updater();
-
     //shared_ptr<ObjectVisitor> visitor(new UpdateVisitor(updater));
 
 
@@ -108,10 +106,13 @@ void UpdateManager::execute()
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
 
-    //цикл по объектам
-    //try-catch => удалять по индексу
+    /*try {
+        move_sand_items();
+    }  catch () {
+        throw ind;
+    }
 
-    //возможно добавление песчинок
+    add_items();*/
 
 
 }

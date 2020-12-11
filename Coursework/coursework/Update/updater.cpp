@@ -1,6 +1,6 @@
 #include "updater.h"
 
-Updater::Updater(){}
+/*Updater::Updater(){}
 
 Updater::~Updater(){}
 
@@ -23,4 +23,4 @@ void Updater::_move_sand_items(shared_ptr<SandItem> &item, double step)
 
     for (size_t i = 0; i < v.size(); i++)
         v[i]->y += step;
-}
+}*/

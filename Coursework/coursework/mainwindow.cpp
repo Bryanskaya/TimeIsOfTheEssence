@@ -162,6 +162,8 @@ void MainWindow::_general_process()
     else if (ind == 2)
         limit = 120;
 
+    ui->ProgressTime->setValue(0);
+
     time_t t_start = clock();
 
     while (clock() - t_start < 1000 * limit) //перевод в единицы
