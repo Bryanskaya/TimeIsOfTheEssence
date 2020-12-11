@@ -80,3 +80,38 @@ void TransformManager::light_execute()
 
     _transf->transform(_scene.lock()->get_light()->get_position());
 }
+
+
+InitUpdateManager::InitUpdateManager(weak_ptr<Scene> scene) : SceneManager(scene) {}
+
+InitUpdateManager::~InitUpdateManager() {}
+
+void InitUpdateManager::execute()
+{
+    if (_scene.expired())
+        throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
+    shared_ptr<Updater> updater = _scene.lock()->get_updater();
+
+    //shared_ptr<ObjectVisitor> visitor(new UpdateVisitor(updater));
+
+
+}
+
+
+UpdateManager::UpdateManager(weak_ptr<Scene> scene) : SceneManager(scene) {}
+
+UpdateManager::~UpdateManager() {}
+
+void UpdateManager::execute()
+{
+    if (_scene.expired())
+        throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
+    //цикл по объектам
+    //try-catch => удалять по индексу
+
+    //возможно добавление песчинок
+
+
+}

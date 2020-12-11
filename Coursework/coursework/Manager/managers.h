@@ -5,6 +5,7 @@
 #include "Visualizing/visualizer.h"
 #include "Transformation/transformator.h"
 #include "Objects/Visitors/draw_visitor.h"
+#include "Objects/Visitors/update_visitor.h"
 
 
 class SceneManager
@@ -57,6 +58,25 @@ public:
 
 private:
     shared_ptr<Transformator> _transf;
+};
+
+
+class InitUpdateManager : public SceneManager
+{
+public:
+    InitUpdateManager(weak_ptr<Scene> scene);
+    virtual ~InitUpdateManager();
+
+    virtual void execute();
+};
+
+class UpdateManager : public SceneManager
+{
+public:
+    UpdateManager(weak_ptr<Scene> scene);
+    virtual ~UpdateManager();
+
+    virtual void execute();
 };
 
 #endif // MANAGERS_H
