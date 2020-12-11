@@ -33,13 +33,6 @@ void Visualizer::draw_model(const Model &model)
     int min_x = _draw->get_min_x();
     int max_x = _draw->get_max_x();
 
-    /*for (auto pnt : model.v_arr)
-    {
-        Point proj_pnt = _project_point(*pnt);
-        _draw->draw_point(proj_pnt, model.s_arr[0]->color);
-    }*/
-
-    cout << model.s_arr.size() << endl;
     for (auto side : model.s_arr)
     {
         ProjectedSide p_side;
@@ -131,7 +124,7 @@ void Visualizer::draw_intensity(const Model &model, double tr)  //hi
 
             //for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
             for (; pnt.x < st; pnt.x++)
-            {
+            {            
                 _draw->correct_intensity(pnt, i / 1.5, tr);
                 pnt.z += dz;
                 i += di;
