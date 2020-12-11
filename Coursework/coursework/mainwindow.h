@@ -76,7 +76,12 @@ private:
     void _move_camera(double x, double y, double z);
     void _move_light(double x, double y, double z);
     void _rotate_camera(double x, double y, double z);
+
     void _draw_scene();
+    void _update_scene();
+
+    void _general_process();
+
 };
 
 #endif // MAINWINDOW_H

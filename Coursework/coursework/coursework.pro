@@ -29,6 +29,7 @@ SOURCES += \
         Commands/base_command.cpp \
         Commands/draw_command.cpp \
         Commands/transform_command.cpp \
+        Commands/update_command.cpp \
         Errors/base_error.cpp \
         Errors/hourglass_error.cpp \
         Errors/scene_errors.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
         Manager/managers.cpp \
         Objects/Visitors/draw_visitor.cpp \
         Objects/Visitors/object_visitor.cpp \
+        Objects/Visitors/update_visitor.cpp \
         Objects/camera.cpp \
         Objects/composite_object.cpp \
         Objects/glass.cpp \
@@ -50,6 +52,7 @@ SOURCES += \
         Primitives/Box/box.cpp \
         Primitives/Model/model.cpp \
         Primitives/Piramid/piramid.cpp \
+        Primitives/Piramid/piramid_3.cpp \
         Primitives/Point/point.cpp \
         Primitives/Side/side.cpp \
         Primitives/Surface/surface.cpp \
@@ -57,6 +60,7 @@ SOURCES += \
         Primitives/Vertex/vertex.cpp \
         Scene/scene.cpp \
         Transformation/transformation.cpp \
+        Update/updater.cpp \
         Visualizing/drawer.cpp \
         Visualizing/projecting.cpp \
         Visualizing/visualizer.cpp \
@@ -69,6 +73,7 @@ HEADERS += \
         Commands/base_command.h \
         Commands/draw_command.h \
         Commands/transform_command.h \
+        Commands/update_command.h \
         Errors/base_error.h \
         Errors/hourglass_error.h \
         Errors/scene_errors.h \
@@ -77,6 +82,7 @@ HEADERS += \
         Manager/managers.h \
         Objects/Visitors/draw_visitor.h \
         Objects/Visitors/object_visitor.h \
+        Objects/Visitors/update_visitor.h \
         Objects/camera.h \
         Objects/composite_object.h \
         Objects/glass.h \
@@ -90,6 +96,7 @@ HEADERS += \
         Primitives/Box/box.h \
         Primitives/Model/model.h \
         Primitives/Piramid/piramid.h \
+        Primitives/Piramid/piramid_3.h \
         Primitives/Point/point.h \
         Primitives/Side/side.h \
         Primitives/Surface/surface.h \
@@ -99,6 +106,7 @@ HEADERS += \
         Scene/scene.h \
         Transformation/transformation.h \
         Transformation/transformator.h \
+        Update/updater.h \
         Visualizing/drawer.h \
         Visualizing/projecting.h \
         Visualizing/visualizer.h \

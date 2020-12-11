@@ -66,7 +66,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     InitDrawCommand command(_image);
     _scene.execute(command);
+    _draw_scene();
 
+    InitUpdateCommand command_update;
+    _scene.execute(command_update);
     _draw_scene();
 }
 
@@ -104,6 +107,13 @@ void MainWindow::_draw_scene()
     QCoreApplication::processEvents();
 }
 
+void MainWindow::_update_scene()
+{
+    UpdateCommand command;
+
+    _scene.execute(command);
+}
+
 
 void MainWindow::on_PushUp_clicked()
 {
@@ -138,6 +148,32 @@ void MainWindow::on_PushFurther_clicked()
 void MainWindow::on_Start_clicked()
 {
     cout << "Let's start!";
+    _general_process();
+}
+
+void MainWindow::_general_process()
+{
+    int limit = 60;
+    double progress;
+    int ind = ui->TimeRange->currentIndex();
+
+    if (ind == 1)
+        limit = 90;
+    else if (ind == 2)
+        limit = 120;
+
+    time_t t_start = clock();
+
+    while (clock() - t_start < 1000 * limit) //перевод в единицы
+    {
+        progress = (clock() - t_start) / (10 * limit); // единицы
+        ui->ProgressTime->setValue(progress);
+
+        _update_scene();
+        _draw_scene();
+    }
+
+    ui->ProgressTime->setValue(100);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
