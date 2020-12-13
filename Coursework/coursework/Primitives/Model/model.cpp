@@ -44,6 +44,21 @@ void Model::normalize_n_vrt()
         vertex->n.normalize();
 }
 
+void Model::correct_n()
+{
+    for (auto vertex : v_arr)
+    {
+        vertex->n.x = 0;
+        vertex->n.y = 0;
+        vertex->n.z = 0;
+    }
+
+    for (auto side : s_arr)
+        side->set_vert_normal(_center);
+
+    normalize_n_vrt();
+}
+
 void Model::_add_side(vector<shared_ptr<Vertex>> vertex_arr, QRgb color)
 {
     shared_ptr<Side> new_side(new Side(vertex_arr, _center, color));
@@ -90,6 +105,11 @@ void Model::add_side(vector<size_t> ind_arr, QRgb color)
     }
 
     _add_side(new_side, color);
+}
+
+Point& Model::get_center()
+{
+    return _center;
 }
 
 void Model::operator=(const Model &other)
