@@ -23,16 +23,6 @@ Piramid::Piramid(const Point& pnt1, const Point& pnt2, QRgb color, double down_l
     add_vertex(Point(pnt2.x + up_length, pnt2.y, pnt2.z - up_length));
     add_vertex(Point(pnt2.x + up_length, pnt2.y, pnt2.z));
 
-    cout << "hi, vertex* " << pnt1.x << " " << pnt1.y << " " << pnt1.z << endl;
-    cout << "hi, vertex* " << pnt1.x << " " << pnt1.y << " " << pnt1.z - down_length << endl;
-    cout << "hi, vertex* " << pnt1.x + down_length << " " << pnt1.y << " " << pnt1.z - down_length << endl;
-    cout << "hi, vertex* " << pnt1.x + down_length << " " << pnt1.y << " " << pnt1.z << endl;
-
-    cout << "hi, vertex* " << pnt2.x << " " << pnt2.y << " " << pnt2.z << endl;
-    cout << "hi, vertex* " << pnt2.x << " " << pnt2.y << " " << pnt2.z - up_length << endl;
-    cout << "hi, vertex* " << pnt2.x + up_length << " " << pnt2.y << " " << pnt2.z - up_length << endl;
-    cout << "hi, vertex* " << pnt2.x + up_length << " " << pnt2.y << " " << pnt2.z << endl;
-
     add_side({1, 5, 6, 2}, color);  // Задняя грань
     add_side({0, 4, 5, 1}, color);  // Левая боковая грань
     add_side({2, 6, 7, 3}, color);  // Правая боковая грань
@@ -53,16 +43,6 @@ Piramid::Piramid(const Point& pnt1, const Point& pnt2, QRgb color, double down_l
     add_vertex(Point(pnt2.x, pnt2.y, pnt2.z - up_length));
     add_vertex(Point(pnt2.x + up_length, pnt2.y, pnt2.z - up_length));
     add_vertex(Point(pnt2.x + up_length, pnt2.y, pnt2.z));
-
-    cout << "hi, vertex* " << pnt1.x << " " << pnt1.y << " " << pnt1.z << endl;
-    cout << "hi, vertex* " << pnt1.x << " " << pnt1.y << " " << pnt1.z - down_length << endl;
-    cout << "hi, vertex* " << pnt1.x + down_length << " " << pnt1.y << " " << pnt1.z - down_length << endl;
-    cout << "hi, vertex* " << pnt1.x + down_length << " " << pnt1.y << " " << pnt1.z << endl;
-
-    cout << "hi, vertex* " << pnt2.x << " " << pnt2.y << " " << pnt2.z << endl;
-    cout << "hi, vertex* " << pnt2.x << " " << pnt2.y << " " << pnt2.z - up_length << endl;
-    cout << "hi, vertex* " << pnt2.x + up_length << " " << pnt2.y << " " << pnt2.z - up_length << endl;
-    cout << "hi, vertex* " << pnt2.x + up_length << " " << pnt2.y << " " << pnt2.z << endl;
 
     add_side({1, 5, 6, 2}, color);  // Задняя грань
     add_side({0, 4, 5, 1}, color);  // Левая боковая грань

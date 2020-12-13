@@ -26,7 +26,6 @@ void Side::n_correction(const Point &control_p)
 
     if (this->n.scalar_mult(temp) < 0)
         n.invert();
-    cout << n.x << " " << n.y << " " << n.z << endl;
 }
 
 
