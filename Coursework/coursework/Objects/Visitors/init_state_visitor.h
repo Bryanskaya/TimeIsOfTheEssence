@@ -1,16 +1,14 @@
-#ifndef UPDATE_VISITOR_H
-#define UPDATE_VISITOR_H
+#ifndef INIT_STATE_H
+#define INIT_STATE_H
 
 #include "object_visitor.h"
-#include "Update/updater.h"
 
-#define K_BOOST     9.8 * 100
 
-class UpdateVisitor : public ObjectVisitor
+class InitStateVisitor : public ObjectVisitor
 {
 public:
-    UpdateVisitor(double t_cur, double dt, double border_y, double t_limit); //shared_ptr<Updater>& updater,
-    virtual ~UpdateVisitor();
+    InitStateVisitor();
+    virtual ~InitStateVisitor();
 
     virtual void visit(Camera& camera);
     virtual void visit(LightSource& light);
@@ -24,12 +22,7 @@ public:
     virtual void visit(SandItem& item);
 
     virtual void visit(DemoBox& demobox);
-
-private:
-    double _t_cur;
-    double _dt;
-    double _general_time;
-    double _border_y;
 };
 
-#endif // UPDATE_VISITOR_H
+
+#endif // INIT_STATE_H
