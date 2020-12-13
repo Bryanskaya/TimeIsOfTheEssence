@@ -69,6 +69,10 @@ private:
     RgbMap _rgb_map;
     QColor _draw_color = Qt::lightGray;
 
+    shared_ptr<BaseCommand> _prev_cmd;
+
+    bool is_running = false;
+
     void wheelEvent(QWheelEvent *event);
 
     void _set_binds_input(void);
@@ -78,7 +82,7 @@ private:
     void _rotate_camera(double x, double y, double z);
 
     void _draw_scene();
-    void _update_scene();
+    void _update_scene(time_t t_cur, time_t dt);
 
     void _general_process();
 

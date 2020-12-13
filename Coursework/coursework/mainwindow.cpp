@@ -64,12 +64,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _image = shared_ptr<QImage>(new QImage(_size_scene.width(), _size_scene.height(), QImage::Format_RGB32));
 
+    q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
+
     InitDrawCommand command(_image);
     _scene.execute(command);
-    _draw_scene();
-
-    InitUpdateCommand command_update;
-    _scene.execute(command_update);
     _draw_scene();
 }
 
@@ -98,7 +96,7 @@ void MainWindow::_show_error(const char *error)
 
 void MainWindow::_draw_scene()
 {
-    q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
+    //q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
 
     DrawCommand command;
 
@@ -107,9 +105,9 @@ void MainWindow::_draw_scene()
     QCoreApplication::processEvents();
 }
 
-void MainWindow::_update_scene()
+void MainWindow::_update_scene(time_t t_cur, time_t dt)
 {
-    UpdateCommand command;
+    UpdateCommand command(t_cur, dt);
 
     _scene.execute(command);
 }
@@ -153,7 +151,9 @@ void MainWindow::on_Start_clicked()
 
 void MainWindow::_general_process()
 {
-    int limit = 60;
+    is_running = true;
+
+    double limit = 60;
     double progress;
     int ind = ui->TimeRange->currentIndex();
 
@@ -162,20 +162,36 @@ void MainWindow::_general_process()
     else if (ind == 2)
         limit = 120;
 
+    InitUpdateCommand command(limit);
+    _scene.execute(command);
+
     ui->ProgressTime->setValue(0);
 
+    srand(time(0));
     time_t t_start = clock();
+    time_t t_cur = 0, dt = 0;
 
-    while (clock() - t_start < 1000 * limit) //перевод в единицы
+    while (t_cur < 1000 * limit)
     {
-        progress = (clock() - t_start) / (10 * limit); // единицы
+        progress = t_cur / (10 * limit);
         ui->ProgressTime->setValue(progress);
 
-        _update_scene();
-        _draw_scene();
+        _update_scene(t_cur, dt);
+
+        try {
+            _draw_scene();
+        }  catch (error::BehindScene &err) {
+            cout << err.what() << endl;
+            _scene.execute(*_prev_cmd);
+        }
+
+        dt = clock() - t_start - t_cur;
+        t_cur = clock() - t_start;
     }
 
     ui->ProgressTime->setValue(100);
+
+    is_running = false;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -223,16 +239,19 @@ void MainWindow::_move_camera(double x, double y, double z)
 {
     shared_ptr<BaseCommand> ptr;
     ptr = shared_ptr<BaseCommand>(new MoveCamera(Vector(x, y, z)));
+    _prev_cmd = shared_ptr<BaseCommand>(new MoveCamera(Vector(-x, -y, -z)));
 
     _scene.execute(*ptr);
 
-    try {
-        _draw_scene();
-    }  catch (error::BaseError &err) {
-        cout << err.what() << endl;
-        _move_camera(-x, -y, -z);
+    if (!is_running)
+    {
+        try {
+            _draw_scene();
+        }  catch (error::BehindScene &err) {
+            cout << err.what() << endl;
+            _scene.execute(*_prev_cmd);
+        }
     }
-
 }
 
 void MainWindow::_move_light(double x, double y, double z)
@@ -242,27 +261,33 @@ void MainWindow::_move_light(double x, double y, double z)
 
     _scene.execute(*ptr);
 
-    try {
-        _draw_scene();
-    }  catch (error::BaseError &err) {
-        cout << err.what() << endl;
-        _move_light(-x, -y, -z);
+    if (!is_running)
+    {
+        try {
+            _draw_scene();
+        }  catch (error::BehindScene &err) {
+            cout << err.what() << endl;
+            _scene.execute(*_prev_cmd);
+        }
     }
-
 }
 
 void MainWindow::_rotate_camera(double x, double y, double z)
 {
     shared_ptr<BaseCommand> ptr;
     ptr = shared_ptr<BaseCommand>(new RotateCamera(Vector(x, y, z)));
+    _prev_cmd = shared_ptr<BaseCommand>(new RotateCamera(Vector(-x, -y, -z)));
 
     _scene.execute(*ptr);
 
-    try {
-        _draw_scene();
-    }  catch (error::BaseError &err) {
-        cout << err.what() << endl;
-        _rotate_camera(-x, -y, -z);
+    if (!is_running)
+    {
+        try {
+            _draw_scene();
+        }  catch (error::BehindScene &err) {
+            cout << err.what() << endl;
+            _scene.execute(*_prev_cmd);
+        }
     }
 }
 
