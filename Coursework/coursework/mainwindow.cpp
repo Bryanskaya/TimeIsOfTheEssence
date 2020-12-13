@@ -66,8 +66,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
 
-    InitDrawCommand command(_image);
-    _scene.execute(command);
+    InitDrawCommand command1(_image);
+    _scene.execute(command1);
+    _draw_scene();
+
+    InitUpdateCommand command2(120);
+    _scene.execute(command2);
     _draw_scene();
 }
 
@@ -156,11 +160,9 @@ void MainWindow::_general_process()
     double limit = 60;
     double progress;
     int ind = ui->TimeRange->currentIndex();
+    vector<int> arr_time = {60, 90, 120};
 
-    if (ind == 1)
-        limit = 90;
-    else if (ind == 2)
-        limit = 120;
+    limit = arr_time[ind];
 
     InitUpdateCommand command(limit);
     _scene.execute(command);

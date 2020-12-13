@@ -2,8 +2,8 @@
 
 Scene::Scene()
 {
-    set_camera(Camera(Point(0, 0, 710), Vector(0, 0, 0)));
-    set_light(LightSource(Point(0, 50, 500), 900));
+    set_camera(Camera(Point(-436, 183, 588), Vector(-0.26, -0.61, 0))); //0 0 710    0 0 0
+    set_light(LightSource(Point(0, 250, 500), 900));
 
     /*Point pnt1 = Point(-50, 150, -200);
     Point pnt2 = Point(400, 120, -300);
@@ -13,7 +13,7 @@ Scene::Scene()
     add_object(new Stand(-130, 190, 130));
 
     //add_object(new SandUpP(Point(-70, 124, 70), Point(-1, 10, 1)));
-    add_object(new SurfaceObject(Point(-70, 124, 70), Point(70, 124, -70), Point(-1, 0, 1), true));//0-10
+    add_object(new SurfaceObject(Point(-70, 124, 70), Point(70, 124, -70), Point(-1, 0, 1), true));
 
     add_object(new Glass(Point(-120, -190, 120), Point(-5, 0, 5)));//0-10
     add_object(new Glass(Point(-120, 200, 120), Point(-5, 0, 5)));//0-10
