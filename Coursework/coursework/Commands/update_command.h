@@ -7,20 +7,27 @@
 class InitUpdateCommand : public BaseCommand
 {
 public:
-    InitUpdateCommand();
+    InitUpdateCommand(double limit);
     virtual ~InitUpdateCommand();
 
     virtual void execute(weak_ptr<Scene> scene);
+
+private:
+    double _t_limit;
 };
 
 
 class UpdateCommand : public BaseCommand
 {
 public:
-    UpdateCommand();
+    UpdateCommand(time_t t_cur, time_t dt);
     virtual ~UpdateCommand();
 
     virtual void execute(weak_ptr<Scene> scene);
+
+private:
+    double _t_cur;
+    double _dt;
 };
 
 #endif // UPDATE_COMMAND_H
