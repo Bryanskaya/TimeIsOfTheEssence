@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <random>
 
 #include "Objects/scene_object.h"
 #include "Objects/camera.h"
@@ -52,9 +53,16 @@ public:
     void set_drawer(const QDrawer& drawer);
     void set_drawer(shared_ptr<QDrawer>& drawer);
 
+    void set_global_time(double time);
+    double get_global_time();
+
     void add_object(shared_ptr<SceneObject> object);
     void add_object(SceneObject* object);
     void remove_object(scene_iter& iter);
+
+    double get_border();
+
+    void add_items(int num);
 
     //void add_tr_object(shared_ptr<SceneObject> object); //hi
     //void add_tr_object(SceneObject* object); //hi
@@ -67,6 +75,9 @@ private:
     shared_ptr<LightSource> _light;
 
     shared_ptr<QDrawer> _draw;
+
+    double _border_y = -190;
+    double _global_time;
 };
 
 #endif // SCENE_H

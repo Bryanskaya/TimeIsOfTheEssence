@@ -14,7 +14,6 @@ Scene::Scene()
 
     //add_object(new SandUpP(Point(-70, 124, 70), Point(-1, 10, 1)));
     add_object(new SurfaceObject(Point(-70, 124, 70), Point(70, 124, -70), Point(-1, 0, 1), true));//0-10
-    add_object(new SandItem(Point(-4.33, -10, 5), Point(4.33, -10, 5), Point(0, -10, 10), Point(0, 0, 0)));
 
     add_object(new Glass(Point(-120, -190, 120), Point(-5, 0, 5)));//0-10
     add_object(new Glass(Point(-120, 200, 120), Point(-5, 0, 5)));//0-10
@@ -65,6 +64,21 @@ void Scene::set_drawer(shared_ptr<QDrawer> &drawer)
     _draw = drawer;
 }
 
+double Scene::get_border()
+{
+    return _border_y;
+}
+
+void Scene::set_global_time(double time)
+{
+    _global_time = time;
+}
+
+double Scene::get_global_time()
+{
+    return _global_time;
+}
+
 void Scene::add_object(shared_ptr<SceneObject> object)
 {
     _arr.push_back(object);
@@ -73,6 +87,19 @@ void Scene::add_object(shared_ptr<SceneObject> object)
 void Scene::add_object(SceneObject *object)
 {
     _arr.push_back(shared_ptr<SceneObject>(object));
+}
+
+void Scene::add_items(int num)
+{
+    double x, y, z;
+
+    for (int i = 0; i < num; i++)
+    {
+        x = (double)(-2 + rand() % 4);
+        y = -(double)(rand() % 7);
+        z = (double)(-2 + rand() % 4);
+        add_object(new SandItem(Point(x, y, z)));
+    }
 }
 
 /*void Scene::add_tr_object(shared_ptr<SceneObject> object) //hi
