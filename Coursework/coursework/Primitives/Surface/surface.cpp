@@ -43,6 +43,11 @@ SurfaceUp::SurfaceUp(QRgb color, const Point& pnt1, const Point& pnt2, const Poi
     size_t num_x = static_cast<int>(round((pnt_max.x - pnt_min.x) / _step));
     size_t num_z = static_cast<int>(round((pnt_max.z - pnt_min.z) / _step));
 
+    if ((num_x + 1) % 2)
+        num_x += 1;
+    if ((num_z + 1) % 2)
+        num_z += 1;
+
     double step_x = (pnt_max.x - pnt_min.x) / num_x;
     double step_z = (pnt_max.z - pnt_min.z) / num_z;
 
@@ -149,7 +154,7 @@ void SurfaceUp::correct_vert(size_t ind)
     v_arr[ind]->n.z /= length;
 }
 
-void SurfaceUp::add_carcas(const Point &pnt1, const Point &pnt2)
+void SurfaceUp::add_carcas(const Point &, const Point &pnt2)
 {
     add_vertex(Point(pnt2.x, pnt2.y, pnt2.z - _up_length));
     add_vertex(Point(pnt2.x + _up_length, pnt2.y, pnt2.z - _up_length));
@@ -203,22 +208,77 @@ void SurfaceUp::find_center(const Point &pnt1, const Point &pnt2)
     _center.z = 0;
 }
 
-double SurfaceUp::volume()
+
+
+SurfaceDown::SurfaceDown(QRgb color, const Point& pnt1, const Point& pnt2) : Surface(color)
 {
-    return _down_length * _down_length * _height / 3;
+    Point pnt_min = find_min_pnt(pnt1, pnt2);
+    Point pnt_max = find_max_pnt(pnt1, pnt2);
+    find_center(pnt1);
+
+    size_t num_x = static_cast<int>(round((pnt_max.x - pnt_min.x) / _step));
+    size_t num_z = static_cast<int>(round((pnt_max.z - pnt_min.z) / _step));
+
+    double step_x = (pnt_max.x - pnt_min.x) / num_x;
+    double step_z = (pnt_max.z - pnt_min.z) / num_z;
+
+    Point pnt = pnt_min;
+    add_points_row(pnt, step_z, num_z);
+
+    for (size_t i = 0; i < num_x; i++)
+    {
+        pnt.x += step_x;
+
+        add_points_row(pnt, step_z, num_z);
+        create_polygons(num_z, i);
+    }
+    _num_nodes = v_arr.size();
+
+    normalize_n_vrt();
 }
 
-double SurfaceUp::find_h(double t_general)
+void SurfaceDown::correct_vert(size_t ind)
 {
-    double v = volume();
-
-    return v / (_cur_length * _cur_length * t_general);
+    v_arr[ind]->n.y = 0;
+    double length = v_arr[ind]->n.get_length();
+    v_arr[ind]->n.x /= length;
+    v_arr[ind]->n.z /= length;
 }
 
-/*void SurfaceUp::correct_surface_carcas()
+SurfaceDown::~SurfaceDown(){}
+
+void SurfaceDown::add_points_row(const Point& pnt_min, double step, int num)
 {
-    for (size_t i = 0; i < _num_nodes; i++)
+    Point pnt = pnt_min;
 
-}*/
+    for (int i = 0; i < num + 1; i++)
+    {
+        add_vertex(pnt);
+        pnt.z += step;
+    }
+}
 
+void SurfaceDown::create_polygons(int num, int cur_i)
+{
+    size_t p1 = cur_i * (num + 1);
+    size_t p2 = cur_i * (num + 1) + 1;
+    size_t p3 = (cur_i + 1) * (num + 1) + 1;
+    size_t p4 = (cur_i + 1) * (num + 1);
 
+    for (int i = 0; i < num; i++)
+    {
+        add_side({ p1, p2, p3, p4 }, _color);
+
+        p1 += 1;
+        p2 += 1;
+        p3 += 1;
+        p4 += 1;
+    }
+}
+
+void SurfaceDown::find_center(const Point &pnt)
+{
+    _center.x = 0;
+    _center.y = pnt.y - 30;
+    _center.z = 0;
+}
