@@ -6,20 +6,14 @@ SurfaceObject::SurfaceObject(const Point& pnt1, const Point& pnt2, const Point& 
     _color = QColor("#b0894f").rgba(); //CD853F
 
     _limit_y = pnt1.y;
+    _is_up_part = up_part;
 
     Model* model_ptr;
 
     if (up_part)
-    {
-        cout << "true" << endl;
         model_ptr = new SurfaceUp(_color, pnt1, pnt2, pnt3);
-    }
     else
-    {
-        cout << "false" << endl;
-        //model_ptr = new SurfaceUp(_color, pnt1, pnt2);
-        /*Model* model_ptr = new SurfaceDown(_color, pnt1, pnt2);*/
-    }
+        model_ptr = new SurfaceDown(_color, pnt1, pnt2);
 
     _model = shared_ptr<Model>(model_ptr);
 }
@@ -31,22 +25,40 @@ SurfaceObject::SurfaceObject(const SurfaceObject& other) : VisibleObject(other)
 
 SurfaceObject::~SurfaceObject() {}
 
-double func(double x, double z, double t, double h)
+double func_up(double x, double z, double t, double h)
 {
-    double k = pow(h / 100, 1.5) * h * 0.075;
-    return exp(-pow(pow(x, 2) + pow(z, 2), 2) / 10) * t;
+    double k = pow(h / 100, 1.5) * h * 0.16; //0.095
+    return exp(-pow(pow(x / k, 2) + pow(z / k, 2), 2) / 10) / t; // /k  *t
+}
+
+double func_down(double x, double z, double t, double h)
+{
+    double k = pow(h / 100, 1.5) * h * 0.16; //0.095
+    return -exp(-pow(pow(x / k, 2) + pow(z / k, 2), 2) / 10) / t;
 }
 
 void SurfaceObject::update(double t_cur, double dt, double t_limit)
+{
+    if (_is_up_part)
+        update_up(t_cur, dt, t_limit);
+    else
+        update_down(t_cur, dt, t_limit);
+}
+
+void SurfaceObject::update_up(double t_cur, double dt, double t_limit)
 {
     double dh, k;
 
     if (t_cur < TIME_HILL * t_limit)
     {
-        //k = pow(t_cur, -2) * 0.1;//pow(60/t_limit, 3);
-        k = t_cur / _limit_y * 2;
+        k = pow(t_cur, -1.5) * 2;//pow(50/t_limit, 2);
+        //k = t_cur / _limit_y * 2;
         for (size_t i = 0; i < _model->v_arr.size() - 8; i++)
-             _model->v_arr[i]->y = _limit_y - func(_model->v_arr[i]->x, _model->v_arr[i]->z, k, _limit_y);
+             _model->v_arr[i]->y = _limit_y - func_up(_model->v_arr[i]->x, _model->v_arr[i]->z, k, _limit_y);
+        _model->get_center().y = (_limit_y - func_up(0, 0, k, _limit_y)) / 2;
+        //cout << "**** " << _model->get_center().y << endl;
+
+        _model->correct_n();
     }
     else
     {
@@ -57,7 +69,17 @@ void SurfaceObject::update(double t_cur, double dt, double t_limit)
         for (size_t i = 0; i < _model->v_arr.size() - 8; i++)
              scl.execute(*_model->v_arr[i]);
     }
+}
 
+void SurfaceObject::update_down(double t_cur, double dt, double t_limit)
+{
+    double k = pow(t_cur, -1.5) * 2;
+
+    for (size_t i = 0; i < _model->v_arr.size() - 8; i++)
+         _model->v_arr[i]->y = _limit_y + func_down(_model->v_arr[i]->x, _model->v_arr[i]->z, k, _limit_y);
+    //_model->get_center().y = (_limit_y - func_down(0, 0, k, _limit_y)) / 2;
+
+    _model->correct_n();
 }
 
 void SurfaceObject::accept(ObjectVisitor &visitor)
