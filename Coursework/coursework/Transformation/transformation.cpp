@@ -218,7 +218,7 @@ void Scale::execute(Vertex &vertex)
     vertex.y = _dir.y * (vertex.y - _center.y) + _center.y;
     vertex.z = _dir.z * (vertex.z - _center.z) + _center.z;
 
-    execute(vertex.n);
+    //execute(vertex.n);
 }
 
 void Scale::execute(Vector &vect)
