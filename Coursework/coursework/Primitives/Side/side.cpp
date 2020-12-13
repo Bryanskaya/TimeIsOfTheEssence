@@ -28,6 +28,15 @@ void Side::n_correction(const Point &control_p)
         n.invert();
 }
 
+void Side::set_vert_normal(const Point& control_p)
+{
+    _find_normal();
+    n_correction(control_p);
+
+    for (auto vertex : vertex_arr)
+        vertex->n += this->n;
+}
+
 
 void Side::_find_normal()
 {

@@ -23,6 +23,7 @@ public:
     virtual ~Side();
 
     void n_correction(const Point& control_p);
+    void set_vert_normal(const Point& control_p);
 
 private:
     void _find_normal();
