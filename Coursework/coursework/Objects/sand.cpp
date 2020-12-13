@@ -94,22 +94,24 @@ SandItem::SandItem(const Point& pnt1, const Point& pnt2, const Point& pnt3, cons
     _model = shared_ptr<Model>(model_ptr);
 }
 
+SandItem::SandItem(const Point& pnt_top)
+{
+    _color = QColor("#b0894f").rgba(); //CD853F
+
+    Point pnt1(pnt_top.x - _h * 1.73 / 4, pnt_top.y - _h, pnt_top.z + _h / 2);
+    Point pnt2(pnt_top.x + _h * 1.73 / 4, pnt_top.y - _h, pnt_top.z + _h / 2);
+    Point pnt3(pnt_top.x, pnt_top.y - _h, pnt_top.z - _h);
+
+    Model* model_ptr = new Piramid_3(pnt1, pnt2, pnt3, pnt_top, _color);
+    _model = shared_ptr<Model>(model_ptr);
+}
+
 SandItem::SandItem(const SandItem& other) : VisibleObject(other)
 {
     _color = other._color;
 }
 
 SandItem::~SandItem() {}
-
-void SandItem::set_ptr(const shared_ptr<SandItem>& ptr)
-{
-    _ptr = ptr;
-}
-
-shared_ptr<SandItem> SandItem::get_ptr()
-{
-    return _ptr;
-}
 
 
 void SandItem::accept(ObjectVisitor &visitor)

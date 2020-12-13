@@ -55,13 +55,13 @@ private:
 class SandItem : public VisibleObject
 {
 public:
+    double v_y = 0;
+
     SandItem(const Point& pnt1, const Point& pnt2, const Point& pnt3, const Point& pnt_top);
+    SandItem(const Point& pnt_top);
     explicit SandItem(const SandItem& other);
 
     virtual ~SandItem();
-
-    void set_ptr(const shared_ptr<SandItem>& ptr);
-    shared_ptr<SandItem> get_ptr();
 
     virtual void accept(ObjectVisitor& visitor); //
     virtual SceneObject* clone(); //
@@ -69,7 +69,7 @@ public:
 private:
     QRgb _color;
 
-    shared_ptr<SandItem> _ptr;
+    double _h = 4;
 };
 
 #endif // SAND_H
