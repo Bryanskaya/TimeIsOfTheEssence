@@ -90,14 +90,11 @@ void InitUpdateManager::execute()
 {
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
-
-    //shared_ptr<ObjectVisitor> visitor(new UpdateVisitor(updater));
-
-
 }
 
 
-UpdateManager::UpdateManager(weak_ptr<Scene> scene) : SceneManager(scene) {}
+UpdateManager::UpdateManager(weak_ptr<Scene> scene, double t_cur, double dt) :
+    SceneManager(scene), _t_cur(t_cur), _dt(dt) {}
 
 UpdateManager::~UpdateManager() {}
 
@@ -106,13 +103,52 @@ void UpdateManager::execute()
     if (_scene.expired())
         throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
 
-    /*try {
-        move_sand_items();
-    }  catch () {
-        throw ind;
+    shared_ptr<ObjectVisitor> visitor(new UpdateVisitor(_t_cur, _dt, _scene.lock()->get_border(), _scene.lock()->get_global_time()));
+
+    for (auto obj = _scene.lock()->begin(); obj < _scene.lock()->end();)
+    {
+        try {
+            (*obj)->accept(*visitor);
+        }  catch (int) {
+            _scene.lock()->remove_object(obj);
+            continue;
+        }
+        obj++;
     }
 
-    add_items();*/
+    if (_t_cur < _scene.lock()->get_global_time() * (1 - DTIME))
+        _scene.lock()->add_items(2);
+}
 
 
+InitStateManager::InitStateManager(weak_ptr<Scene> scene, double t_limit) :
+    SceneManager(scene), _t_limit(t_limit) {}
+
+InitStateManager::~InitStateManager() {}
+
+void InitStateManager::execute()
+{
+    if (_scene.expired())
+        throw error::SceneExpired(__FILE__, typeid (*this).name(), __LINE__ - 1);
+
+    _scene.lock()->set_global_time(_t_limit);
+
+    shared_ptr<ObjectVisitor> visitor(new InitStateVisitor());
+
+    for (auto obj = _scene.lock()->begin(); obj < _scene.lock()->end();)
+    {
+        try {
+            (*obj)->accept(*visitor);
+        }  catch (int) {
+            _scene.lock()->remove_object(obj);
+            continue;
+        }
+        obj++;
+    }
+
+    double temp = pow(_t_limit / 120, 1.0/3.0);
+    double h_temp = 124 * temp;
+    double d_temp = 70 * temp;
+
+    _scene.lock()->add_object(new SurfaceObject(Point(-d_temp, h_temp, d_temp), Point(d_temp, h_temp, -d_temp), Point(-1, 0, 1), true));
 }

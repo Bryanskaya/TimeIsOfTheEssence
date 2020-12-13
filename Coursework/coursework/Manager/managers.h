@@ -6,6 +6,7 @@
 #include "Transformation/transformator.h"
 #include "Objects/Visitors/draw_visitor.h"
 #include "Objects/Visitors/update_visitor.h"
+#include "Objects/Visitors/init_state_visitor.h"
 
 
 class SceneManager
@@ -73,10 +74,27 @@ public:
 class UpdateManager : public SceneManager
 {
 public:
-    UpdateManager(weak_ptr<Scene> scene);
+    UpdateManager(weak_ptr<Scene> scene, double t_cur, double dt);
     virtual ~UpdateManager();
 
     virtual void execute();
+
+private:
+    double _t_cur;
+    double _dt;
+};
+
+
+class InitStateManager : public SceneManager
+{
+public:
+    InitStateManager(weak_ptr<Scene> scene, double t_limit);
+    virtual ~InitStateManager();
+
+    virtual void execute();
+
+private:
+    double _t_limit;
 };
 
 #endif // MANAGERS_H
