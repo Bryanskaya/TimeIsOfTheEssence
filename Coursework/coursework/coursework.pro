@@ -37,6 +37,7 @@ SOURCES += \
         Errors/vector_errors.cpp \
         Manager/managers.cpp \
         Objects/Visitors/draw_visitor.cpp \
+        Objects/Visitors/init_state_visitor.cpp \
         Objects/Visitors/object_visitor.cpp \
         Objects/Visitors/update_visitor.cpp \
         Objects/camera.cpp \
@@ -81,6 +82,7 @@ HEADERS += \
         Errors/vector_errors.h \
         Manager/managers.h \
         Objects/Visitors/draw_visitor.h \
+        Objects/Visitors/init_state_visitor.h \
         Objects/Visitors/object_visitor.h \
         Objects/Visitors/update_visitor.h \
         Objects/camera.h \
