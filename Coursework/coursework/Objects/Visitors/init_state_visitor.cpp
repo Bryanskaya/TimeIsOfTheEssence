@@ -9,11 +9,12 @@ void InitStateVisitor::visit(Camera&) {}
 
 void InitStateVisitor::visit(LightSource&) {}
 
-void InitStateVisitor::visit(Hourglass&) {}
-
 void InitStateVisitor::visit(Stand&) {}
 
-void InitStateVisitor::visit(Glass&) {}
+void InitStateVisitor::visit(Glass&)
+{
+    throw 1004;
+}
 
 void InitStateVisitor::visit(SandUpP&)
 {
@@ -29,5 +30,3 @@ void InitStateVisitor::visit(SandItem&)
 {
     throw 1003;
 }
-
-void InitStateVisitor::visit(DemoBox&) {}
