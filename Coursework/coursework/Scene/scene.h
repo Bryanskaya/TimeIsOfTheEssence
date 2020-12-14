@@ -9,7 +9,6 @@
 #include "Objects/scene_object.h"
 #include "Objects/camera.h"
 #include "Objects/light_source.h"
-#include "Objects/hourglass.h"
 #include "Objects/stand.h"
 #include "Objects/glass.h"
 #include "Objects/sand.h"

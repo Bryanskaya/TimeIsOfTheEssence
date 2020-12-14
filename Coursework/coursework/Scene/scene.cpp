@@ -2,21 +2,17 @@
 
 Scene::Scene()
 {
-    set_camera(Camera(Point(-436, 183, 588), Vector(-0.26, -0.61, 0))); //0 0 710    0 0 0
-    set_light(LightSource(Point(0, 250, 500), 900));
-
-    /*Point pnt1 = Point(-50, 150, -200);
-    Point pnt2 = Point(400, 120, -300);
-    add_object(new DemoBox(pnt1, pnt2));*/
+    set_camera(Camera(Point(-53.37, 58, 657), Vector(-0.085, -0.0515472, 0))); //0 0 710    0 0 0
+    //set_light(LightSource(Point(0, 250, 500), 900));
+    set_light(LightSource(Point(-136, 8, 256), 900));
 
     add_object(new Stand(-130, -210, 130));
     add_object(new Stand(-130, 190, 130));
 
-    //add_object(new SandUpP(Point(-70, 124, 70), Point(-1, 10, 1)));
     add_object(new SurfaceObject(Point(-70, 124, 70), Point(70, 124, -70), Point(-1, 0, 1), true));
 
-    add_object(new Glass(Point(-120, -190, 120), Point(-5, 0, 5)));//0-10
-    add_object(new Glass(Point(-120, 200, 120), Point(-5, 0, 5)));//0-10
+    add_object(new Glass(Point(-120, -190, 120), Point(-5, 0, 5)));
+    add_object(new Glass(Point(-120, 200, 120), Point(-5, 0, 5)));
 }
 
 Scene::~Scene() {}
@@ -102,22 +98,8 @@ void Scene::add_items(int num)
     }
 }
 
-/*void Scene::add_tr_object(shared_ptr<SceneObject> object) //hi
-{
-    _tr_arr.push_back(object);
-}
-
-void Scene::add_tr_object(SceneObject *object) //hi
-{
-    _tr_arr.push_back(shared_ptr<SceneObject>(object));
-}*/
-
 void Scene::remove_object(scene_iter &iter)
 {
     _arr.erase(iter);
 }
 
-/*void Scene::remove_tr_object(scene_iter &iter) //hi
-{
-    _tr_arr.erase(iter);
-}*/
