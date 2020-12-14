@@ -151,6 +151,5 @@ void InitStateManager::execute()
     double d_temp = 70 * temp;
 
     _scene.lock()->add_object(new SurfaceObject(Point(-d_temp, h_temp, d_temp), Point(d_temp, h_temp, -d_temp), Point(-1, 0, 1), true));
-    _scene.lock()->add_object(new SurfaceObject(Point(-70, -210, 70), Point(70, -210, -70)));
-
+    _scene.lock()->add_object(new SurfaceObject(Point(-115, -195, 115), Point(115, -195, -115)));
 }
