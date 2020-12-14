@@ -11,9 +11,18 @@ QRgb get_color(QRgb color, double itensity)
 
     new_color.getRgb(&r, &g, &b);
 
-    r *= itensity;
-    g *= itensity;
-    b *= itensity;
+    if (itensity <= 1)
+    {
+        r *= itensity;
+        g *= itensity;
+        b *= itensity;
+    }
+    else
+    {
+        r = min<double>(r * itensity, 255);
+        g = min<double>(g * itensity, 255);
+        b = min<double>(b * itensity, 255);
+    }
 
     new_color.setRgb(r, g, b);
 
@@ -80,7 +89,7 @@ void QDrawer::_free_map()
 
     delete _colormap;
     delete _zmap;
-    delete  _itenmap; //hi
+    delete  _itenmap;
 }
 
 void QDrawer::draw_point(const Point &pnt, QRgb color)
@@ -129,7 +138,6 @@ void QDrawer::correct_intensity(const Point& pnt, double i, double tr) //hi
     if (y < 0 || y >= height)
         return;
 
-    //cout << "++++++" << pnt.x << " " <<  pnt.y << " " <<pnt.z << " " << _zmap[y][x] << endl;
     if (pnt.z + 10 > _zmap[y][x])
         _itenmap[y][x] = get_iten_through_glass(_itenmap[y][x], i, tr);
 }
