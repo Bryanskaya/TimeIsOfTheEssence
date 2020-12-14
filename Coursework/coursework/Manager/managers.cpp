@@ -44,11 +44,6 @@ void DrawManager::execute()
     for (auto object : *_scene.lock())
         object->accept(*visitor);
 
-    /*shared_ptr<ObjectVisitor> iten_visitor(new TransparencyVisitor(visual)); //hi
-
-    for (auto object : *_scene.lock()) //hi
-        object->accept(*iten_visitor);*/
-
     visual->show_scene();
 }
 
