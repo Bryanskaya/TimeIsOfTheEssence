@@ -4,6 +4,7 @@
 #include "simple_object.h"
 
 #define K_LIGHTSOURCE   1
+#define K_GLARE         50
 
 
 class LightSource : public InvisibleObject
