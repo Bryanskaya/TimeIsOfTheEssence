@@ -150,7 +150,8 @@ void MainWindow::on_PushFurther_clicked()
 void MainWindow::on_Start_clicked()
 {
     cout << "Let's start!";
-    _general_process();
+    if (!is_running)
+        _general_process();
 }
 
 void MainWindow::_general_process()

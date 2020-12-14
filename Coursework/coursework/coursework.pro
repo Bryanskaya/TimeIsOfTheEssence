@@ -43,7 +43,6 @@ SOURCES += \
         Objects/camera.cpp \
         Objects/composite_object.cpp \
         Objects/glass.cpp \
-        Objects/hourglass.cpp \
         Objects/light_source.cpp \
         Objects/sand.cpp \
         Objects/scene_object.cpp \
@@ -88,7 +87,6 @@ HEADERS += \
         Objects/camera.h \
         Objects/composite_object.h \
         Objects/glass.h \
-        Objects/hourglass.h \
         Objects/light_source.h \
         Objects/sand.h \
         Objects/scene_object.h \
