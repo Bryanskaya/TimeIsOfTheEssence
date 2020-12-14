@@ -11,13 +11,13 @@ public:
     AddCommand();
     virtual ~AddCommand() = 0;
 
-    virtual void execute(weak_ptr<Scene> scene);
+    virtual void execute(weak_ptr<Scene>);
 };
 
 class AddCamera : public AddCommand
 {
 public:
-    AddCamera(const Point& position, const Vector& direction);
+    AddCamera(const Point&, const Vector&);
     virtual ~AddCamera();
 };
 
@@ -25,7 +25,7 @@ public:
 class AddLightSource : public AddCommand
 {
 public:
-    AddLightSource(const Point& position, double itensity);
+    AddLightSource(const Point&, double);
     virtual ~AddLightSource();
 };
 
