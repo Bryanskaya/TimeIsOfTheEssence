@@ -174,7 +174,7 @@ void Visualizer::clear()
 {
     _draw->fill_zmap_onedepth(-10000);
     _draw->make_map_plain(QColor("#74737a").rgba()); //4682B4
-    _draw->make_itenmap_plain(0.9); //hi какое лучше значение
+    _draw->make_itenmap_plain(0.9);
 }
 
 Point Visualizer::_project_point(const Point &pnt)

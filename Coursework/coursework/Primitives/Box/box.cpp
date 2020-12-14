@@ -58,12 +58,6 @@ Box::Box(const Point& pnt1, const Point& pnt2, QRgb color) :
     }
 
 
-
-
-
-
-
-
     //Нижняя грань
     /*add_vertex(pnt1);   //Ближайшая к наблюдателю слева снизу
     add_vertex(Point(pnt1.x, pnt1.y, pnt2.z));

@@ -51,8 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _size_scene = ui->graphicsView->size();
 
-    //cout << "Size: " << _size_scene.width() << "x" << _size_scene.height() << endl;
-
     _set_binds_input();
 
     _rgb_map = create_rgb_map(_size_scene.width(), _size_scene.height());
@@ -100,8 +98,6 @@ void MainWindow::_show_error(const char *error)
 
 void MainWindow::_draw_scene()
 {
-    //q_pmap = _qscene->addPixmap(QPixmap::fromImage(*_image));
-
     DrawCommand command;
 
     _scene.execute(command);

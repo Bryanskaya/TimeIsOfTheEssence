@@ -16,7 +16,7 @@ Move::~Move() {}
 
 void Move::rotate(const Vector &vect)
 {
-    Vector v_try{-vect.x, -vect.y, vect.z};//!!!!!!!!!!!
+    Vector v_try{-vect.x, -vect.y, vect.z};
     Rotate action(v_try); //vect
 
     action.execute(_dir);
@@ -44,10 +44,7 @@ void Move::execute(Vertex &vertex)
     vertex.z += _dir.z;
 }
 
-void Move::execute(Vector&)
-{
-    //
-}
+void Move::execute(Vector&){}
 
 void Move::execute(Camera &camera)
 {
@@ -58,7 +55,7 @@ void Move::execute(Camera &camera)
 Rotate::Rotate(const Vector& vect, const Point& pnt) :
     _center(pnt)
 {
-    _dir.x = vect.x; //
+    _dir.x = vect.x;
     _dir.y = vect.y;
     _dir.z = vect.z;
 }
@@ -66,7 +63,7 @@ Rotate::Rotate(const Vector& vect, const Point& pnt) :
 Rotate::Rotate(const Vector& vect) :
     _center()
 {
-    _dir.x = vect.x; //
+    _dir.x = vect.x;
     _dir.y = vect.y;
     _dir.z = vect.z;
 }
@@ -118,7 +115,6 @@ void Rotate::execute(Vector& vect)
 
 void Rotate::execute(Camera &camera)
 {
-    //execute(camera.get_direction());
     Vector& vect = camera.get_direction();
     vect.x += _dir.x;
     vect.y += _dir.y;
@@ -217,8 +213,6 @@ void Scale::execute(Vertex &vertex)
     vertex.x = _dir.x * (vertex.x - _center.x) + _center.x;
     vertex.y = _dir.y * (vertex.y - _center.y) + _center.y;
     vertex.z = _dir.z * (vertex.z - _center.z) + _center.z;
-
-    //execute(vertex.n);
 }
 
 void Scale::execute(Vector &vect)

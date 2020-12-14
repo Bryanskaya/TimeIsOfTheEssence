@@ -15,7 +15,6 @@
 #include "Objects/surface_object.h"
 
 #include "Visualizing/drawer.h"
-#include "Update/updater.h"
 
 
 using scene_iter = vector<shared_ptr<SceneObject>>::iterator;

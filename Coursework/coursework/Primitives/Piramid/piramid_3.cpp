@@ -1,7 +1,5 @@
 #include "piramid_3.h"
 
-#include <iostream>
-using namespace std;
 
 Piramid_3::Piramid_3(const Point& pnt1, const Point& pnt2, const Point& pnt3, const Point& pnt_top, QRgb color) :
     _color(color)

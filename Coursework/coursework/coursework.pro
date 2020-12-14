@@ -60,7 +60,6 @@ SOURCES += \
         Primitives/Vertex/vertex.cpp \
         Scene/scene.cpp \
         Transformation/transformation.cpp \
-        Update/updater.cpp \
         Visualizing/drawer.cpp \
         Visualizing/projecting.cpp \
         Visualizing/visualizer.cpp \
@@ -106,7 +105,6 @@ HEADERS += \
         Scene/scene.h \
         Transformation/transformation.h \
         Transformation/transformator.h \
-        Update/updater.h \
         Visualizing/drawer.h \
         Visualizing/projecting.h \
         Visualizing/visualizer.h \

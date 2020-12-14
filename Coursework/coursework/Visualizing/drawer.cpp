@@ -68,13 +68,13 @@ void QDrawer::_init_map()
 {
     _colormap = new QRgb*[this->height];
     _zmap = new double*[this->height];
-    _itenmap = new double*[this->height];//hi
+    _itenmap = new double*[this->height];
 
     for (int i = 0; i < this->height; i++)
     {
         _zmap[i] = new double[this->width];
         _colormap[i] = new QRgb[this->width];
-        _itenmap[i] = new double[this->width]; //hi
+        _itenmap[i] = new double[this->width];
     }
 }
 
@@ -84,7 +84,7 @@ void QDrawer::_free_map()
     {
         delete _colormap[i];
         delete _zmap[i];
-        delete  _itenmap[i]; //hi
+        delete  _itenmap[i];
     }
 
     delete _colormap;
@@ -124,11 +124,11 @@ void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
         _zmap[y][x] = pnt.z;
         //_colormap[y][x] = get_color(color, itensity);
         _colormap[y][x] = color;
-        _itenmap[y][x] = itensity; //hi
+        _itenmap[y][x] = itensity;
     }
 }
 
-void QDrawer::correct_intensity(const Point& pnt, double i, double tr) //hi
+void QDrawer::correct_intensity(const Point& pnt, double i, double tr)
 {
     int x = static_cast<int>(pnt.x) + half_width;
     if (x < 0 || x >= width)
@@ -149,7 +149,7 @@ void QDrawer::make_map_plain(QRgb color)
             _colormap[i][j] = color;
 }
 
-void QDrawer::make_itenmap_plain(double iten) //hi
+void QDrawer::make_itenmap_plain(double iten)
 {
     for (int i = 0; i < this->height; i++)
         for (int j = 0; j < this->width; j++)
