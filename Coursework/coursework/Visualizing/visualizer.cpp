@@ -91,6 +91,7 @@ void Visualizer::draw_intensity(const Model &model, double tr)  //hi
     for (auto side : model.s_arr)
     {
         ProjectedSide p_side;
+        Vector n = side->n;
 
         _project_side(p_side, side->vertex_arr);
 
@@ -120,19 +121,48 @@ void Visualizer::draw_intensity(const Model &model, double tr)  //hi
                 i += di;
             }
 
+            Point invt_pnt1 = _invert_project_point(pnt); //
+            Point invt_pnt2(p_side.active_edges[1].x, p_side.y_temp, p_side.active_edges[1].z); //
+            invt_pnt2 = _invert_project_point(invt_pnt2); //
+
+            double dx_invt = (invt_pnt2.x - invt_pnt1.x) / (pnt.x - p_side.active_edges[1].x);//
+            double dy_invt = (invt_pnt2.y - invt_pnt1.y) / (pnt.x - p_side.active_edges[1].x);//
+            double dz_invt = (invt_pnt2.z - invt_pnt1.z) / (pnt.x - p_side.active_edges[1].x);//
+
             double st = min(p_side.active_edges[1].x, static_cast<double>(max_x));
 
-            //for (; pnt.x < p_side.active_edges[1].x; pnt.x++)
             for (; pnt.x < st; pnt.x++)
-            {            
-                _draw->correct_intensity(pnt, i / 1.5, tr);
+            {
+                _draw->correct_intensity(pnt, i / 0.95 + _glare_i(invt_pnt1, n), tr);
+                //_draw->correct_intensity(pnt, i / 1.5, tr);
+
                 pnt.z += dz;
                 i += di;
+                invt_pnt1.x += dx_invt;
+                invt_pnt1.y += dy_invt;
+                invt_pnt1.z += dz_invt;
             }
 
             p_side.step();
         }
     }
+}
+
+double Visualizer::_glare_i(const Point& pnt, const Vector& n)
+{
+    Vector vct1(pnt, _light.get_position());
+    Vector vct2(pnt, _camera.get_position());
+
+    vct1.normalize();    
+    vct2.normalize();
+
+    Vector res((vct1.x + vct2.x) / 2, (vct1.y + vct2.y) / 2, (vct1.z + vct2.z) / 2); //проверить
+
+    double i = abs(res.scalar_mult(n));
+
+    i = pow(i, K_GLARE) * 5;
+
+    return i;
 }
 
 void Visualizer::show_scene()
@@ -163,6 +193,25 @@ Point Visualizer::_project_point(const Point &pnt)
     //k = 500 / sqrt(camera.x * camera.x + camera.z * camera.z);
     result.x = (result.x - camera.x) * k;
     result.y = (result.y - camera.y) * k;
+
+    return result;
+}
+
+Point Visualizer::_invert_project_point(const Point &pnt)
+{
+    Point result = pnt;
+    Point camera = _camera.get_position();
+    double k;
+
+    k = 500 / (camera.z - result.z);
+
+    //k = 500 / sqrt(camera.x * camera.x + camera.z * camera.z);
+    result.x = result.x / k + camera.x;
+    result.y = result.y / k + camera.y;
+
+    Vector temp_camera = _camera.get_direction();
+    temp_camera.invert();
+    result.invert_rotate(camera, temp_camera); //
 
     return result;
 }

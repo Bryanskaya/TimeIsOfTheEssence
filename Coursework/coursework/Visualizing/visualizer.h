@@ -9,6 +9,7 @@
 #include "Errors/scene_errors.h"
 
 
+
 class Visualizer
 {
 public:
@@ -33,8 +34,10 @@ private:
     LightSource _light;
 
     Point _project_point(const Point& pnt);
+    Point _invert_project_point(const Point &pnt);
     void _project_side(ProjectedSide &side, const vector<shared_ptr<Vertex>>& vertex_arr);
     double _calculate_intensity(const Vertex &v);
+    double _glare_i(const Point& pnt, const Vector &n);
 };
 
 #endif // VISUALIZER_H
