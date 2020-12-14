@@ -33,8 +33,9 @@ double func_up(double x, double z, double t, double h)
 
 double func_down(double x, double z, double t, double h)
 {
-    double k = pow(h / 100, 1.5) * h * 0.16; //0.095
-    return -exp(-pow(pow(x / k, 2) + pow(z / k, 2), 2) / 10) / t;
+    h = abs(h);
+    double k = 55;//pow(h, 1.5) * h * 0.16; //0.095
+    return exp(-pow(pow(x / k, 2) + pow(z / k, 2), 2) / 5) / t;
 }
 
 void SurfaceObject::update(double t_cur, double dt, double t_limit)
@@ -73,13 +74,17 @@ void SurfaceObject::update_up(double t_cur, double dt, double t_limit)
 
 void SurfaceObject::update_down(double t_cur, double dt, double t_limit)
 {
-    double k = pow(t_cur, -1.5) * 2;
+    double k = pow(t_cur + 4, -0.8) * 0.75;
 
-    for (size_t i = 0; i < _model->v_arr.size() - 8; i++)
-         _model->v_arr[i]->y = _limit_y + func_down(_model->v_arr[i]->x, _model->v_arr[i]->z, k, _limit_y);
-    //_model->get_center().y = (_limit_y - func_down(0, 0, k, _limit_y)) / 2;
+    for (size_t i = 0; i < _model->v_arr.size(); i++)
+        _model->v_arr[i]->y = _limit_y + func_down(_model->v_arr[i]->x, _model->v_arr[i]->z, k, _limit_y);
 
     _model->correct_n();
+}
+
+bool SurfaceObject::get_status_part()
+{
+    return _is_up_part;
 }
 
 void SurfaceObject::accept(ObjectVisitor &visitor)

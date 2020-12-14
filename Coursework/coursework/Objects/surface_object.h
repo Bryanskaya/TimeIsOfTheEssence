@@ -23,6 +23,8 @@ public:
     void update_up(double t_cur, double dt, double t_limit);
     void update_down(double t_cur, double dt, double t_limit);
 
+    bool get_status_part();
+
 private:
     QRgb _color;
     double _limit_y;
