@@ -1,5 +1,8 @@
 #include "vector.h"
 
+#include <limits.h>
+#include <math.h>
+
 //constructors and destructor
 Vector::Vector(): x(0), y(0), z(0) {}
 
