@@ -6,8 +6,6 @@
 class Surface : public Model
 {
 public:
-    double a, b, c, d;
-
     Surface(QRgb color);
 
     virtual ~Surface();

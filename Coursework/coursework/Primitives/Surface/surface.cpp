@@ -28,7 +28,7 @@ Point Surface::find_max_pnt(const Point& pnt1, const Point& pnt2)
     return result;
 }
 
-void Surface::find_center(const Point &pnt1, const Point &pnt2) {}
+void Surface::find_center(const Point&, const Point&) {}
 
 
 
