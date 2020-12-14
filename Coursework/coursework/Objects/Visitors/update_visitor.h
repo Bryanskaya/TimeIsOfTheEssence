@@ -2,7 +2,7 @@
 #define UPDATE_VISITOR_H
 
 #include "object_visitor.h"
-#include "Update/updater.h"
+#include "Objects/sand.h"
 
 #define K_BOOST     9.8 * 100
 
@@ -15,15 +15,12 @@ public:
     virtual void visit(Camera& camera);
     virtual void visit(LightSource& light);
 
-    virtual void visit(Hourglass& hourglass);
     virtual void visit(Stand& stand);
     virtual void visit(Glass& glass);
 
     virtual void visit(SandUpP& sand);
     virtual void visit(SurfaceObject& sand);
     virtual void visit(SandItem& item);
-
-    virtual void visit(DemoBox& demobox);
 
 private:
     double _t_cur;

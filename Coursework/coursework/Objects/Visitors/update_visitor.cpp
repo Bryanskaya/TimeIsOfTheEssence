@@ -10,8 +10,6 @@ void UpdateVisitor::visit(Camera&) {}
 
 void UpdateVisitor::visit(LightSource&) {}
 
-void UpdateVisitor::visit(Hourglass&) {}
-
 void UpdateVisitor::visit(Stand&) {}
 
 void UpdateVisitor::visit(Glass&) {}
@@ -41,6 +39,5 @@ void UpdateVisitor::visit(SandItem& item)
     item.v_y += _dt * K_BOOST;
 }
 
-void UpdateVisitor::visit(DemoBox&) {}
 
 
