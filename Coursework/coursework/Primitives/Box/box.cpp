@@ -28,6 +28,8 @@ Box::Box(const Point& pnt1, const Point& pnt2, QRgb color) :
         create_polygons(num_z, i);
     }
 
+    int d = v_arr.size();
+
     pnt = pnt_min;
     pnt.y = pnt_max.y;
     add_points_row(pnt, step_z, num_z);
@@ -38,6 +40,21 @@ Box::Box(const Point& pnt1, const Point& pnt2, QRgb color) :
 
         add_points_row(pnt, step_z, num_z);
         create_polygons(num_z, i + num_x + 1);
+    }
+
+    for (size_t i = 0; i < num_z; i++)
+    {
+        size_t j = i + num_x * (num_z + 1);
+        add_side({i, i + 1, i + 1 + d, i + d}, _color);
+        add_side({j, j + 1, j + 1 + d, j + d}, _color);
+    }
+
+    size_t step = num_z + 1;
+    for (size_t i = 0; i < num_x * step; i += step)
+    {
+        size_t j = i + num_z;
+        add_side({i, i + step, i + step + d, i + d}, _color);
+        add_side({j, j + step, j + step + d, j + d}, _color);
     }
 
 
