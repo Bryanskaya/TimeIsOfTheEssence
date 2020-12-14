@@ -34,7 +34,6 @@ double func_up(double x, double z, double t, double h)
 double func_down(double x, double z, double t, double h)
 {
     h = abs(h);
-    //double k = 55;
     double k = 55;
     return exp(-pow(pow(x / k, 2) + pow(z / k, 2), 2) / 5) / t;
 }
@@ -58,8 +57,6 @@ void SurfaceObject::update_up(double t_cur, double dt, double t_limit)
         for (size_t i = 0; i < _model->v_arr.size() - 8; i++)
              _model->v_arr[i]->y = _limit_y - func_up(_model->v_arr[i]->x, _model->v_arr[i]->z, k, _limit_y);
         _model->get_center().y = (_limit_y - func_up(0, 0, k, _limit_y)) / 2;
-        //cout << "**** " << _model->get_center().y << endl;
-
         _model->correct_n();
     }
     else
