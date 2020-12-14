@@ -152,4 +152,7 @@ void InitStateManager::execute()
 
     _scene.lock()->add_object(new SurfaceObject(Point(-d_temp, h_temp, d_temp), Point(d_temp, h_temp, -d_temp), Point(-1, 0, 1), true));
     _scene.lock()->add_object(new SurfaceObject(Point(-115, -195, 115), Point(115, -195, -115)));
+
+    _scene.lock()->add_object(new Glass(Point(-120, -190, 120), Point(-5, 0, 5)));
+    _scene.lock()->add_object(new Glass(Point(-120, 200, 120), Point(-5, 0, 5)));
 }
