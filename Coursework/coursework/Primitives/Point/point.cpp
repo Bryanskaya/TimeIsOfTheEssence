@@ -32,6 +32,13 @@ void Point::rotate(const Point &center, const Vector &angles)
     rotate_oz(center, angles.z);
 }
 
+void Point::invert_rotate(const Point &center, const Vector &angles)
+{
+    rotate_oz(center, angles.z);
+    rotate_ox(center, angles.x);
+    rotate_oy(center, angles.y);
+}
+
 void Point::rotate_ox(const Point &center, double angle)
 {
     double y_temp, z_temp;

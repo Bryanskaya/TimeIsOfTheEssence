@@ -26,6 +26,7 @@ public:
 
     double to_radians(double angle);
     void rotate(const Point& center, const Vector& angles);
+    void invert_rotate(const Point &center, const Vector &angles);
 
 private:
     void rotate_ox(const Point& center, double k);
