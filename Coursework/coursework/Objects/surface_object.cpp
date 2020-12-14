@@ -34,7 +34,8 @@ double func_up(double x, double z, double t, double h)
 double func_down(double x, double z, double t, double h)
 {
     h = abs(h);
-    double k = 55;//pow(h, 1.5) * h * 0.16; //0.095
+    //double k = 55;
+    double k = 55;
     return exp(-pow(pow(x / k, 2) + pow(z / k, 2), 2) / 5) / t;
 }
 
