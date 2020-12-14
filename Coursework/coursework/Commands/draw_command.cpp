@@ -20,7 +20,5 @@ DrawCommand::~DrawCommand() {}
 
 void DrawCommand::execute(weak_ptr<Scene> scene)
 {
-    //cout << "draw_command start" << endl;
     DrawManager(scene).execute();
-    //cout << "draw_command end" << endl;
 }
