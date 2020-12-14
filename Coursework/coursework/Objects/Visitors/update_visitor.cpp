@@ -20,7 +20,7 @@ void UpdateVisitor::visit(SandUpP&) {}
 
 void UpdateVisitor::visit(SurfaceObject& sand)
 {
-    if (_t_cur > _general_time * (1 - DTIME))
+    if (_t_cur > _general_time * (1 - DTIME) && sand.get_status_part())
         throw 1004;
 
     sand.update(_t_cur, _dt, _general_time);
