@@ -28,7 +28,6 @@ public:
     void rotate(const Point& center, const Vector& angles);
     void invert_rotate(const Point &center, const Vector &angles);
 
-private:
     void rotate_ox(const Point& center, double k);
     void rotate_oy(const Point& center, double k);
     void rotate_oz(const Point& center, double k);
