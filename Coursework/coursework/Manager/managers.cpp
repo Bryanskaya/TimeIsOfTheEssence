@@ -39,10 +39,15 @@ void DrawManager::execute()
     visual->set_draw(scene->get_drawer());
     visual->clear();
 
-    shared_ptr<ObjectVisitor> visitor(new DrawVisitor(visual));
+    /*shared_ptr<ObjectVisitor> visitor1(new DrawShdVisitor(visual));
 
     for (auto object : *_scene.lock())
-        object->accept(*visitor);
+        object->accept(*visitor1);*/
+
+    shared_ptr<ObjectVisitor> visitor2(new DrawVisitor(visual));
+
+    for (auto object : *_scene.lock())
+        object->accept(*visitor2);
 
     visual->show_scene();
 }
