@@ -2,9 +2,10 @@
 
 Scene::Scene()
 {
-    set_camera(Camera(Point(-53.37, 58, 657), Vector(-0.085, -0.0515472, 0))); //0 0 710    0 0 0
+    set_camera(Camera(Point(-53.37, 58, 657), Vector(-0.085, -0.0515472, 0))); //0 0 710    0 0 0 ideal
     //set_light(LightSource(Point(0, 250, 500), 900));
     set_light(LightSource(Point(-136, 8, 256), 900));
+
 
     add_object(new Stand(-130, -210, 130));
     add_object(new Stand(-130, 190, 130));
