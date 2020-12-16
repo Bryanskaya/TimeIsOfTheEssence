@@ -167,8 +167,9 @@ void MainWindow::_general_process()
     ui->ProgressTime->setValue(0);
 
     srand(time(0));
-    time_t t_start = clock();
+    time_t t_start = clock(), test_fps = clock();
     time_t t_cur = 0, dt = 0;
+    int count = 0;
 
     while (t_cur < 1000 * limit)
     {
@@ -186,6 +187,16 @@ void MainWindow::_general_process()
 
         dt = clock() - t_start - t_cur;
         t_cur = clock() - t_start;
+
+        /*time_t test_fps_new = clock();
+        if (test_fps_new - test_fps < 1 * 1000)
+            count++;
+        else
+        {
+            cout << "FPS " << count << endl;
+            count = 0;
+            test_fps = clock();
+        }*/
     }
 
     ui->ProgressTime->setValue(100);
@@ -318,4 +329,24 @@ void MainWindow::on_PushLightCloser_clicked()
 void MainWindow::on_PushLightFurther_clicked()
 {
     _move_light(0, 0, 8);
+}
+
+void MainWindow::on_RotateUp_clicked()
+{
+    _rotate_camera(1, 0, 0);
+}
+
+void MainWindow::on_RotateDown_clicked()
+{
+    _rotate_camera(-1, 0, 0);
+}
+
+void MainWindow::on_RotateLeft_clicked()
+{
+    _rotate_camera(0, 1, 0);
+}
+
+void MainWindow::on_RotateRight_clicked()
+{
+    _rotate_camera(0, -1, 0);
 }

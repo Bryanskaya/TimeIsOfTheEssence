@@ -58,6 +58,14 @@ private slots:
 
     void on_PushLightFurther_clicked();
 
+    void on_RotateUp_clicked();
+
+    void on_RotateDown_clicked();
+
+    void on_RotateLeft_clicked();
+
+    void on_RotateRight_clicked();
+
 private:
     Ui::MainWindow *ui;
     shared_ptr<QGraphicsScene> _qscene;
