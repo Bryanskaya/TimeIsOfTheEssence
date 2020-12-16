@@ -68,11 +68,13 @@ void QDrawer::_init_map()
 {
     _colormap = new QRgb*[this->height];
     _zmap = new double*[this->height];
+    //_zmap_shd = new double*[this->height];
     _itenmap = new double*[this->height];
 
     for (int i = 0; i < this->height; i++)
     {
         _zmap[i] = new double[this->width];
+        //_zmap_shd[i] = new double[this->width];
         _colormap[i] = new QRgb[this->width];
         _itenmap[i] = new double[this->width];
     }
@@ -84,11 +86,13 @@ void QDrawer::_free_map()
     {
         delete _colormap[i];
         delete _zmap[i];
+        //delete _zmap_shd[i];
         delete  _itenmap[i];
     }
 
     delete _colormap;
     delete _zmap;
+    //delete _zmap_shd;
     delete  _itenmap;
 }
 
@@ -109,7 +113,22 @@ void QDrawer::draw_point(const Point &pnt, QRgb color)
     }
 }
 
-void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
+void QDrawer::draw_point_shd(const Point &pnt)
+{
+    int x = static_cast<int>(pnt.x) + half_width;
+    if (x < 0 || x >= width)
+        return;
+
+    int y = -static_cast<int>(pnt.y) + half_height;
+    if (y < 0 || y >= height)
+        return;
+
+    /*if (pnt.z > _zmap_shd[y][x])
+        _zmap_shd[y][x] = pnt.z;*/
+}
+
+
+void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)//, const Point &pnt_shd)
 {
     int x = static_cast<int>(pnt.x) + half_width;
     if (x < 0 || x >= width)
@@ -122,9 +141,19 @@ void QDrawer::draw_point(const Point &pnt, QRgb color, double itensity)
     if (pnt.z > _zmap[y][x])
     {
         _zmap[y][x] = pnt.z;
-        //_colormap[y][x] = get_color(color, itensity);
         _colormap[y][x] = color;
         _itenmap[y][x] = itensity;
+
+        /*int x_shd = static_cast<int>(pnt_shd.x) + half_width;
+        if (x_shd < 0 || x_shd >= width)
+            return;
+
+        int y_shd = -static_cast<int>(pnt_shd.y) + half_height;
+        if (y_shd < 0 || y_shd >= height)
+            return;
+
+        if (pnt_shd.z + 10 < _zmap_shd[y_shd][x_shd])
+            _itenmap[y][x] = 0.1;*/
     }
 }
 
@@ -160,7 +189,10 @@ void QDrawer::fill_zmap_onedepth(double depth)
 {
     for (int i = 0; i < this->height; i++)
         for (int j = 0; j < this->width; j++)
+        {
             _zmap[i][j] = depth;
+            //_zmap_shd[i][j] = depth;
+        }
 }
 
 void QDrawer::move_to_qimage()

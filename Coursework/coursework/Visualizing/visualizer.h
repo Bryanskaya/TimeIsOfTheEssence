@@ -8,6 +8,7 @@
 #include "Primitives/Model/model.h"
 #include "Errors/scene_errors.h"
 
+#define PI      3.1415
 
 
 class Visualizer
@@ -23,7 +24,8 @@ public:
     void set_light(const LightSource& light);
 
     void draw_model(const Model& model);
-    void draw_intensity(const Model &model, double tr);  //hi
+    void draw_shadows(const Model &model);
+    void draw_intensity(const Model &model, double tr);
 
     void show_scene();
     void clear();
@@ -32,10 +34,13 @@ private:
     shared_ptr<QDrawer> _draw;
     Camera _camera;
     LightSource _light;
+    Vector _light_dir;
 
     Point _project_point(const Point& pnt);
+    Point _project_point_shd(const Point& pnt);
     Point _invert_project_point(const Point &pnt);
     void _project_side(ProjectedSide &side, const vector<shared_ptr<Vertex>>& vertex_arr);
+    void _project_side_shd(ProjectedSide &side, const vector<shared_ptr<Vertex>>& vertex_arr);
     double _calculate_intensity(const Vertex &v);
     double _glare_i(const Point& pnt, const Vector &n);
 };

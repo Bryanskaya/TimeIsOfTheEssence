@@ -24,7 +24,8 @@ public:
     virtual ~QDrawer();
 
     void draw_point(const Point& pnt, QRgb color);
-    void draw_point(const Point& pnt, QRgb color, double intensity);
+    void draw_point(const Point& pnt, QRgb color, double intensity);//, const Point &pnt_shd);
+    void draw_point_shd(const Point &pnt);
     void make_map_plain(QRgb color);
     void fill_zmap_onedepth(double depth);
     void make_itenmap_plain(double iten); //hi
@@ -41,7 +42,7 @@ public:
 private:
     weak_ptr<QImage> _image;
     RgbMap _colormap;
-    ZMap _zmap;
+    ZMap _zmap;//, _zmap_shd;
     IMap _itenmap; //hi
 
     int height, width;
