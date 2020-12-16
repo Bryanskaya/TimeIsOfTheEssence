@@ -56,7 +56,7 @@ public:
     void correct_vert(size_t ind);
 
 private:
-    double _step = 30; //50
+    double _step = 20; //50
     size_t _num_nodes;
     double _down_length = 140;
 
