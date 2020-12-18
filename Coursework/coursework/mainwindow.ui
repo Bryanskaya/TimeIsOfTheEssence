@@ -251,6 +251,9 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
     <property name="text">
      <string>Вверх</string>
     </property>
