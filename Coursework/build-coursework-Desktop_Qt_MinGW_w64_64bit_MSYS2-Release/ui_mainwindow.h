@@ -294,6 +294,9 @@ public:
         label_8->setText(QCoreApplication::translate("MainWindow", "\320\230\321\201\321\202\320\276\321\207\320\275\320\270\320\272 \321\201\320\262\320\265\321\202\320\260:", nullptr));
         Start->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202!", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "\320\237\320\265\321\200\320\265\320\274\320\265\321\201\321\202\320\270\321\202\321\214:", nullptr));
+#if QT_CONFIG(whatsthis)
+        PushUp->setWhatsThis(QString());
+#endif // QT_CONFIG(whatsthis)
         PushUp->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\265\321\200\321\205", nullptr));
         PushRight->setText(QCoreApplication::translate("MainWindow", "\320\222\320\277\321\200\320\260\320\262\320\276", nullptr));
         PushLeft->setText(QCoreApplication::translate("MainWindow", "\320\222\320\273\320\265\320\262\320\276", nullptr));
