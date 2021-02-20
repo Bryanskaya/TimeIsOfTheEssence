@@ -8,6 +8,12 @@
 - образование выемки   
 ![Образование_выемки](https://user-images.githubusercontent.com/54107546/108585443-ab68fc80-7359-11eb-93e6-b4287532c433.gif)
 
-- образование горки
+- образование горки  
+![Образование_горки](https://user-images.githubusercontent.com/54107546/108585604-61cce180-735a-11eb-9310-dd21cba7c9b6.gif)
 
-- 
+- перемещение источника освещения  
+![Перемещение_источника_освещения](https://user-images.githubusercontent.com/54107546/108585609-65606880-735a-11eb-9df9-2138c3d2a1ac.gif)
+
+- перемещение камеры  
+![Перемещение_камеры](https://user-images.githubusercontent.com/54107546/108586548-45cc3e80-7360-11eb-8944-66cee857ac85.gif)
+
